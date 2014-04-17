@@ -141,7 +141,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <center><a href="" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
+                        <center><a href="#" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
                     </div>
                     <hr><br><br>
                     <!-- About Us Skills -->

@@ -83,12 +83,11 @@ public class LowonganModel extends Model {
     public ArrayList<Lowongan> getLowonganRekomendasi(String kategori) {
         ArrayList<Lowongan> lowonganList = new ArrayList<Lowongan>();
         String[] arr = kategori.split(",");
-
-        for (int i = 0; i < arr.length; i++) {
-            String query = "SELECT DISTINCT * FROM " + TABLE_NAME + " WHERE kategori LIKE '%" + arr[i] + "%";
-
-            openConnection();
-
+        String query = "SELECT DISTINCT * FROM " + TABLE_NAME + " WHERE kategori LIKE '%" + arr[0] + "%'";
+        for(int ii=1;ii<arr.length;ii++){
+            query = query + " OR kategori LIKE '%" + arr[ii] + "%'";
+        }
+        openConnection();
             try {
                 ResultSet res = super.getStatement().executeQuery(query);
 
@@ -102,7 +101,6 @@ public class LowonganModel extends Model {
             } finally {
                 closeConnection();
             }
-        }
         return lowonganList;
     }
 }
