@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package object;
 
 /**
@@ -11,6 +10,7 @@ package object;
  * @author Johanes
  */
 public class Organization {
+
     private int id;
     private String namePanjang;
     private String namePendek;
@@ -19,6 +19,11 @@ public class Organization {
     private String alamat;
     private String deskripsi;
     private String visi;
+
+    public Organization(String namePendek, String deskripsi) {
+        this.namePendek = namePendek;
+        this.deskripsi = deskripsi;
+    }
 
     public Organization(String namePanjang, String namePendek, String tanggalBerdiri, String jenis, String alamat, String deskripsi, String visi) {
         this.namePanjang = namePanjang;
@@ -93,6 +98,5 @@ public class Organization {
     public void setVisi(String visi) {
         this.visi = visi;
     }
-    
-    
+
 }

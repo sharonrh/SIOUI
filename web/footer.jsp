@@ -8,7 +8,7 @@
                 <div class="footer-widget">
                     <!-- Logo Icon -->
                     <!-- Heading -->
-                    <h2><a href="index.html"><i class="fa fa-eye-slash logo-icon br-red"></i> SIOUI</a></h2>
+                    <h2><a href="index.jsp"><i class="fa fa-eye-slash logo-icon br-red"></i> SIOUI</a></h2>
                     <!-- Paragraph -->
                     <p>Sistem Organisasi Universitas Indonesia</p>
                     <!-- Social Media -->
@@ -31,20 +31,20 @@
                             <!-- Menu Icons link -->
                             <ul class="list-unstyled">
                                 <li><a href="#"><i class="fa fa-home br-red"></i> Home</a></li>
-                                <li><a href="#"><i class="fa fa-book br-yellow"></i> Careers</a></li>
+                                <!--li><a href="#"><i class="fa fa-book br-yellow"></i> Careers</a></li-->
                                 <li><a href="#"><i class="fa fa-phone br-green"></i> Contact Us</a></li>
                                 <li><a href="#"><i class="fa fa-gear br-lblue"></i> Service</a></li>
-                                <li><a href="#"><i class="fa fa-comment br-purple"></i> Testimonial</a></li>
+                                <!--li><a href="#"><i class="fa fa-comment br-purple"></i> Testimonial</a></li-->
                             </ul>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-6">
                             <!-- Menu Icons link -->
                             <ul class="list-unstyled">
                                 <li><a href="#"><i class="fa fa-check br-green"></i> Features</a></li>
-                                <li><a href="#"><i class="fa fa-search br-pink"></i> Coming Soon</a></li>
+                                <!--li><a href="#"><i class="fa fa-search br-pink"></i> Coming Soon</a></li-->
                                 <li><a href="#"><i class="fa fa-user br-orange"></i> About Us</a></li>
                                 <li><a href="#"><i class="fa fa-sign-in br-red"></i> Register</a></li>
-                                <li><a href="#"><i class="fa fa-file br-blue"></i> Recent News</a></li>
+                                <!--li><a href="#"><i class="fa fa-file br-blue"></i> Recent News</a></li-->
                             </ul>
                         </div>
                     </div>
@@ -57,11 +57,10 @@
                     <!-- Heading -->
                     <h5><i class="fa fa-map-marker br-yellow"></i> Contact Us</h5>
                     <address>
-                        <i class="fa fa-home br-green"></i> #98/3 Dark Politic Road, N B C <br />
-                        &nbsp; &nbsp; &nbsp; &nbsp; Venue, 6th Main, USD Park,  <br />
-                        &nbsp; &nbsp; &nbsp; &nbsp; Bangalore - 234543 <br />
+                        <i class="fa fa-home br-green"></i> Fakultas Ilmu Komputer </br>
+                        Universitas Indonesia
                         <span><i class="fa fa-phone br-orange"></i> +91 123-456-2345</span>
-                        <span><i class="fa fa-envelope-o br-blue"></i> <a href="#">abc@example.com</a></span>
+                        <span><i class="fa fa-envelope-o br-blue"></i> <a href="#">sioui@gmail.com</a></span>
                     </address>
                 </div>
             </div>

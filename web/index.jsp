@@ -145,10 +145,10 @@
                             <!-- Heading -->
                             <h3>Daftarkan Organisasimu!</h3>
                             <!-- Paragraph -->
-                            <p>On the other hand, we denounce with righteous in our power of choice isded and foresee the pain and trouble that are bound to ensue.</p>
+                            <p>Perekrutan menjadi lebih mudah. </p>
                             <!-- View Next Button -->
                             <div class="view-button">
-                                <a href="#" class="btn btn-danger">Daftar <i class="fa fa-angle-right"></i></a>
+                                <a href="daftar-sekarang.jsp" class="btn btn-danger">Daftar <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                         <!-- Image -->
@@ -230,7 +230,7 @@
                                 <!-- Box Icon -->
                                 <i class="fa fa-book"></i>
                                 <!-- Box Title -->
-                                <span class="box-title">Careers</span>
+                                <span class="box-title">UKM</span>
                             </div>
                         </a>
                     </div>	
@@ -250,7 +250,7 @@
                                 <!-- Box Icon -->
                                 <i class="fa fa-book"></i>
                                 <!-- Box Title -->
-                                <span class="box-title">Careers</span>
+                                <span class="box-title">UKF</span>
                             </div>
                         </a>
                     </div>	
@@ -270,7 +270,7 @@
                                 <!-- Box Icon -->
                                 <i class="fa fa-book"></i>
                                 <!-- Box Title -->
-                                <span class="box-title">Careers</span>
+                                <span class="box-title">Event</span>
                             </div>
                         </a>
                     </div>	

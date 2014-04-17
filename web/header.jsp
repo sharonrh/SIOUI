@@ -85,7 +85,7 @@
                                 <!-- Logo -->
                                 <div class="logo">
                                     <!-- Heading -->
-                                    <h1><a href="index.html"><i class="fa fa-eye-slash br-red"></i> SIOUI</a></h1>
+                                    <h1><a href="index.jsp"><i class="fa fa-eye-slash br-red"></i> SIOUI</a></h1>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -154,10 +154,10 @@
                                                             <div class="col-md-12">
                                                                 <div class="col-inner">
                                                                     <ul class="list-unstyled">
-                                                                        <li><a href=""><span class="number-notif">3</span> Interview Invitation</a></li>
-                                                                        <li><a href=""><span class="number-notif">1</span> Upcoming Interviews</a></li>
-                                                                        <li><a href=""><span class="number-notif">2</span> Applications</a></li>
-                                                                        <li><a href=""><span class="number-notif">&nbsp&nbsp</span> Close Recruitment</a></li>
+                                                                        <li><a href="#"><span class="number-notif">3</span> Interview Invitation</a></li>
+                                                                        <li><a href="#"><span class="number-notif">1</span> Upcoming Interviews</a></li>
+                                                                        <li><a href="#"><span class="number-notif">2</span> Applications</a></li>
+                                                                        <li><a href="#"><span class="number-notif">&nbsp&nbsp</span> Close Recruitment</a></li>
                                                                     </ul>
 
                                                                 </div>
@@ -191,7 +191,7 @@
                                                                     <!-- Heading -->
                                                                     <h4 class="br-green"><i class="fa fa-filter heading-icon"></i> UKM</h4>
                                                                     <!-- Paragraph -->
-                                                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui app blanditiis praesentium voluptatum deleniti atque corrupti quos pain dolores et quas molesti as excet pturi sint occaecati cupiditate non provident.</p>
+                                                                    <p>Unit Kegiatan Mahasiswa merupakan organisasi tetap yang terbuka untuk seluruh mahasiswa Universitas Indonesia.</p>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -199,7 +199,7 @@
                                                                     <!-- Heading -->
                                                                     <h4 class="br-yellow"><i class="fa fa-ticket heading-icon"></i> UKF</h4>
                                                                     <!-- Paragraph -->
-                                                                    <p>Lorem Ipsum available, but the cool majority have suffered altevable.</p>
+                                                                    <p>Unit Kegiatan Fakultas merupakan organisasi tetap yang dikhususkan untuk mahasiswa Fakultas Ilmu Komputer UI.</p>
                                                                     <!-- View Next Button -->
                                                                     <div class="view-button">
                                                                         <a href="list-lowongan.jsp" class="btn btn-danger btn-sm">Lihat Daftar Lowongan <i class="fa fa-angle-right"></i></a>
@@ -211,7 +211,7 @@
                                                                     <!-- Heading -->
                                                                     <h4 class="br-blue"><i class="fa fa-filter heading-icon"></i> Event</h4>
                                                                     <!-- Paragraph -->
-                                                                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui app blanditiis praesentium voluptatum deleniti atque corrupti quos pain dolores et quas molesti as excet pturi sint occaecati cupiditate non provident.</p>
+                                                                    <p>Event merupakan organisasi yang dikhususkan untuk pelaksanaan suatu event tertentu.</p>
                                                                 </div>
                                                             </div>
                                                         </div>

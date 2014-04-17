@@ -4,6 +4,7 @@
     Author     : Johanes
 --%>
 
+<%@page import="model.OrganizationModel"%>
 <%@page import="object.Lowongan"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.LowonganModel"%>
@@ -28,6 +29,8 @@
     <div class="container">
         <%
             if (session.getAttribute("currentUser") != null) {
+                //        OrganizationModel om = new OrganizationModel();
+                // om.select(nama);
         %>        
         <div class="row">
             <div class="col-md-3">
@@ -141,7 +144,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <center><a href="#" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
+                        <center><a href="" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
                     </div>
                     <hr><br><br>
                     <!-- About Us Skills -->
@@ -162,45 +165,14 @@
                                     <!-- Image // Flat Icon -->
                                     <img src="img/flat-icon/fi2.png" class="img-responsive" alt="" />
                                     <!-- Heading -->
-                                    <h6>Muahahah</h6>
+                                    <h6><%=r.getJudul()%></h6>
                                     <!-- Paragraph -->
-                                    <p class="grey">We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.</p>
+                                    <p class="grey"><%=r.getDeskripsi()%></p>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
                             <%}%>
-                            <div class="col-md-6 col-sm-6">
-                                <!-- Skill Item -->
-                                <div class="skill-item">
-                                    <!-- Image // Flat Icon -->
-                                    <img src="img/flat-icon/fi2.png" class="img-responsive" alt="" />
-                                    <!-- Heading -->
-                                    <h6>Latest CSS Environment</h6>
-                                    <!-- Paragraph -->
-                                    <p class="grey">We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.</p>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <!-- Skill Item -->
-                                <div class="skill-item">
-                                    <!-- Image // Flat Icon -->
-                                    <img src="img/flat-icon/fi3.png" class="img-responsive" alt="" />
-                                    <!-- Heading -->
-                                    <h6>Latest HTML Technology</h6>
-                                    <!-- Paragraph -->
-                                    <p class="grey">We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.</p>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <!-- Skill Item -->
-                                <div class="skill-item">
-                                    <!-- Image // Flat Icon -->
-                                    <img src="img/flat-icon/fi13.png" class="img-responsive" alt="" />
-                                    <!-- Heading -->
-                                    <h6>PHP Developers Notes</h6>
-                                    <!-- Paragraph -->
-                                    <p class="grey">We denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.</p>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
