@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8084/SIOUI/LowonganWebService?wsdl" uri="wsdl/localhost_8084/SIOUI/LowonganWebService.wsdl"/>
+    <system systemId="http://localhost:8084/SIOUI/LowonganWebService?xsd=1" uri="wsdl/localhost_8084/SIOUI/LowonganWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8084/SIOUI/LowonganWS?wsdl" uri="wsdl/localhost_8084/SIOUI/LowonganWS.wsdl"/>
+    <system systemId="http://localhost:8084/SIOUI/LowonganWS?xsd=1" uri="wsdl/localhost_8084/SIOUI/LowonganWS.xsd_1.xsd"/>
+</catalog>
