@@ -21,14 +21,14 @@ public class OrganizationModel extends Model {
 
     final String TABLE_NAME = "organizations";
 
-    public Organization select(String nama) {
+    public Organization select(String nama_pendek) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE nama_pendek='" + nama + "'";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE nama_pendek='" + nama_pendek + "'";
         Organization a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organization(res.getString("nama_pendek"), res.getString("deskripsi"));
+            a = new Organization(res.getString("id_organisasi"),res.getString("nama_panjang"),res.getString("nama_pendek"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
@@ -37,6 +37,4 @@ public class OrganizationModel extends Model {
         }
         return a;
     }
-
-   
 }

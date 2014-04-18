@@ -18,7 +18,7 @@ import object.User;
  * @author Johanes
  */
 public class UserModel extends Model{
-    final String TABLE_NAME = "users";
+    final String TABLE_NAME = "user";
     
     public User select(String username){
         super.openConnection();

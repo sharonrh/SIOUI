@@ -17,122 +17,120 @@ import javax.xml.bind.annotation.XmlType;
 //@XmlAccessorType(XmlAccessType.FIELD)
 //@XmlType(name = "lowongan", propOrder = {"id", "judul", "deskripsi", "jabatan", "minimumTahun", "pendaftaranDimulai", "pendaftaranSelesai", "minimumIPK", "kategori", "jumlahDibutuhkan"})
 public class Lowongan {
-
-    //  @XmlElement(name = "id", required = true)
-    private int id;
-    //  @XmlElement(name = "judul", required = true)
+    private String id_user;
+    private int id_organisasi;
+    private int id_lowongan;
+    private int kapasitas;
+    private String tanggal_buka;
+    private String tanggal_tutup;
     private String judul;
-    //  @XmlElement(name = "deskripsi", required = true)
-    private String deskripsi;
-    //  @XmlElement(name = "jabatan", required = true)
     private String jabatan;
-    //  @XmlElement(name = "minimumTahun", required = true)
-    private int minimumTahun;
-    //  @XmlElement(name = "pendaftaranDimulai", required = true)
-    private String pendaftaranDimulai;
-    //  @XmlElement(name = "pendaftaranSelesai", required = true)
-    private String pendaftaranSelesai;
-    // @XmlElement(name = "minimumIPK", required = true)
-    private double minimumIPK;
-    //  @XmlElement(name = "kategori", required = true)
+    private int minimum_tahun;
+    private double minimum_ipk;
     private String kategori;
-    //  @XmlElement(name = "jumlahDibutuhkan", required = true)
-    private int jumlahDibutuhkan;
-
+    
     public Lowongan() {
     }
 
-    public Lowongan(int id, String judul, String deskripsi, String jabatan, int minimumTahun, String pendaftaranDimulai, String pendaftaranSelesai, double minimumIPK, String kategori, int jumlahDibutuhkan) {
-        this.id = id;
+    public Lowongan(String id_user, int id_organisasi, int id_lowongan, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori) {
+        this.id_user = id_user;
+        this.id_organisasi = id_organisasi;
+        this.kapasitas = kapasitas;
+        this.tanggal_buka = tanggal_buka;
+        this.tanggal_tutup = tanggal_tutup;
         this.judul = judul;
-        this.deskripsi = deskripsi;
         this.jabatan = jabatan;
-        this.minimumTahun = minimumTahun;
-        this.pendaftaranDimulai = pendaftaranDimulai;
-        this.pendaftaranSelesai = pendaftaranSelesai;
-        this.minimumIPK = minimumIPK;
+        this.minimum_tahun = minimum_tahun;
+        this.minimum_ipk = minimum_ipk;
         this.kategori = kategori;
-        this.jumlahDibutuhkan = jumlahDibutuhkan;
     }
 
-    public int getJumlahDibutuhkan() {
-        return jumlahDibutuhkan;
+    public String getId_user() {
+        return id_user;
     }
 
-    public void setJumlahDibutuhkan(int jumlahDibutuhkan) {
-        this.jumlahDibutuhkan = jumlahDibutuhkan;
+    public int getId_organisasi() {
+        return id_organisasi;
     }
 
-    public int getId() {
-        return id;
+    public int getId_lowongan() {
+        return id_lowongan;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getKapasitas() {
+        return kapasitas;
+    }
+
+    public String getTanggal_buka() {
+        return tanggal_buka;
+    }
+
+    public String getTanggal_tutup() {
+        return tanggal_tutup;
     }
 
     public String getJudul() {
         return judul;
     }
 
-    public void setJudul(String judul) {
-        this.judul = judul;
-    }
-
-    public String getDeskripsi() {
-        return deskripsi;
-    }
-
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
     public String getJabatan() {
         return jabatan;
     }
 
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
+    public int getMinimum_tahun() {
+        return minimum_tahun;
     }
 
-    public int getMinimumTahun() {
-        return minimumTahun;
-    }
-
-    public void setMinimumTahun(int minimumTahun) {
-        this.minimumTahun = minimumTahun;
-    }
-
-    public String getPendaftaranDimulai() {
-        return pendaftaranDimulai;
-    }
-
-    public void setPendaftaranDimulai(String pendaftaranDimulai) {
-        this.pendaftaranDimulai = pendaftaranDimulai;
-    }
-
-    public String getPendaftaranSelesai() {
-        return pendaftaranSelesai;
-    }
-
-    public void setPendaftaranSelesai(String pendaftaranSelesai) {
-        this.pendaftaranSelesai = pendaftaranSelesai;
-    }
-
-    public double getMinimumIPK() {
-        return minimumIPK;
-    }
-
-    public void setMinimumIPK(double minimumIPK) {
-        this.minimumIPK = minimumIPK;
+    public double getMinimum_ipk() {
+        return minimum_ipk;
     }
 
     public String getKategori() {
         return kategori;
     }
 
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setId_organisasi(int id_organisasi) {
+        this.id_organisasi = id_organisasi;
+    }
+
+    public void setId_lowongan(int id_lowongan) {
+        this.id_lowongan = id_lowongan;
+    }
+
+    public void setKapasitas(int kapasitas) {
+        this.kapasitas = kapasitas;
+    }
+
+    public void setTanggal_buka(String tanggal_buka) {
+        this.tanggal_buka = tanggal_buka;
+    }
+
+    public void setTanggal_tutup(String tanggal_tutup) {
+        this.tanggal_tutup = tanggal_tutup;
+    }
+
+    public void setJudul(String judul) {
+        this.judul = judul;
+    }
+
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }
+
+    public void setMinimum_tahun(int minimum_tahun) {
+        this.minimum_tahun = minimum_tahun;
+    }
+
+    public void setMinimum_ipk(double minimum_ipk) {
+        this.minimum_ipk = minimum_ipk;
+    }
+
     public void setKategori(String kategori) {
         this.kategori = kategori;
     }
-
+    
 }

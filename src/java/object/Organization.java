@@ -11,92 +11,103 @@ package object;
  */
 public class Organization {
 
-    private int id;
-    private String namePanjang;
-    private String namePendek;
-    private String tanggalBerdiri;
-    private String jenis;
-    private String alamat;
-    private String deskripsi;
-    private String visi;
+   private String id_user;
+   private int id_organisasi;
+   private String nama_panjang;
+   private String nama_pendek;
+   private String logo;
+   private String deskripsi;
+   private String visi;
+   private String jenis;
+   private String alamat;
+   
+   public Organization(String id_user, String nama_panjang, String nama_pendek){
+       this.id_user = id_user;
+       this.nama_panjang = nama_panjang;
+       this.nama_pendek = nama_pendek;
+   }
 
-    public Organization(String namePendek, String deskripsi) {
-        this.namePendek = namePendek;
-        this.deskripsi = deskripsi;
-    }
-
-    public Organization(String namePanjang, String namePendek, String tanggalBerdiri, String jenis, String alamat, String deskripsi, String visi) {
-        this.namePanjang = namePanjang;
-        this.namePendek = namePendek;
-        this.tanggalBerdiri = tanggalBerdiri;
-        this.jenis = jenis;
-        this.alamat = alamat;
+    public Organization(String id_user, int id_organisasi, String nama_panjang, String nama_pendek, String logo, String deskripsi, String visi, String jenis, String alamat) {
+        this.id_user = id_user;
+        this.id_organisasi = id_organisasi;
+        this.nama_panjang = nama_panjang;
+        this.nama_pendek = nama_pendek;
+        this.logo = logo;
         this.deskripsi = deskripsi;
         this.visi = visi;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNamePanjang() {
-        return namePanjang;
-    }
-
-    public void setNamePanjang(String namePanjang) {
-        this.namePanjang = namePanjang;
-    }
-
-    public String getNamePendek() {
-        return namePendek;
-    }
-
-    public void setNamePendek(String namePendek) {
-        this.namePendek = namePendek;
-    }
-
-    public String getTanggalBerdiri() {
-        return tanggalBerdiri;
-    }
-
-    public void setTanggalBerdiri(String tanggalBerdiri) {
-        this.tanggalBerdiri = tanggalBerdiri;
-    }
-
-    public String getJenis() {
-        return jenis;
-    }
-
-    public void setJenis(String jenis) {
         this.jenis = jenis;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
         this.alamat = alamat;
+    }
+
+    public String getId_user() {
+        return id_user;
+    }
+
+    public int getId_organisasi() {
+        return id_organisasi;
+    }
+
+    public String getNama_panjang() {
+        return nama_panjang;
+    }
+
+    public String getNama_pendek() {
+        return nama_pendek;
+    }
+
+    public String getLogo() {
+        return logo;
     }
 
     public String getDeskripsi() {
         return deskripsi;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
     public String getVisi() {
         return visi;
+    }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setId_user(String id_user) {
+        this.id_user = id_user;
+    }
+
+    public void setId_organisasi(int id_organisasi) {
+        this.id_organisasi = id_organisasi;
+    }
+
+    public void setNama_panjang(String nama_panjang) {
+        this.nama_panjang = nama_panjang;
+    }
+
+    public void setNama_pendek(String nama_pendek) {
+        this.nama_pendek = nama_pendek;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
     }
 
     public void setVisi(String visi) {
         this.visi = visi;
     }
 
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
 }
