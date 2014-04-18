@@ -11,11 +11,13 @@
 <%@include file="header.jsp" %>
 
 <%
-    String param = request.getParameter("id");
+    String id_user = request.getParameter("id_user");
+    int id_organisasi = Integer.parseInt(request.getParameter("id_organisasi"));
+    int id_lowongan = Integer.parseInt(request.getParameter("id_organisasi"));
     Lowongan lw = null;
     if (param != null) {
         LowonganModel lm = new LowonganModel();
-        lw = lm.select(Integer.parseInt(param));
+        lw = lm.select(id_user, id_organisasi, id_lowongan);
         if (session.getAttribute("currentUser") != null) {
             Cookie sessionCookie = new Cookie("recent_" + session.getAttribute("currentUser"), param);
             sessionCookie.setPath("/");
@@ -101,7 +103,7 @@
                                 <!-- Heading -->
                                 <h4>Jumlah Dibutuhkan</h4>
                                 <!-- Paragraph -->
-                                <p class="grey"><%=lw.getJumlahDibutuhkan()%> orang  </p>
+                                <p class="grey"><%=lw.getKapasitas()%> orang  </p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -110,7 +112,7 @@
                                 <!-- Heading -->
                                 <h4>Pendaftaran Dimulai</h4>
                                 <!-- Paragraph -->
-                                <p class="grey"><%=lw.getPendaftaranDimulai()%> </p>
+                                <p class="grey"><%=lw.getTanggal_buka()%> </p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -119,7 +121,7 @@
                                 <!-- Heading -->
                                 <h4>Pendaftaran Selesai</h4>
                                 <!-- Paragraph -->
-                                <p class="grey"><%=lw.getPendaftaranSelesai()%> </p>
+                                <p class="grey"><%=lw.getTanggal_tutup()%> </p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -128,7 +130,7 @@
                                 <!-- Heading -->
                                 <h4>Minimum IPK</h4>
                                 <!-- Paragraph -->
-                                <p class="grey"><%=lw.getMinimumIPK()%> </p>
+                                <p class="grey"><%=lw.getMinimumIpk()%> </p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6 col-sm-6">

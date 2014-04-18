@@ -40,14 +40,14 @@
         Lowongan l = null;
         LowonganModel lm = new LowonganModel();
 
-        if (cl != null) {
+       /* if (cl != null) {
             for (Cookie c : cl) {
                 if (c.getName().equals("recent_" + session.getAttribute("currentUser"))) {
                     recentCookie = c;
                     l = lm.select(Integer.parseInt(recentCookie.getValue()));
                 }
             }
-        }%>
+        }*/%>
     <!--
     #################################
             - THEMEPUNCH BANNER -

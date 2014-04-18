@@ -46,9 +46,9 @@ public class LowonganModel extends Model {
         return null;
     }
 
-    public Lowongan select(int id) {
+    public Lowongan select(String id_user, int id_organisasi, int id_lowongan) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id=" + id;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_user='" + id_user +"' AND id_organisasi="+ id_organisasi +" AND id_lowongan="+ id_lowongan;
         Lowongan a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
