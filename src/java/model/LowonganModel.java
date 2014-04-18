@@ -123,4 +123,87 @@ public class LowonganModel extends Model {
             }
         return lowonganList;
     }
+    
+    public ArrayList<Lowongan> searchByOrganisasi(String nama_pendek) {
+        super.openConnection();
+        String query = "SELECT lw.id_user,lw.id_organisasi,lw.id_lowongan,lw.kapasitas,"
+                + "lw.tanggal_buka,lw.tanggal_tutup,lw.judul,lw.jabatan,"
+                + "lw.minimum_tahun,lw.minimum_ipk,lw.kategori,lw.deskripsi "
+                + "FROM Lowongan lw JOIN Organisasi og ON lw.id_user = og.id_user AND lw.id_organisasi=og.id_organisasi "
+                + "WHERE og.nama_pendek LIKE '%"+nama_pendek+"%' ORDER BY tanggal_tutup DESC";
+        ArrayList<Lowongan> result = new ArrayList<Lowongan>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                        res.getInt("id_lowongan"), res.getInt("kapasitas"),
+                        res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
+                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
+                        res.getString("kategori"),res.getString("deskripsi"));
+                result.add(lw);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
+    public ArrayList<Lowongan> searchByAlamat(String alamat) {
+        super.openConnection();
+        String query = "SELECT lw.id_user,lw.id_organisasi,lw.id_lowongan,lw.kapasitas,"
+                + "lw.tanggal_buka,lw.tanggal_tutup,lw.judul,lw.jabatan,"
+                + "lw.minimum_tahun,lw.minimum_ipk,lw.kategori,lw.deskripsi "
+                + "FROM Lowongan lw JOIN Organisasi og ON lw.id_user = og.id_user AND lw.id_organisasi=og.id_organisasi "
+                + "WHERE og.nama_pendek lw.alamat='"+alamat+"' ORDER BY tanggal_tutup DESC";
+        ArrayList<Lowongan> result = new ArrayList<Lowongan>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                        res.getInt("id_lowongan"), res.getInt("kapasitas"),
+                        res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
+                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
+                        res.getString("kategori"),res.getString("deskripsi"));
+                result.add(lw);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+    
+     public ArrayList<Lowongan> searchByKategori(String kategori) {
+        super.openConnection();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE kategori='" + kategori + "'";
+        ArrayList<Lowongan> result = new ArrayList<Lowongan>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                        res.getInt("id_lowongan"), res.getInt("kapasitas"),
+                        res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
+                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
+                        res.getString("kategori"),res.getString("deskripsi"));
+                result.add(lw);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
 }

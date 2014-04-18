@@ -106,6 +106,36 @@ public class OrganizationModel extends Model {
     }
     
     /**
+     * 
+     * @param id_organisasi
+     * @param nama
+     * @return 
+     */
+    public ArrayList<Organization> selectByNama(int id_organisasi, String nama) {
+        super.openConnection();
+        String query = "SELECT * FROM " + TABLE_NAME 
+                + " WHERE id_organisasi='" + id_organisasi + "'"
+                + " AND jenis LIKE '%" + nama + "%'";
+        ArrayList<Organization> result = new ArrayList<Organization>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+              Organization a = new Organization(res.getString("id_organisasi"),
+                      res.getString("nama_panjang"),
+                      res.getString("nama_pendek"));
+              result.add(a);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+    
+    /**
      * Untuk edit organisasi dipakai di form
      * @param id_user
      * @param id_organisasi
