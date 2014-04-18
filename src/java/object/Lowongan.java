@@ -28,11 +28,12 @@ public class Lowongan {
     private int minimum_tahun;
     private double minimum_ipk;
     private String kategori;
+    private String deskripsi;
     
     public Lowongan() {
     }
 
-    public Lowongan(String id_user, int id_organisasi, int id_lowongan, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori) {
+    public Lowongan(String id_user, int id_organisasi, int id_lowongan, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
         this.id_user = id_user;
         this.id_organisasi = id_organisasi;
         this.kapasitas = kapasitas;
@@ -43,6 +44,7 @@ public class Lowongan {
         this.minimum_tahun = minimum_tahun;
         this.minimum_ipk = minimum_ipk;
         this.kategori = kategori;
+        this.deskripsi = deskripsi;
     }
 
     public String getId_user() {
@@ -77,16 +79,20 @@ public class Lowongan {
         return jabatan;
     }
 
-    public int getMinimum_tahun() {
+    public int getMinimumTahun() {
         return minimum_tahun;
     }
 
-    public double getMinimum_ipk() {
+    public double getMinimumIpk() {
         return minimum_ipk;
     }
 
     public String getKategori() {
         return kategori;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
     }
 
     public void setId_user(String id_user) {
@@ -132,5 +138,10 @@ public class Lowongan {
     public void setKategori(String kategori) {
         this.kategori = kategori;
     }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+    
     
 }

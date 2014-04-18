@@ -34,7 +34,7 @@ public class LowonganModel extends Model {
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
                         res.getString("judul"), res.getString("jabatan"), 
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"));
+                        res.getString("kategori"),res.getString("deskripsi"));
                 result.add(lw);
             }
             return result;
@@ -58,7 +58,7 @@ public class LowonganModel extends Model {
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
                         res.getString("judul"), res.getString("jabatan"), 
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"));
+                        res.getString("kategori"),res.getString("deskripsi"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
@@ -83,7 +83,7 @@ public class LowonganModel extends Model {
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
                         res.getString("judul"), res.getString("jabatan"), 
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"));
+                        res.getString("kategori"),res.getString("deskripsi"));
                 lowonganList.add(lw);
             }
         } catch (SQLException ex) {
@@ -113,7 +113,7 @@ public class LowonganModel extends Model {
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
                         res.getString("judul"), res.getString("jabatan"), 
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"));
+                        res.getString("kategori"),res.getString("deskripsi"));
                     lowonganList.add(lw);
                 }
             } catch (SQLException ex) {

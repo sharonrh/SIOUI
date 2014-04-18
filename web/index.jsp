@@ -106,7 +106,7 @@
                             %>
                             <div class="lowongan-home">
                                 <li><i class="fa fa-check-square-o"></i> <b><%= low.getJudul()%></b> </li>
-                                <p><%= low.getDeskripsi()%> <a href="lowongan-details.jsp?id=<%=low.getId()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
+                                <p><%= low.getJabatan()%> <a href="lowongan-details.jsp?id=<%=low.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
                             </div>
                             <hr>
                             <%}%>
@@ -175,7 +175,7 @@
                                     <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul()%></b> - <%=l.getJabatan()%></li>
                                     <p>
                                         <%=l.getDeskripsi()%>
-                                        <a href="lowongan-details.jsp?id=<%=l.getId()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
+                                        <a href="lowongan-details.jsp?id=<%=l.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
                                     </p>	
                                 </div>
                                 <hr>
