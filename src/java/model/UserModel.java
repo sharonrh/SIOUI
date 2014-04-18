@@ -20,6 +20,11 @@ import object.User;
 public class UserModel extends Model{
     final String TABLE_NAME = "user";
     
+    /**
+     * Untuk ambil user dengan id tertentu
+     * @param id_user
+     * @return 
+     */
     public User select(String id_user){
         super.openConnection();
         String query = "SELECT * FROM "+ TABLE_NAME+" WHERE id_user='"+id_user+"'";
@@ -37,6 +42,42 @@ public class UserModel extends Model{
         return a;
     }
     
+    /**
+     * menambahkan user baru
+     * @param id_user
+     * @param password 
+     */
+    public void insertUser(String id_user, String password){
+        super.openConnection();
+        String query = "INSERT INTO "+ TABLE_NAME+" VALUES('"+id_user+"','"+password+"')";
+        openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
+    /**
+     * untuk edit user password
+     * @param id_user
+     * @param password 
+     */
+    public void editUser(String id_user, String password){
+        super.openConnection();
+        String query = "UPDATE "+ TABLE_NAME+" SET password='"+password+"' WHERE id_user='"+id_user+"'";
+        openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
     public boolean validateUser(String id_user, String password){
         User res = this.select(id_user);
         if(res!=null){
@@ -46,4 +87,6 @@ public class UserModel extends Model{
         }
         return false;
     }
+    
+    
 }
