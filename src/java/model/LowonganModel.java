@@ -69,7 +69,7 @@ public class LowonganModel extends Model {
     }
     
     public ArrayList<Lowongan> getLowonganBaru(int jumlah) {
-        String query = "SELECT * FROM " + TABLE_NAME + " ORDER BY pendaftaran_dimulai DESC LIMIT " + jumlah;
+        String query = "SELECT * FROM " + TABLE_NAME;
         openConnection();
         ArrayList<Lowongan> lowonganList = new ArrayList<Lowongan>();
 
