@@ -11,15 +11,14 @@
 <%@include file="header.jsp" %>
 
 <%
-    String id_user = request.getParameter("id_user");
-    int id_organisasi = Integer.parseInt(request.getParameter("id_organisasi"));
-    int id_lowongan = Integer.parseInt(request.getParameter("id_organisasi"));
+    String id_organisasi = request.getParameter("id_organisasi");
+    String id_lowongan = request.getParameter("id_lowongan");
     Lowongan lw = null;
-    if (param != null) {
+    if (id_lowongan != null) {
         LowonganModel lm = new LowonganModel();
-        lw = lm.select(id_user, id_organisasi, id_lowongan);
+        lw = lm.select(id_organisasi, id_lowongan);
         if (session.getAttribute("currentUser") != null) {
-            Cookie sessionCookie = new Cookie("recent_" + session.getAttribute("currentUser"), param);
+            Cookie sessionCookie = new Cookie("recent_" + session.getAttribute("currentUser"), id_organisasi + ";" + id_lowongan);
             sessionCookie.setPath("/");
             response.addCookie(sessionCookie);
         }
@@ -33,7 +32,7 @@
             if (session.getAttribute("currentUser") != null) {
                 //        OrganizationModel om = new OrganizationModel();
                 // om.select(nama);
-        %>        
+%>        
         <div class="row">
             <div class="col-md-3">
                 <!-- Inner Page Content Sidebar -->
@@ -59,11 +58,11 @@
                             </form>
                         </div>
                         <ul class="list-unstyled">
-                            <li><a href="index.html" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="#" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="#" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="#" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="#" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="#" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
                             </li>
                         </ul>
                     </div>

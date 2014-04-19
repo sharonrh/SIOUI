@@ -29,12 +29,12 @@ public class LowonganModel extends Model {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
                         res.getInt("id_lowongan"), res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getString("judul"),
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
+                        res.getString("kategori"), res.getString("deskripsi"));
                 result.add(lw);
             }
             return result;
@@ -46,19 +46,19 @@ public class LowonganModel extends Model {
         return null;
     }
 
-    public Lowongan select(String id_user, int id_organisasi, int id_lowongan) {
+    public Lowongan select(String id_organisasi, String id_lowongan) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_user='" + id_user +"' AND id_organisasi="+ id_organisasi +" AND id_lowongan="+ id_lowongan;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_organisasi=" + id_organisasi + " AND id_lowongan=" + id_lowongan;
         Lowongan a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-             Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
-                        res.getInt("id_lowongan"), res.getInt("kapasitas"),
-                        res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
-                        res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
+            a = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
+                    res.getInt("id_lowongan"), res.getInt("kapasitas"),
+                    res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
+                    res.getString("judul"),
+                    res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
+                    res.getString("kategori"), res.getString("deskripsi"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
@@ -67,7 +67,7 @@ public class LowonganModel extends Model {
         }
         return a;
     }
-    
+
     public ArrayList<Lowongan> getLowonganBaru(int jumlah) {
         String query = "SELECT * FROM " + TABLE_NAME;
         openConnection();
@@ -78,12 +78,12 @@ public class LowonganModel extends Model {
 
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                 Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
                         res.getInt("id_lowongan"), res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getString("judul"),
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
+                        res.getString("kategori"), res.getString("deskripsi"));
                 lowonganList.add(lw);
             }
         } catch (SQLException ex) {
@@ -99,49 +99,49 @@ public class LowonganModel extends Model {
         ArrayList<Lowongan> lowonganList = new ArrayList<Lowongan>();
         String[] arr = kategori.split(",");
         String query = "SELECT DISTINCT * FROM " + TABLE_NAME + " WHERE kategori LIKE '%" + arr[0] + "%'";
-        for(int ii=1;ii<arr.length;ii++){
+        for (int ii = 1; ii < arr.length; ii++) {
             query = query + " OR kategori LIKE '%" + arr[ii] + "%'";
         }
         openConnection();
-            try {
-                ResultSet res = super.getStatement().executeQuery(query);
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
 
-                // selama masih ada baris yang bisa dibaca
-                while (res.next()) {
-                     Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
                         res.getInt("id_lowongan"), res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getString("judul"),
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
-                    lowonganList.add(lw);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                closeConnection();
+                        res.getString("kategori"), res.getString("deskripsi"));
+                lowonganList.add(lw);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
         return lowonganList;
     }
-    
+
     public ArrayList<Lowongan> searchByOrganisasi(String nama_pendek) {
         super.openConnection();
         String query = "SELECT lw.id_user,lw.id_organisasi,lw.id_lowongan,lw.kapasitas,"
                 + "lw.tanggal_buka,lw.tanggal_tutup,lw.judul,lw.jabatan,"
                 + "lw.minimum_tahun,lw.minimum_ipk,lw.kategori,lw.deskripsi "
                 + "FROM Lowongan lw JOIN Organisasi og ON lw.id_user = og.id_user AND lw.id_organisasi=og.id_organisasi "
-                + "WHERE og.nama_pendek LIKE '%"+nama_pendek+"%' ORDER BY tanggal_tutup DESC";
+                + "WHERE og.nama_pendek LIKE '%" + nama_pendek + "%' ORDER BY tanggal_tutup DESC";
         ArrayList<Lowongan> result = new ArrayList<Lowongan>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
                         res.getInt("id_lowongan"), res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getString("judul"),
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
+                        res.getString("kategori"), res.getString("deskripsi"));
                 result.add(lw);
             }
             return result;
@@ -159,18 +159,18 @@ public class LowonganModel extends Model {
                 + "lw.tanggal_buka,lw.tanggal_tutup,lw.judul,lw.jabatan,"
                 + "lw.minimum_tahun,lw.minimum_ipk,lw.kategori,lw.deskripsi "
                 + "FROM Lowongan lw JOIN Organisasi og ON lw.id_user = og.id_user AND lw.id_organisasi=og.id_organisasi "
-                + "WHERE og.nama_pendek lw.alamat='"+alamat+"' ORDER BY tanggal_tutup DESC";
+                + "WHERE og.nama_pendek lw.alamat='" + alamat + "' ORDER BY tanggal_tutup DESC";
         ArrayList<Lowongan> result = new ArrayList<Lowongan>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
                         res.getInt("id_lowongan"), res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getString("judul"),
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
+                        res.getString("kategori"), res.getString("deskripsi"));
                 result.add(lw);
             }
             return result;
@@ -181,8 +181,8 @@ public class LowonganModel extends Model {
         }
         return null;
     }
-    
-     public ArrayList<Lowongan> searchByKategori(String kategori) {
+
+    public ArrayList<Lowongan> searchByKategori(String kategori) {
         super.openConnection();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE kategori='" + kategori + "'";
         ArrayList<Lowongan> result = new ArrayList<Lowongan>();
@@ -190,12 +190,12 @@ public class LowonganModel extends Model {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"), 
+                Lowongan lw = new Lowongan(res.getString("id_user"), res.getInt("id_organisasi"),
                         res.getInt("id_lowongan"), res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"), 
+                        res.getString("judul"),
                         res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"),res.getString("deskripsi"));
+                        res.getString("kategori"), res.getString("deskripsi"));
                 result.add(lw);
             }
             return result;

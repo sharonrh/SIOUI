@@ -94,8 +94,6 @@
 </div>
 
 <!-- Footer End -->
-
-</div>
 <!-- Footer End -->
 
 <!-- Scroll to top -->

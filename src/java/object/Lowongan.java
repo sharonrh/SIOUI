@@ -5,18 +5,12 @@
  */
 package object;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
-
 /**
  *
  * @author Johanes
  */
-//@XmlAccessorType(XmlAccessType.FIELD)
-//@XmlType(name = "lowongan", propOrder = {"id", "judul", "deskripsi", "jabatan", "minimumTahun", "pendaftaranDimulai", "pendaftaranSelesai", "minimumIPK", "kategori", "jumlahDibutuhkan"})
 public class Lowongan {
+
     private String id_user;
     private int id_organisasi;
     private int id_lowongan;
@@ -24,23 +18,22 @@ public class Lowongan {
     private String tanggal_buka;
     private String tanggal_tutup;
     private String judul;
-    private String jabatan;
     private int minimum_tahun;
     private double minimum_ipk;
     private String kategori;
     private String deskripsi;
-    
+
     public Lowongan() {
     }
 
-    public Lowongan(String id_user, int id_organisasi, int id_lowongan, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
+    public Lowongan(String id_user, int id_organisasi, int id_lowongan, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
         this.id_user = id_user;
         this.id_organisasi = id_organisasi;
+        this.id_lowongan = id_lowongan;
         this.kapasitas = kapasitas;
         this.tanggal_buka = tanggal_buka;
         this.tanggal_tutup = tanggal_tutup;
         this.judul = judul;
-        this.jabatan = jabatan;
         this.minimum_tahun = minimum_tahun;
         this.minimum_ipk = minimum_ipk;
         this.kategori = kategori;
@@ -73,10 +66,6 @@ public class Lowongan {
 
     public String getJudul() {
         return judul;
-    }
-
-    public String getJabatan() {
-        return jabatan;
     }
 
     public int getMinimumTahun() {
@@ -123,10 +112,6 @@ public class Lowongan {
         this.judul = judul;
     }
 
-    public void setJabatan(String jabatan) {
-        this.jabatan = jabatan;
-    }
-
     public void setMinimum_tahun(int minimum_tahun) {
         this.minimum_tahun = minimum_tahun;
     }
@@ -142,6 +127,5 @@ public class Lowongan {
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
     }
-    
-    
+
 }

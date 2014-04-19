@@ -72,11 +72,15 @@
                             <div class="col-md-10">
                                 <div class="row">
                                     <div class="col-md-8"><h3><%=l.getJudul()%></h3></div>
-                                    <div class="col-md-4"><h4><%=l.getJabatan()%></h4></div>
                                 </div>
                                 <div class="deskripsi-lowongan">
                                     <p><%=l.getDeskripsi()%></p>
-                                    <a href="lowongan-details.jsp?id=<%=l.getId()%>" class="btn btn-sm btn-danger pull-right">read more</a>
+
+                                    <form action="lowongan-details.jsp" method="post">
+                                        <input type="hidden" name="id_lowongan" value="<%=l.getId_lowongan()%>">
+                                        <input type="hidden" name="id_organisasi" value="<%=l.getId_organisasi()%>">
+                                        <input class="btn btn-sm btn-danger pull-right" type="submit" value="read more"/> 
+                                    </form>
                                 </div>
                             </div>
                         </div>

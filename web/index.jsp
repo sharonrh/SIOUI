@@ -8,12 +8,9 @@
 <%@page import="model.LowonganModel"%>
 <%@page import="object.Lowongan"%>
 <%@page import="org.apache.tomcat.util.http.Cookies"%>
+
+
 <%@include file="header.jsp" %>
-
-
-
-
-
 <!-- Slider Start -->
 
 <div class="container">
@@ -40,14 +37,15 @@
         Lowongan l = null;
         LowonganModel lm = new LowonganModel();
 
-       /* if (cl != null) {
+        if (cl != null) {
             for (Cookie c : cl) {
                 if (c.getName().equals("recent_" + session.getAttribute("currentUser"))) {
                     recentCookie = c;
-                    l = lm.select(Integer.parseInt(recentCookie.getValue()));
+                    String[] s = recentCookie.getValue().split(";");
+                    l = lm.select(s[0], s[1]);
                 }
             }
-        }*/%>
+        }%>
     <!--
     #################################
             - THEMEPUNCH BANNER -
@@ -106,7 +104,14 @@
                             %>
                             <div class="lowongan-home">
                                 <li><i class="fa fa-check-square-o"></i> <b><%= low.getJudul()%></b> </li>
-                                <p><%= low.getJabatan()%> <a href="lowongan-details.jsp?id=<%=low.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
+                                <form action="lowongan-details.jsp" method="post">
+                                    <input type="hidden" name="id_lowongan" value="<%=low.getId_lowongan()%>">
+                                    <input type="hidden" name="id_organisasi" value="<%=low.getId_organisasi()%>">
+                                    <p><%= low.getDeskripsi()%>  
+                                        <button class="btn btn-warning pull-right btn-xs" type="submit"> read more<i class="fa fa-angle-right"></i></button>
+                                    </p>
+                                </form>
+
                             </div>
                             <hr>
                             <%}%>
@@ -172,7 +177,7 @@
                                     // jika ada lowongan yang tersimpan dalam cookies, tampilkan                
                                     if (l != null) {%>
                                 <div class="lowongan-home">
-                                    <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul()%></b> - <%=l.getJabatan()%></li>
+                                    <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul()%></b></li>
                                     <p>
                                         <%=l.getDeskripsi()%>
                                         <a href="lowongan-details.jsp?id=<%=l.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
