@@ -41,7 +41,7 @@
             for (Cookie c : cl) {
                 if (c.getName().equals("recent_" + session.getAttribute("currentUser"))) {
                     recentCookie = c;
-                    String[] s = recentCookie.getValue().split(";");
+                    String[] s = recentCookie.getValue().split("_");
                     l = lm.select(s[0], s[1]);
                 }
             }
@@ -104,14 +104,10 @@
                             %>
                             <div class="lowongan-home">
                                 <li><i class="fa fa-check-square-o"></i> <b><%= low.getJudul()%></b> </li>
-                                <form action="lowongan-details.jsp" method="post">
-                                    <input type="hidden" name="id_lowongan" value="<%=low.getId_lowongan()%>">
-                                    <input type="hidden" name="id_organisasi" value="<%=low.getId_organisasi()%>">
                                     <p><%= low.getDeskripsi()%>  
-                                        <button class="btn btn-warning pull-right btn-xs" type="submit"> read more<i class="fa fa-angle-right"></i></button>
+                                        <a href="lowongan-details.jsp?id_organisasi=<%=low.getId_organisasi()%>&id_lowongan=<%=low.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs" > read more<i class="fa fa-angle-right"></i></a>
                                     </p>
-                                </form>
-
+                              
                             </div>
                             <hr>
                             <%}%>

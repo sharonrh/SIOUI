@@ -14,15 +14,19 @@
     String id_organisasi = request.getParameter("id_organisasi");
     String id_lowongan = request.getParameter("id_lowongan");
     Lowongan lw = null;
+    Cookie sessionCookie = null;
     if (id_lowongan != null) {
         LowonganModel lm = new LowonganModel();
         lw = lm.select(id_organisasi, id_lowongan);
         if (session.getAttribute("currentUser") != null) {
-            Cookie sessionCookie = new Cookie("recent_" + session.getAttribute("currentUser"), id_organisasi + ";" + id_lowongan);
+            sessionCookie = new Cookie("recent_" + session.getAttribute("currentUser"), id_organisasi + "_" + id_lowongan);
             sessionCookie.setPath("/");
             response.addCookie(sessionCookie);
+            
         }
     }
+    response.addCookie(new Cookie("hahah", "aneh"));
+    
 %>
 
 <!-- BODY DIMULAI -->
@@ -32,7 +36,7 @@
             if (session.getAttribute("currentUser") != null) {
                 //        OrganizationModel om = new OrganizationModel();
                 // om.select(nama);
-%>        
+        %>        
         <div class="row">
             <div class="col-md-3">
                 <!-- Inner Page Content Sidebar -->
@@ -42,7 +46,8 @@
                         <!-- Inner Page Title // Heading -->
                         <h2>BEM Fasilkom UI</h2>
                         <!-- Paragraph -->
-                        <p>Roosevelt accusal et gusto sod pianist moss dulcimers blandish desideratum voluptuary lenitive.</p>
+                        <p>(entar detail organisasi disini) </p>
+                        
                     </div>
                     <!-- Sidebar Links -->
                     <div class="sidebar-link col-disable">
