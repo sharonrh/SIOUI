@@ -18,7 +18,7 @@
     }
 %>
 <div class="container"> 
-    <div class="col-md-4 col-sm-4 pull-right">
+    <div class="col-md-4">
         <h2>Registration</h2>
         <!-- Sign Up Form Start -->
         <form class="form-horizontal" role="form" method="POST" action="RegisterServlet">

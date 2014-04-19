@@ -12,13 +12,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.UserModel;
 
 /**
  *
  * @author ACER
  */
-@WebServlet(urlPatterns = {"/RegisterServlet"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "RegistrationOrganisasiServlet", urlPatterns = {"/RegistrationOrganisasiServlet"})
+public class RegistrationOrganisasiServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,16 +34,13 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String namePanjang = request.getParameter("name_panjang");
-        String namePendek = request.getParameter("name_pendek");
-        String deskripsi = request.getParameter("tanggal_berdiri");
-        String visi = request.getParameter("visi");
-        String jenis = request.getParameter("jenis");
-        String alamat = request.getParameter("alamat");
-
-        // TO-DO : send to admin email
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
         
-        RequestDispatcher view = request.getRequestDispatcher("daftar-sekarang.jsp?register=done");
+        UserModel um = new UserModel();
+        um.insertUser(username, password);
+        
+        RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 
         view.forward(request, response);
 
