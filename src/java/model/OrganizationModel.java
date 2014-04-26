@@ -47,11 +47,13 @@ public class OrganizationModel extends Model {
     public Organization selectFromId(String id_user) {
         super.openConnection();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_user='" + id_user + "'";
+        System.out.println(query);
         Organization a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organization(res.getString("id_organisasi"),res.getString("nama_panjang"),res.getString("nama_pendek"));
+            a = new Organization(res.getString("id_user"),res.getString("nama_panjang"),res.getString("nama_pendek"));
+            a.setId_organisasi(res.getInt("id_organisasi"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
