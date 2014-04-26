@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.OrganizationModel;
+import object.Organization;
 
 /**
  *
@@ -31,20 +34,34 @@ public class RegisterServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
         response.setContentType("text/html;charset=UTF-8");
-
-        String namePanjang = request.getParameter("name_panjang");
-        String namePendek = request.getParameter("name_pendek");
-        String deskripsi = request.getParameter("tanggal_berdiri");
+        
+        String id_user = session.getAttribute("currentUser").toString();
+        String namaPanjang = request.getParameter("nama_panjang");
+        String namaPendek = request.getParameter("nama_pendek");
+        String deskripsi = request.getParameter("deskripsi");
         String visi = request.getParameter("visi");
         String jenis = request.getParameter("jenis");
         String alamat = request.getParameter("alamat");
-
+        System.out.println(namaPanjang);
+        System.out.println(namaPendek);
+        System.out.println(deskripsi);
+        System.out.println(alamat);
+        OrganizationModel om = new OrganizationModel();
+        Organization temp;
+        temp = om.selectFromId(id_user);
+        if(temp == null){
+            om.insertOrganizationModel(id_user, om.size()+1, namaPanjang, namaPendek, deskripsi, visi, jenis, alamat);
+        } else{
+        System.out.println(namaPanjang);
+        System.out.println(namaPendek);
+        System.out.println(deskripsi);
+        System.out.println(alamat);
+            om.editOrganizationProfile(id_user, namaPanjang, namaPendek, deskripsi, visi, jenis, alamat);
+        }
         // TO-DO : send to admin email
-        
-        RequestDispatcher view = request.getRequestDispatcher("daftar-sekarang.jsp?register=done");
-
-        view.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
 
     }
 

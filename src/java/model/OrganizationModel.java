@@ -20,7 +20,7 @@ import object.User;
  */
 public class OrganizationModel extends Model {
 
-    final String TABLE_NAME = "organizations";
+    final String TABLE_NAME = "organisasi";
 
     /**
      * untuk select organisasi dengan nama_pendek tertentu
@@ -36,6 +36,39 @@ public class OrganizationModel extends Model {
             res.next();
             a = new Organization(res.getString("id_organisasi"),res.getString("nama_panjang"),res.getString("nama_pendek"));
             return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return a;
+    }
+    
+    public Organization selectFromId(String id_user) {
+        super.openConnection();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_user='" + id_user + "'";
+        Organization a = null;
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            res.next();
+            a = new Organization(res.getString("id_organisasi"),res.getString("nama_panjang"),res.getString("nama_pendek"));
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return a;
+    }
+    
+    public int size() {
+        super.openConnection();
+        String query = "SELECT COUNT(*) FROM "+TABLE_NAME;
+        int a = 0;
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            res.next();
+            a = res.getInt(1);
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -135,6 +168,20 @@ public class OrganizationModel extends Model {
         return null;
     }
     
+    public void insertOrganizationModel(String id_user, int id_organisasi, String nama_panjang, 
+            String nama_pendek, String deskripsi, String visi, String jenis, String alamat) {
+        super.openConnection();
+        String query = "INSERT INTO " + TABLE_NAME + " VALUES('"+id_user+"',"+id_organisasi+",'"+nama_panjang+"','"+nama_pendek+"',NULL,'"+deskripsi+"','"+visi+"','"+jenis+"','"+alamat+"')";
+        openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
     /**
      * Untuk edit organisasi dipakai di form
      * @param id_user
@@ -146,17 +193,21 @@ public class OrganizationModel extends Model {
      * @param jenis
      * @param alamat 
      */
-    public void editOrganizationProfile(String id_user, int id_organisasi, String nama_panjang, 
+    public void editOrganizationProfile(String id_user, String nama_panjang, 
             String nama_pendek, String deskripsi, String visi, String jenis, String alamat){
+        System.out.println(nama_panjang);
+        System.out.println(nama_pendek);
+        System.out.println(jenis);
+        System.out.println(alamat);
         String query = "UPDATE "+ TABLE_NAME +
                 " SET nama_panjang='" + nama_panjang + "',"
                 + " nama_pendek='" + nama_pendek + "',"
                 + " deskripsi='" + deskripsi + "',"
-                + " visi='" + deskripsi + "',"
-                + " jenis='" + deskripsi + "',"
+                + " visi='" + visi + "',"
+                + " jenis='" + jenis + "',"
                 + " alamat='" + alamat + "'"
-                + " WHERE id_user= '" + id_user + "' AND"
-                + " id_organisasi= " + id_organisasi;
+                + " WHERE id_user= '" + id_user + "'";
+        System.out.println(query);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);

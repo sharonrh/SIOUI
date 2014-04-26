@@ -10,8 +10,8 @@
 <div class="inner-page">
     <div class="container">
         <form method="POST" action="RegistrationOrganisasiServlet">
-            <input type="text" name="username"/><br>
-            <input type="text" name="password"/><br>
+            <input type="text" name="username" required/><br>
+            <input type="text" name="password" required/><br>
             <button type="submit">Submit</button>
         </form>
     </div>

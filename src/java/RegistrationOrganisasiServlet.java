@@ -40,9 +40,7 @@ public class RegistrationOrganisasiServlet extends HttpServlet {
         UserModel um = new UserModel();
         um.insertUser(username, password);
         
-        RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-
-        view.forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/index.jsp");
 
     }
 
