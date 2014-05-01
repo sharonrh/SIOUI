@@ -1,0 +1,19 @@
+body{
+	font-family: 'Open Sans', 'sans-serif';
+}
+
+footer{
+	text-align: center;
+}
+
+.title{
+	border-bottom: solid 1px #CECECE;
+	font-size: 26px;
+	text-align: center;
+	padding-bottom: 10px;
+	margin-bottom: 25px;
+}
+
+.deskripsi-foto{
+	margin-bottom: 10px;
+}

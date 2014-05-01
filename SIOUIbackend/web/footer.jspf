@@ -1,0 +1,14 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+	<footer>
+		<div class="container">
+			<hr>
+			&copy; 2014 - Sistem Informasi Organisasi Universitas Indonesia<br>
+			Developed by Kelompok E2
+		</div>
+	</footer>
+</div>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
