@@ -23,7 +23,7 @@ public class OrganizationModel extends Model {
     final String TABLE_NAME = "organisasi";
 
     public void update(Organization org){
-        String query = String.format("UPDATE %s SET nama_panjang='%s', nama_pendek='%s', deskripsi='%s', visi='%s', jenis='%s', alamat='%s' WHERE id_organisasi=%s", this.TABLE_NAME, org.getNamaPanjang(), org.getNamaPendek(), org.getDeskripsi(), org.getVisi(), org.getJenis(), org.getAlamat(), org.getIdOrganisasi());
+        String query = String.format("UPDATE %s SET nama_panjang='%s', nama_pendek='%s', deskripsi='%s', visi='%s', jenis='%s', alamat='%s', logo='%s' WHERE id=%s", this.TABLE_NAME, org.getNamaPanjang(), org.getNamaPendek(), org.getDeskripsi(), org.getVisi(), org.getJenis(), org.getAlamat(), org.getLogo(), org.getIdOrganisasi());
         super.openConnection();
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);

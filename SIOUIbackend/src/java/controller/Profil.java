@@ -95,7 +95,7 @@ public class Profil extends HttpServlet {
             
             String returnValue = "false";
             try{
-                String uploadStatus = storageManager.writeFile("C:\\TEMP_TOMCAT", "file_logo", request, expectedFileType, 5*1024);
+                String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Logo\\"+idOrganisasi+"\\", "file_logo", request, expectedFileType, 5*1024);
                 if(uploadStatus.equals(StorageManager.UPLOAD_FAILED_WRONG_FILE_TYPE)){
                     returnValue = "wrong_file_type";
                     throw new Exception();

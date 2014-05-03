@@ -11,10 +11,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Path;
+import java.util.EnumSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import java.util.EnumSet;
 
 /**
  *
@@ -78,6 +79,9 @@ public class StorageManager {
         }
 
         try {
+            File file = new File(path);
+            file.mkdirs();            
+            
             out = new FileOutputStream(new File(path + File.separator + fileName));
             filecontent = filePart.getInputStream();
 

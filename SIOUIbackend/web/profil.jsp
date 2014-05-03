@@ -37,7 +37,11 @@ Organization org = (Organization)request.getAttribute("organization");
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Logo</label>
         <div class="col-sm-1">
-            <img name="logo_img" src="http://sioui.cloudapp.net:8080/SIOUI/img/c3.jpg" width="80" class="img-thumbnail" alt="">
+            <img name="logo_img" src="<%
+                if(org.getLogo()!=null){
+                    out.print("file:\\\\\\C:\\SIOUI_DATA\\Logo\\"+org.getIdOrganisasi()+"\\"+org.getLogo());
+                }
+            %>" width="80" class="img-thumbnail" alt="">
         </div>
         <div class="col-sm-3">
             <input name="file_logo" type="file" id="file_logo" >
