@@ -9,8 +9,8 @@
 <% String activePage = "profil"; %>
 <%@include file="header.jspf" %>
 
-<div class="alert alert-success" style="visibility:<%=request.getAttribute("alertVisible")%>">
-    Update profil organisasi berhasil dilakukan!
+<div class="alert <%=request.getAttribute("alertType")%>">
+    <%=request.getAttribute("alertContent")%>
 </div>
 
 <div class="title">
@@ -40,7 +40,7 @@ Organization org = (Organization)request.getAttribute("organization");
             <img name="logo_img" src="http://sioui.cloudapp.net:8080/SIOUI/img/c3.jpg" width="80" class="img-thumbnail" alt="">
         </div>
         <div class="col-sm-3">
-            <input type="file" id="inputEmail" >
+            <input name="file_logo" type="file" id="file_logo" >
         </div>
     </div>
     <div class="form-group">
@@ -59,9 +59,9 @@ Organization org = (Organization)request.getAttribute("organization");
         <label for="inputEmail" class="col-sm-2 control-label">Jenis</label>
         <div class="col-sm-4">
             <select id="selectbasic" name="jenis" class="form-control">
-                <option value="ukm" <%if(org.getJenis() != null && org.getJenis().equals("UKM")) out.print("selected");%>>Unit Kegiatan Mahasiswa (UKM)</option>
-                <option value="ukf" <%if(org.getJenis() != null && org.getJenis().equals("UKF")) out.print("selected");%>>Unit Kegiatan Fakultas (UKF)</option>
-                <option value="event" <%if(org.getJenis() != null && org.getJenis().equals("EVENT")) out.print("selected");%>>Event</option>
+                <option value="ukm" <%if(org.getJenis() != null && org.getJenis().equals("ukm")) out.print("selected");%>>Unit Kegiatan Mahasiswa (UKM)</option>
+                <option value="ukf" <%if(org.getJenis() != null && org.getJenis().equals("ukf")) out.print("selected");%>>Unit Kegiatan Fakultas (UKF)</option>
+                <option value="event" <%if(org.getJenis() != null && org.getJenis().equals("event")) out.print("selected");%>>Event</option>
             </select>
         </div>
     </div>

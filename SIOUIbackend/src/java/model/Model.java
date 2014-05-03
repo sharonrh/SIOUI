@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class Model {
     public static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String DATABASE_URL = "jdbc:mysql://localhost:3306/sioui_db";
+    public static final String DATABASE_URL = "jdbc:mysql://localhost:3306/sioui_joef";
     public static final String DATABASE_USERNAME = "root";
     public static final String DATABASE_PASSWORD = "";
 
@@ -38,7 +38,6 @@ public class Model {
             Class.forName(DATABASE_DRIVER);
             con = DriverManager.getConnection(DATABASE_URL, DATABASE_USERNAME, DATABASE_PASSWORD);
             state = con.createStatement();
-            System.out.println("berhasil connect!");
             return state;
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);

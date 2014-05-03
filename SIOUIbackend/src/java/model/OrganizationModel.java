@@ -39,6 +39,7 @@ public class OrganizationModel extends Model {
      * @param nama_pendek
      * @return 
      */
+    /*
     public Organization select(String nama_pendek) {
         super.openConnection();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE nama_pendek='" + nama_pendek + "'";
@@ -55,7 +56,7 @@ public class OrganizationModel extends Model {
         }
         return a;
     }
-    
+    */
     public Organization selectFromId(String id_user) {
         super.openConnection();
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID_USER='" + id_user + "'";
@@ -64,8 +65,7 @@ public class OrganizationModel extends Model {
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organization(res.getString("ID_USER"), res.getInt("ID_ORGANISASI"), res.getString("NAMA_PANJANG"), res.getString("NAMA_PENDEK"), res.getString("LOGO"), res.getString("DESKRIPSI"), res.getString("VISI"), res.getString("JENIS"), res.getString("ALAMAT"));
-            //a.setIdOrganisasi(res.getInt("ID_ORGANISASI"));
+            a = new Organization(res.getString("id_user"), res.getInt("id"), res.getString("nama_panjang"), res.getString("nama_pendek"), res.getString("logo"), res.getString("deskripsi"), res.getString("visi"), res.getString("jenis"), res.getString("alamat"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
