@@ -28,6 +28,15 @@
         <servlet-name>Album</servlet-name>
         <url-pattern>/album</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>Image</servlet-name>
+        <servlet-class>controller.Image</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Image</servlet-name>
+        <url-pattern>/image</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
