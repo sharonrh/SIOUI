@@ -49,17 +49,7 @@ public class RegisterServlet extends HttpServlet {
         System.out.println(deskripsi);
         System.out.println(alamat);
         OrganizationModel om = new OrganizationModel();
-        Organization temp;
-        temp = om.selectFromId(id_user);
-        if(temp == null){
-            om.insertOrganizationModel(id_user, om.size()+1, namaPanjang, namaPendek, deskripsi, visi, jenis, alamat);
-        } else{
-        System.out.println(namaPanjang);
-        System.out.println(namaPendek);
-        System.out.println(deskripsi);
-        System.out.println(alamat);
-            om.editOrganizationProfile(id_user, namaPanjang, namaPendek, deskripsi, visi, jenis, alamat);
-        }
+        om.editOrganizationProfile(id_user, namaPanjang, namaPendek, deskripsi, visi, jenis, alamat);
         // TO-DO : send to admin email
         response.sendRedirect(request.getContextPath() + "/index.jsp");
 

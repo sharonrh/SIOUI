@@ -10,26 +10,21 @@ package object;
  * @author Johanes
  */
 public class Organization {
+    private int id;
+    private String username;
+    private String nama_panjang;
+    private String nama_pendek;
+    private String logo;
+    private String deskripsi;
+    private String visi;
+    private String jenis;
+    private String alamat;
+    private String created_at;
+    private String updated_at;
 
-   private String id_user;
-   private int id_organisasi;
-   private String nama_panjang;
-   private String nama_pendek;
-   private String logo;
-   private String deskripsi;
-   private String visi;
-   private String jenis;
-   private String alamat;
-   
-   public Organization(String id_user, String nama_panjang, String nama_pendek){
-       this.id_user = id_user;
-       this.nama_panjang = nama_panjang;
-       this.nama_pendek = nama_pendek;
-   }
-
-    public Organization(String id_user, int id_organisasi, String nama_panjang, String nama_pendek, String logo, String deskripsi, String visi, String jenis, String alamat) {
-        this.id_user = id_user;
-        this.id_organisasi = id_organisasi;
+    public Organization(int id, String username, String nama_panjang, String nama_pendek, String logo, String deskripsi, String visi, String jenis, String alamat, String created_at, String updated_at) {
+        this.id = id;
+        this.username = username;
         this.nama_panjang = nama_panjang;
         this.nama_pendek = nama_pendek;
         this.logo = logo;
@@ -37,14 +32,16 @@ public class Organization {
         this.visi = visi;
         this.jenis = jenis;
         this.alamat = alamat;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
-    public String getId_user() {
-        return id_user;
+    public int getId() {
+        return id;
     }
 
-    public int getId_organisasi() {
-        return id_organisasi;
+    public String getUsername() {
+        return username;
     }
 
     public String getNama_panjang() {
@@ -75,12 +72,20 @@ public class Organization {
         return alamat;
     }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setId_organisasi(int id_organisasi) {
-        this.id_organisasi = id_organisasi;
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setNama_panjang(String nama_panjang) {

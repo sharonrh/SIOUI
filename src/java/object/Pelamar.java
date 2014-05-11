@@ -11,26 +11,23 @@ package object;
  * @author daniel.januar
  */
 public class Pelamar {
-    private String id_user;
-    private int id_organisasi;
+    
+    private int id;
     private int id_lowongan;
     private String username;
-    private String tgl_lamar;
+    private String created_at;
+    private String updated_at;
 
-    public Pelamar(String id_user, int id_organisasi, int id_lowongan, String username, String tgl_lamar) {
-        this.id_user = id_user;
-        this.id_organisasi = id_organisasi;
+    public Pelamar(int id, int id_lowongan, String username, String created_at, String updated_at) {
+        this.id = id;
         this.id_lowongan = id_lowongan;
         this.username = username;
-        this.tgl_lamar = tgl_lamar;
-    }
-    
-    public String getId_user() {
-        return id_user;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
-    public int getId_organisasi() {
-        return id_organisasi;
+    public int getId() {
+        return id;
     }
 
     public int getId_lowongan() {
@@ -41,16 +38,16 @@ public class Pelamar {
         return username;
     }
 
-    public String getTgl_lamar() {
-        return tgl_lamar;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public String getUpdated_at() {
+        return updated_at;
     }
 
-    public void setId_organisasi(int id_organisasi) {
-        this.id_organisasi = id_organisasi;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setId_lowongan(int id_lowongan) {
@@ -61,9 +58,11 @@ public class Pelamar {
         this.username = username;
     }
 
-    public void setTgl_lamar(String tgl_lamar) {
-        this.tgl_lamar = tgl_lamar;
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
-    
-    
+
+    public void setUpdated_at(String updated_at) {
+        this.updated_at = updated_at;
+    }
 }

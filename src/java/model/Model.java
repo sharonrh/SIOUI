@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  */
 public class Model {
     public static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String DATABASE_URL = "jdbc:mysql://localhost/sioui";
+    public static final String DATABASE_URL = "jdbc:mysql://localhost/sioui_joef";
     public static final String DATABASE_USERNAME = "root";
-    public static final String DATABASE_PASSWORD = "123qwe";
+    public static final String DATABASE_PASSWORD = "";
 
     private Connection con = null;
     private Statement state = null;

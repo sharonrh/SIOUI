@@ -20,27 +20,20 @@ public class UserModel extends Model {
 
     private final String TABLE_NAME = "user";
 
-    public static void main(String[] ar) {
-        UserModel u = new UserModel();
-        User n = u.select("daniel24jan");
-        System.out.println(n.getUsername());
-        System.out.println(n.getPassword());
-    }
-
     /**
      * Untuk ambil user dengan id tertentu
      *
-     * @param id_user
+     * @param username
      * @return
      */
-    public User select(String id_user) {
+    public User select(String username) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_user='" + id_user + "'";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE username='" + username + "'";
         User a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             while (res.next()) {
-                a = new User(res.getString("id_user"), res.getString("password"));
+                a = new User(res.getString("username"), res.getString("password"));
             }
             return a;
         } catch (SQLException ex) {
@@ -54,12 +47,12 @@ public class UserModel extends Model {
     /**
      * menambahkan user baru
      *
-     * @param id_user
+     * @param username
      * @param password
      */
-    public void insertUser(String id_user, String password) {
+    public void insertUser(String username, String password) {
         super.openConnection();
-        String query = "INSERT INTO " + TABLE_NAME + " VALUES('" + id_user + "','" + password + "')";
+        String query = String.format("INSERT INTO %s(username, password) VALUES ('%s', '%s')", TABLE_NAME, username, password);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
@@ -73,12 +66,12 @@ public class UserModel extends Model {
     /**
      * untuk edit user password
      *
-     * @param id_user
+     * @param username
      * @param password
      */
-    public void editUser(String id_user, String password) {
+    public void editUser(String username, String password) {
         super.openConnection();
-        String query = "UPDATE " + TABLE_NAME + " SET password='" + password + "' WHERE id_user='" + id_user + "'";
+        String query = "UPDATE " + TABLE_NAME + " SET password='" + password + "' WHERE username='" + username + "'";
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
@@ -89,8 +82,8 @@ public class UserModel extends Model {
         }
     }
 
-    public boolean validateUser(String id_user, String password) {
-        User res = this.select(id_user);
+    public boolean validateUser(String username, String password) {
+        User res = this.select(username);
         if (res != null) {
             if (password.equals(res.getPassword())) {
                 return true;

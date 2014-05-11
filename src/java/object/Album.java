@@ -11,55 +11,49 @@ package object;
  * @author daniel.januar
  */
 public class Album {
-    private String id_user;
-    private int id_organisasi;
-    private int id_album;
+    private int id;
+    private String username;
     private String deskripsi;
+    private String created_at;
+    private String updated_at;
 
-    public Album(String id_user, int id_organisasi, int id_album) {
-        this.id_user = id_user;
-        this.id_organisasi = id_organisasi;
-        this.id_album = id_album;
-    }
-
-    public Album(String id_user, int id_organisasi, int id_album, String deskripsi) {
-        this.id_user = id_user;
-        this.id_organisasi = id_organisasi;
-        this.id_album = id_album;
+    public Album(int id, String username, String deskripsi, String created_at, String updated_at) {
+        this.id = id;
+        this.username = username;
         this.deskripsi = deskripsi;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
-    public String getId_user() {
-        return id_user;
+    public int getId() {
+        return id;
     }
 
-    public int getId_organisasi() {
-        return id_organisasi;
-    }
-
-    public int getId_album() {
-        return id_album;
+    public String getUsername() {
+        return username;
     }
 
     public String getDeskripsi() {
         return deskripsi;
     }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setId_organisasi(int id_organisasi) {
-        this.id_organisasi = id_organisasi;
+    public String getUpdated_at() {
+        return updated_at;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setId_album(int id_album) {
-        this.id_album = id_album;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
     }
-    
-    
 }

@@ -24,18 +24,15 @@ public class PelamarModel extends Model{
      * Mengambil list Pelamar berdasarkan lowongan tertentu
      * @return 
      */
-    public ArrayList<Pelamar> selectPelamar(String id_user, int id_organisasi, int id_lowongan){
+    public ArrayList<Pelamar> selectAllPelamar(String id_lowongan){
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME 
-                + " WHERE id_user='" + id_user + "'"
-                + " AND id_organisasi='" + id_organisasi + "'"
-                + " AND id_lowongan='" + id_lowongan + "'";
+        String query = String.format("SELECT * FROM %s where id_lowongan ='%s' ", TABLE_NAME, id_lowongan);
         ArrayList<Pelamar> result = new ArrayList<Pelamar>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-              Pelamar a = new Pelamar(res.getString("id_user"), res.getInt("id_organisasi"), res.getInt("id_lowongan"),res.getString("username"), res.getString("tgl_lamar"));
+              Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getString("created_at"),res.getString("updated_at"));
               result.add(a);
             }
             return result;
@@ -50,9 +47,10 @@ public class PelamarModel extends Model{
     /**
      * 
      */
-    public void insertUser(String id_user, int id_organisasi, int id_pelamar, String username, String tgl_lamar){
+    public void insertUser(int id_lowongan, String username){
         super.openConnection();
-        String query = "INSERT INTO "+ TABLE_NAME+" VALUES('"+id_user+"',"+id_organisasi+","+id_pelamar+",'"+username+"','"+tgl_lamar+"')";
+        String query = String.format("INSERT INTO %s(id_lowongan, username) VALUES ('%s', '%s')", TABLE_NAME, id_lowongan, username);
+        System.out.println(query);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
@@ -62,16 +60,11 @@ public class PelamarModel extends Model{
             closeConnection();
         }
     }
-    
     /**
      * 
      */
-    public void deletePelamar(String id_user, int id_organisasi, int id_lowongan, String username){
-        String query = "DELETE FROM "+ TABLE_NAME
-                + " WHERE id_user= '" + id_user + "' AND"
-                + " id_organisasi= " + id_organisasi +"' AND"
-                + " id_lowongan= " + id_lowongan +"' AND"
-                + " username ='"+username+"'";
+    public void deletePelamar(int id_lowongan, String username){
+        String query = String.format("DELETE FROM %s WHERE id_lowongan='%s' AND username='%s'",TABLE_NAME, id_lowongan, username);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);

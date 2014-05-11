@@ -11,45 +11,42 @@ package object;
  */
 public class Lowongan {
 
-    private String id_user;
-    private int id_organisasi;
-    private int id_lowongan;
+    private int id;
+    private String username;
     private int kapasitas;
     private String tanggal_buka;
     private String tanggal_tutup;
     private String judul;
+    private String jabatan;
     private int minimum_tahun;
     private double minimum_ipk;
     private String kategori;
     private String deskripsi;
+    private String created_at;
+    private String updated_at;
 
-    public Lowongan() {
-    }
-
-    public Lowongan(String id_user, int id_organisasi, int id_lowongan, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
-        this.id_user = id_user;
-        this.id_organisasi = id_organisasi;
-        this.id_lowongan = id_lowongan;
+    public Lowongan(int id, String username, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi, String created_at, String updated_at) {
+        this.id = id;
+        this.username = username;
         this.kapasitas = kapasitas;
         this.tanggal_buka = tanggal_buka;
         this.tanggal_tutup = tanggal_tutup;
         this.judul = judul;
+        this.jabatan = jabatan;
         this.minimum_tahun = minimum_tahun;
         this.minimum_ipk = minimum_ipk;
         this.kategori = kategori;
         this.deskripsi = deskripsi;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
-    public String getId_user() {
-        return id_user;
+    public int getId() {
+        return id;
     }
 
-    public int getId_organisasi() {
-        return id_organisasi;
-    }
-
-    public int getId_lowongan() {
-        return id_lowongan;
+    public String getUsername() {
+        return username;
     }
 
     public int getKapasitas() {
@@ -68,11 +65,15 @@ public class Lowongan {
         return judul;
     }
 
-    public int getMinimumTahun() {
+    public String getJabatan() {
+        return jabatan;
+    }
+
+    public int getMinimum_tahun() {
         return minimum_tahun;
     }
 
-    public double getMinimumIpk() {
+    public double getMinimum_ipk() {
         return minimum_ipk;
     }
 
@@ -84,16 +85,20 @@ public class Lowongan {
         return deskripsi;
     }
 
-    public void setId_user(String id_user) {
-        this.id_user = id_user;
+    public String getCreated_at() {
+        return created_at;
     }
 
-    public void setId_organisasi(int id_organisasi) {
-        this.id_organisasi = id_organisasi;
+    public String getUpdated_at() {
+        return updated_at;
     }
 
-    public void setId_lowongan(int id_lowongan) {
-        this.id_lowongan = id_lowongan;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setKapasitas(int kapasitas) {
@@ -112,6 +117,10 @@ public class Lowongan {
         this.judul = judul;
     }
 
+    public void setJabatan(String jabatan) {
+        this.jabatan = jabatan;
+    }
+
     public void setMinimum_tahun(int minimum_tahun) {
         this.minimum_tahun = minimum_tahun;
     }
@@ -127,5 +136,6 @@ public class Lowongan {
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
     }
-
+    
+    
 }
