@@ -35,10 +35,6 @@ public class Album extends HttpServlet {
         String userPath = request.getServletPath();
         //response.getWriter().print(userPath);
         
-        OrganizationModel om = new OrganizationModel();
-        Organization org = om.selectFromId("jojoeffe");
-        request.setAttribute("hehe", (Object)org);
-        
         if(userPath.equals("/album")){
             RequestDispatcher view = request.getRequestDispatcher("album.jsp");
             view.forward(request, response);

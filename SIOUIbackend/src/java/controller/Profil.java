@@ -53,6 +53,7 @@ public class Profil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String userPath = request.getServletPath();
         OrganizationModel om = new OrganizationModel();
 
