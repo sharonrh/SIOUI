@@ -7,10 +7,12 @@ package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Lowongan;
+import object.Organization;
 
 /**
  *
@@ -124,5 +126,21 @@ public class LowonganModel extends Model {
             closeConnection();
         }
         return lowonganList;
+    }
+    
+    public void update(Lowongan lw){
+        String query = String.format("UPDATE %s SET kapasitas='%s', tanggal_buka='%s', tanggal_tutup='%s', "
+                + "judul='%s', jabatan='%s', minimum_tahun='%s', "
+                + "minimum_ipk='%s',kategori='%s', deskripsi='%s' WHERE id=%s", this.TABLE_NAME, lw.getKapasitas(), lw.getTanggal_buka(), 
+                lw.getTanggal_tutup(), lw.getJudul(), lw.getJabatan(), 
+                lw.getMinimum_tahun(), lw.getMinimum_ipk(), lw.getKategori(), lw.getDeskripsi(), lw.getId());
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
     }
 }

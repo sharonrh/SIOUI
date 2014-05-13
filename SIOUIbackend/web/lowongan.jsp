@@ -36,7 +36,10 @@
             Close Recruitment
         </div>
         <div class ="col-xs-1">
-            <a href="form-lowongan.jsp?id=<%out.print(listLowongan.get(ii).getId());%>">Edit</a>
+            <form class="form-horizontal" role="form" method="POST" action="lowongan/details">
+                <input name="id" type="hidden" id="id" value="<%out.println(listLowongan.get(ii).getId());%>">
+                <button type="submit" class="btn btn-default btn-success">Details</button>
+            </form>
         </div>
         <div class ="col-xs-1">
             Manage Pendaftar

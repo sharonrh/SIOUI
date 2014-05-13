@@ -50,7 +50,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Lowongan</servlet-name>
-        <url-pattern>/lowongan/success</url-pattern>
+        <url-pattern>/lowongan/details</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

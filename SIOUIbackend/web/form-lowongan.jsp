@@ -8,18 +8,16 @@
 <%@page import="model.LowonganModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%String activePage="form-lowongan";%>
+<%String activePage="Lowongan";%>
 <%@include file="header.jspf" %>
 <div class="title">
     Detail Lowongan
 </div>
 <%
     //Organization org = (Organization) request.getAttribute("organization");
-    LowonganModel lm = new LowonganModel();
-    System.out.println(request.getParameter("id"));
-    Lowongan lw = lm.select(Integer.parseInt(request.getParameter("id")));
+    Lowongan lw = (Lowongan) request.getAttribute("detailLowongan");
 %>
-<form class="form-horizontal">
+<form class="form-horizontal" role="form" method="POST" action="lowongan/edit">
     <div class="form-group">
         <label for="Jabatan" class="col-sm-2 control-label">Jabatan</label>
         <div class="col-sm-3">
@@ -72,7 +70,7 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Minimum IPK</label>
         <div class="col-sm-3">
-            <input name="ipk" type="number" class="form-control" id="ipk" value="<%if (lw.getMinimum_ipk() != 0) {
+            <input name="minimum_ipk" type="number" class="form-control" id="minimum_ipk" value="<%if (lw.getMinimum_ipk() != 0) {
                     out.print(lw.getMinimum_ipk());}%>">
         </div>
     </div>
@@ -85,7 +83,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default btn-success">Update Profil</button>
+            <button type="submit" class="btn btn-default btn-success">Update Lowongan</button>
         </div>
     </div>
 </form>

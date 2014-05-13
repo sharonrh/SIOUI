@@ -53,7 +53,6 @@ public class Profil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("Testing Masuk");
         String userPath = request.getServletPath();
         OrganizationModel om = new OrganizationModel();
 
@@ -84,6 +83,7 @@ public class Profil extends HttpServlet {
         } else if (userPath.equals("/profil/edit")) {
             String idUser = "jojoeffe";
             int idOrganisasi = 1;
+            System.out.println(userPath);
             String namaPanjang = request.getParameter("nama_panjang");
             String namaPendek = request.getParameter("nama_pendek");
             String deskripsi = request.getParameter("deskripsi");
