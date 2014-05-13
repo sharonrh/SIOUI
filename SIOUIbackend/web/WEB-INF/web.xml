@@ -8,6 +8,10 @@
         <servlet-name>Album</servlet-name>
         <servlet-class>controller.Album</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Lowongan</servlet-name>
+        <servlet-class>controller.LowonganController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Profil</servlet-name>
         <url-pattern>/profil</url-pattern>
@@ -36,7 +40,18 @@
         <servlet-name>Image</servlet-name>
         <url-pattern>/image</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>Lowongan</servlet-name>
+        <url-pattern>/lowongan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Lowongan</servlet-name>
+        <url-pattern>/lowongan/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Lowongan</servlet-name>
+        <url-pattern>/lowongan/success</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -7,26 +7,40 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.LowonganModel;
+import model.OrganizationModel;
+import model.StorageManager;
+import object.Lowongan;
 
 /**
  *
  * @author daniel.januar
  */
-public class Lowongan extends HttpServlet{
+public class LowonganController extends HttpServlet{
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
-        //response.getWriter().print(userPath);
-        
-        if(userPath.equals("/lowongan")){
+        LowonganModel lm = new LowonganModel();
+
+        if (userPath.equals("/lowongan")) {
+            ArrayList<Lowongan> listLowongan  = lm.selectAll("jojoeffe");
+            request.setAttribute("listLowongan", (Object) listLowongan);
             RequestDispatcher view = request.getRequestDispatcher("lowongan.jsp");
             view.forward(request, response);
+        } else if (userPath.equals("/lowongan/add")) {
+            RequestDispatcher view = request.getRequestDispatcher("lowongan.jsp");
+            view.forward(request, response);
+        } else if (userPath.equals("/lowongan/edit")) {
+        
+        } else if (userPath.equals("/lowongan/success")) {
+
         }
     }
     

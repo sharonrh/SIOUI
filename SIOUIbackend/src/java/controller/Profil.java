@@ -53,7 +53,7 @@ public class Profil extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        System.out.println("Testing Masuk");
         String userPath = request.getServletPath();
         OrganizationModel om = new OrganizationModel();
 
