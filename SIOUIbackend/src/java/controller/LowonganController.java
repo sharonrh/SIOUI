@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -13,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.LowonganModel;
 import object.Lowongan;
 
@@ -20,15 +20,17 @@ import object.Lowongan;
  *
  * @author daniel.januar
  */
-public class LowonganController extends HttpServlet{
-    
+public class LowonganController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
         LowonganModel lm = new LowonganModel();
+        HttpSession session = request.getSession(true);
+        String username = session.getAttribute("currentUser").toString();
 
         if (userPath.equals("/lowongan")) {
-            ArrayList<Lowongan> listLowongan  = lm.selectAll("jojoeffe");
+            ArrayList<Lowongan> listLowongan = lm.selectAll(username);
             request.setAttribute("listLowongan", (Object) listLowongan);
             RequestDispatcher view = request.getRequestDispatcher("lowongan.jsp");
             view.forward(request, response);
@@ -39,7 +41,6 @@ public class LowonganController extends HttpServlet{
             RequestDispatcher view = request.getRequestDispatcher("form-lowongan.jsp");
             view.forward(request, response);
         } else if (userPath.equals("/lowongan/edit")) {
-            String username = "jojoeffe";
             int id = 3;
             System.out.println(userPath);
             System.out.println(request.getParameter("minimum_ipk"));
@@ -57,8 +58,8 @@ public class LowonganController extends HttpServlet{
             double minimum_ipk = Double.parseDouble(request.getParameter("minimum_ipk"));
             String kategori = request.getParameter("kategori");
             String deskripsi = request.getParameter("deskripsi");
-            Lowongan lw = new Lowongan(id, username, kapasitas, 
-                    tanggal_buka, tanggal_tutup, judul, 
+            Lowongan lw = new Lowongan(id, username, kapasitas,
+                    tanggal_buka, tanggal_tutup, judul,
                     jabatan, kapasitas, minimum_ipk, kategori, deskripsi);
             lm.update(lw);
             response.sendRedirect("/SIOUIbackend/");
@@ -66,7 +67,7 @@ public class LowonganController extends HttpServlet{
 
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
