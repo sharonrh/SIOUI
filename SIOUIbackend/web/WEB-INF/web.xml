@@ -12,6 +12,15 @@
         <servlet-name>Lowongan</servlet-name>
         <servlet-class>controller.LowonganController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Image</servlet-name>
+        <servlet-class>controller.Image</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>Profil</servlet-name>
         <url-pattern>/profil</url-pattern>
@@ -32,10 +41,6 @@
         <servlet-name>Album</servlet-name>
         <url-pattern>/album</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>Image</servlet-name>
-        <servlet-class>controller.Image</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Image</servlet-name>
         <url-pattern>/image</url-pattern>
@@ -52,6 +57,21 @@
         <servlet-name>Lowongan</servlet-name>
         <url-pattern>/lowongan/details</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/index/login</url-pattern>
+    </servlet-mapping> 
+     <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/index/logout</url-pattern>
+    </servlet-mapping>  
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>  
     <session-config>
         <session-timeout>
             30

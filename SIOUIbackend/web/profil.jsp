@@ -19,9 +19,6 @@
 </div>
 <%
     Organization org = (Organization) request.getAttribute("organization");
-    //OrganizationModel om = new OrganizationModel();
-    //Organization o = om.select(1);
-    //System.out.println(o.getAlamat());
 %>
 
 
