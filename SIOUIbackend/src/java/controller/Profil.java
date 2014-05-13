@@ -105,7 +105,10 @@ public class Profil extends HttpServlet {
                     throw new Exception();
                 }
                 
-                Organization o = new Organization(idUser, idOrganisasi, namaPanjang, namaPendek, storageManager.getFileName("file_logo", request), deskripsi, visi, jenis, alamat);
+                Organization o = new Organization(idOrganisasi, idUser, 
+                        namaPanjang, namaPendek, 
+                        storageManager.getFileName("file_logo", request), 
+                        deskripsi, visi, jenis, alamat);
                 om.update(o);
                 
                 returnValue = "true";

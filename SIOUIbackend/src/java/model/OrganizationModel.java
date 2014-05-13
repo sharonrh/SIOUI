@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Organization;
-//import object.User;
 
 /**
  *
@@ -22,32 +21,26 @@ public class OrganizationModel extends Model {
 
     final String TABLE_NAME = "organisasi";
 
-    public void update(Organization org){
-        String query = String.format("UPDATE %s SET nama_panjang='%s', nama_pendek='%s', deskripsi='%s', visi='%s', jenis='%s', alamat='%s', logo='%s' WHERE id=%s", this.TABLE_NAME, org.getNamaPanjang(), org.getNamaPendek(), org.getDeskripsi(), org.getVisi(), org.getJenis(), org.getAlamat(), org.getLogo(), org.getIdOrganisasi());
-        super.openConnection();
-        try {
-            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-        } catch (SQLException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnection();
-        }
-    }
-    
     /**
      * untuk select organisasi dengan nama_pendek tertentu
      * @param nama_pendek
      * @return 
      */
-    /*
-    public Organization select(String nama_pendek) {
+    public Organization select(int id) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE nama_pendek='" + nama_pendek + "'";
+        String query = String.format("SELECT * FROM %s WHERE id ='%s'",TABLE_NAME,id);
         Organization a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organization(res.getString("id_organisasi"),res.getString("nama_panjang"),res.getString("nama_pendek"));
+            a = new Organization(res.getInt("id"), res.getString("username"),
+                    res.getString("nama_panjang"),res.getString("nama_pendek"), 
+                    res.getString("logo"), res.getString("deskripsi"), 
+                    res.getString("visi"), 
+                    res.getString("jenis"),
+                    res.getString("alamat"), 
+                    res.getString("created_at"), 
+                    res.getString("updated_at"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,16 +49,23 @@ public class OrganizationModel extends Model {
         }
         return a;
     }
-    */
-    public Organization selectFromId(String id_user) {
+    
+    public Organization selectFromId(String username) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID_USER='" + id_user + "'";
+        String query = String.format("SELECT * FROM %s WHERE username='%s'",TABLE_NAME,username);
         System.out.println(query);
         Organization a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organization(res.getString("id_user"), res.getInt("id"), res.getString("nama_panjang"), res.getString("nama_pendek"), res.getString("logo"), res.getString("deskripsi"), res.getString("visi"), res.getString("jenis"), res.getString("alamat"));
+            a = new Organization(res.getInt("id"), res.getString("username"),
+                    res.getString("nama_panjang"),res.getString("nama_pendek"), 
+                    res.getString("logo"), res.getString("deskripsi"), 
+                    res.getString("visi"), 
+                    res.getString("jenis"),
+                    res.getString("alamat"), 
+                    res.getString("created_at"), 
+                    res.getString("updated_at"));
             return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
@@ -97,19 +97,22 @@ public class OrganizationModel extends Model {
      * @param jenis
      * @return 
      */
-    public ArrayList<Organization> selectByJenis(int id_organisasi, String jenis) {
+    public ArrayList<Organization> selectByJenis(String jenis) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME 
-                + " WHERE id_organisasi='" + id_organisasi + "'"
-                + " AND jenis='" + jenis + "'";
+        String query = String.format("SELECT * FROM %s WHERE jenis='%s'",TABLE_NAME,jenis);
         ArrayList<Organization> result = new ArrayList<Organization>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-              Organization a = new Organization(res.getString("id_organisasi"),
-                      res.getString("nama_panjang"),
-                      res.getString("nama_pendek"));
+              Organization a = new Organization(res.getInt("id"), res.getString("username"),
+                    res.getString("nama_panjang"),res.getString("nama_pendek"), 
+                    res.getString("logo"), res.getString("deskripsi"), 
+                    res.getString("visi"), 
+                    res.getString("jenis"),
+                    res.getString("alamat"), 
+                    res.getString("created_at"), 
+                    res.getString("updated_at"));
               result.add(a);
             }
             return result;
@@ -121,74 +124,30 @@ public class OrganizationModel extends Model {
         return null;
     }
     
-    
-    /**
-     * Untuk search berdasarkan fakultas
-     * @param id_organisasi
-     * @param alamat
-     * @return 
-     */
-    public ArrayList<Organization> selectByAlamat(int id_organisasi, String alamat) {
+    public void insertOrganizationModel(String username, String nama_panjang, 
+            String nama_pendek) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME 
-                + " WHERE id_organisasi='" + id_organisasi + "'"
-                + " AND alamat='" + alamat + "'";
-        ArrayList<Organization> result = new ArrayList<Organization>();
-        try {
-            ResultSet res = super.getStatement().executeQuery(query);
-            // selama masih ada baris yang bisa dibaca
-            while (res.next()) {
-              Organization a = new Organization(res.getString("id_organisasi"),
-                      res.getString("nama_panjang"),
-                      res.getString("nama_pendek"));
-              result.add(a);
-            }
-            return result;
-        } catch (SQLException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnection();
-        }
-        return null;
-    }
-    
-    /**
-     * 
-     * @param id_organisasi
-     * @param nama
-     * @return 
-     */
-    public ArrayList<Organization> selectByNama(int id_organisasi, String nama) {
-        super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME 
-                + " WHERE id_organisasi='" + id_organisasi + "'"
-                + " AND jenis LIKE '%" + nama + "%'";
-        ArrayList<Organization> result = new ArrayList<Organization>();
-        try {
-            ResultSet res = super.getStatement().executeQuery(query);
-            // selama masih ada baris yang bisa dibaca
-            while (res.next()) {
-              Organization a = new Organization(res.getString("id_organisasi"),
-                      res.getString("nama_panjang"),
-                      res.getString("nama_pendek"));
-              result.add(a);
-            }
-            return result;
-        } catch (SQLException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnection();
-        }
-        return null;
-    }
-    
-    public void insertOrganizationModel(String id_user, int id_organisasi, String nama_panjang, 
-            String nama_pendek, String deskripsi, String visi, String jenis, String alamat) {
-        super.openConnection();
-        String query = "INSERT INTO " + TABLE_NAME + " VALUES('"+id_user+"',"+id_organisasi+",'"+nama_panjang+"','"+nama_pendek+"',NULL,'"+deskripsi+"','"+visi+"','"+jenis+"','"+alamat+"')";
+        String query = String.format("INSERT INTO %s(username, nama_panjang, nama_pendek) VALUES ('%s','%s','%s')", TABLE_NAME, username, nama_panjang, nama_pendek);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
+    public void update(Organization org){
+        String query = String.format("UPDATE %s SET nama_panjang='%s', nama_pendek='%s', deskripsi='%s', "
+                + "visi='%s', jenis='%s', alamat='%s', "
+                + "logo='%s' WHERE id=%s", this.TABLE_NAME, 
+                org.getNama_panjang(), org.getNama_pendek(), 
+                org.getDeskripsi(), org.getVisi(), org.getJenis(), 
+                org.getAlamat(), org.getLogo(), org.getId());
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -207,12 +166,8 @@ public class OrganizationModel extends Model {
      * @param jenis
      * @param alamat 
      */
-    public void editOrganizationProfile(String id_user, String nama_panjang, 
+    public void editOrganizationProfile(String username, String nama_panjang, 
             String nama_pendek, String deskripsi, String visi, String jenis, String alamat){
-        System.out.println(nama_panjang);
-        System.out.println(nama_pendek);
-        System.out.println(jenis);
-        System.out.println(alamat);
         String query = "UPDATE "+ TABLE_NAME +
                 " SET nama_panjang='" + nama_panjang + "',"
                 + " nama_pendek='" + nama_pendek + "',"
@@ -220,7 +175,7 @@ public class OrganizationModel extends Model {
                 + " visi='" + visi + "',"
                 + " jenis='" + jenis + "',"
                 + " alamat='" + alamat + "'"
-                + " WHERE id_user= '" + id_user + "'";
+                + " WHERE username= '" + username + "'";
         System.out.println(query);
         openConnection();
         try {
@@ -237,11 +192,10 @@ public class OrganizationModel extends Model {
      * @param id_organisasi
      * @param logo
      */
-    public void editOrganizationLogo(String id_user, int id_organisasi, String logo){
+    public void editOrganizationLogo(String username, String logo){
         String query = "UPDATE "+ TABLE_NAME +
                 " SET logo='" + logo + "',"
-                + " WHERE id_user= '" + id_user + "' AND"
-                + " id_organisasi= " + id_organisasi;
+                + " WHERE username= '" + username+ "'";
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
