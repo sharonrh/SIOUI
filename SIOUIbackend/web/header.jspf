@@ -35,7 +35,7 @@
                                             <li class="<% if(activePage.equals("profil")) out.print("active"); %>"><a href="profil">Profil</a></li>
                                             <li class="<% if(activePage.equals("album")) out.print("active"); %>"><a href="album">Album</a></li>
                                             <li class="<% if(activePage.equals("struktur")) out.print("active"); %>"><a href="struktur">Struktur Pengurus</a></li>
-                                            <li class="<% if(activePage.equals("lowongan")) out.print("active"); %>"><a href="struktur">Lowongan</a></li>
+                                            <li class="<% if(activePage.equals("lowongan")) out.print("active"); %>"><a href="lowongan">Lowongan</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">

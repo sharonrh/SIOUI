@@ -36,7 +36,6 @@
         <servlet-name>Image</servlet-name>
         <url-pattern>/image</url-pattern>
     </servlet-mapping>
-
     
     <session-config>
         <session-timeout>
