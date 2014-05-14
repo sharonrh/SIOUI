@@ -36,10 +36,9 @@
             Close Recruitment
         </div>
         <div class ="col-xs-1">
-            <form class="form-horizontal" role="form" method="POST" action="lowongan/details">
-                <input name="id" type="hidden" id="id" value="<%out.println(listLowongan.get(ii).getId());%>">
+            <a href="form-lowongan?id=<%out.println(listLowongan.get(ii).getId());%>">
                 <button type="submit" class="btn btn-default btn-success">Details</button>
-            </form>
+            </a>
         </div>
         <div class ="col-xs-1">
             Manage Pendaftar

@@ -52,13 +52,13 @@ public class OrganizationModel extends Model {
     
     public Organization selectFromId(String username) {
         super.openConnection();
-        String query = String.format("SELECT * FROM %s WHERE id_user='%s'",TABLE_NAME,username);
+        String query = String.format("SELECT * FROM %s WHERE username='%s'",TABLE_NAME,username);
         System.out.println(query);
         Organization a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organization(res.getInt("id"), res.getString("id_user"),
+            a = new Organization(res.getInt("id"), res.getString("username"),
                     res.getString("nama_panjang"),res.getString("nama_pendek"), 
                     res.getString("logo"), res.getString("deskripsi"), 
                     res.getString("visi"), 
@@ -105,7 +105,7 @@ public class OrganizationModel extends Model {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-              Organization a = new Organization(res.getInt("id"), res.getString("id_user"),
+              Organization a = new Organization(res.getInt("id"), res.getString("username"),
                     res.getString("nama_panjang"),res.getString("nama_pendek"), 
                     res.getString("logo"), res.getString("deskripsi"), 
                     res.getString("visi"), 
@@ -127,7 +127,7 @@ public class OrganizationModel extends Model {
     public void insertOrganizationModel(String username, String nama_panjang, 
             String nama_pendek) {
         super.openConnection();
-        String query = String.format("INSERT INTO %s(id_user, nama_panjang, nama_pendek) VALUES ('%s','%s','%s')", TABLE_NAME, username, nama_panjang, nama_pendek);
+        String query = String.format("INSERT INTO %s(username, nama_panjang, nama_pendek) VALUES ('%s','%s','%s')", TABLE_NAME, username, nama_panjang, nama_pendek);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
@@ -175,7 +175,7 @@ public class OrganizationModel extends Model {
                 + " visi='" + visi + "',"
                 + " jenis='" + jenis + "',"
                 + " alamat='" + alamat + "'"
-                + " WHERE id_user= '" + username + "'";
+                + " WHERE username= '" + username + "'";
         System.out.println(query);
         openConnection();
         try {
@@ -195,7 +195,7 @@ public class OrganizationModel extends Model {
     public void editOrganizationLogo(String username, String logo){
         String query = "UPDATE "+ TABLE_NAME +
                 " SET logo='" + logo + "',"
-                + " WHERE id_user= '" + username+ "'";
+                + " WHERE username= '" + username+ "'";
         openConnection();
         try {
             super.getStatement().executeUpdate(query);

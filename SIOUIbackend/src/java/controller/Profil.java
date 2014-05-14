@@ -62,6 +62,7 @@ public class Profil extends HttpServlet {
         String username = session.getAttribute("currentUser").toString();
 
         if (userPath.equals("/profil")) {
+            System.out.println(username);
             Organization org = om.selectFromId(username);
             request.setAttribute("organization", (Object) org);
             if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
