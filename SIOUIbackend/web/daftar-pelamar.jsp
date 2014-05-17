@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String activePage = "daftar-pelamar"; %>
 
-<%@include file="header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
 <% PelamarModel pm = new PelamarModel();%>
 <% ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(3); %>
 
@@ -46,5 +46,5 @@
 </div>
 
 
-<%@include file="footer.jspf" %>
+<%@include file="/WEB-INF/footer.jspf" %>
 

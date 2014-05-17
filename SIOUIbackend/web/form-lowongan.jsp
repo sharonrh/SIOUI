@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%String activePage="Lowongan";%>
-<%@include file="header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
 <div class="title">
     Detail Lowongan
 </div>
@@ -87,4 +87,4 @@
         </div>
     </div>
 </form>
-<%@include file="footer.jspf" %>
+<%@include file="/WEB-INF/footer.jspf" %>

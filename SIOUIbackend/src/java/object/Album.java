@@ -30,6 +30,17 @@ public class Album {
         this.updated_at = updated_at;
     }
     
+    public Album(String id_organisasi, String name, String description) {
+        this.id = id;
+        this.id_organisasi = id_organisasi;
+        this.name = name;
+        this.description = description;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
+    
+    public Album(){}
+    
     public void addImage(Image img){
         images.add(img);
     }

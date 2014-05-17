@@ -10,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <% String activePage = "lowongan";%>
-<%@include file="header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
 
 <% //LowonganModel lm = new LowonganModel();%>
 <% //ArrayList<Lowongan> listLowongan = lm.selectAll("jojoeffe");
@@ -46,5 +46,5 @@
     </div>
     <%}%>
 </div>
-<%@include file="footer.jspf" %>
+<%@include file="/WEB-INF/footer.jspf" %>
 

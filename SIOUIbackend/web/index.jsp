@@ -8,7 +8,7 @@
 
 <% String activePage = "home";%>
 
-<%@include file="header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
 
 <div class="alert <%=request.getAttribute("alertType")%>">
     <%=request.getAttribute("alertContent")%>
@@ -49,5 +49,5 @@
     }
 %>
 
-<%@include file="footer.jspf" %>
+<%@include file="/WEB-INF/footer.jspf" %>
 

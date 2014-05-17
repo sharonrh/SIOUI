@@ -42,6 +42,22 @@
         <url-pattern>/album</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Image</servlet-name>
         <url-pattern>/image</url-pattern>
     </servlet-mapping>

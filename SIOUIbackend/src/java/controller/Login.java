@@ -54,15 +54,15 @@ public class Login extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("index.jsp");
             view.forward(request, response);
         } else if (userPath.equals("/index/login")) {
-            System.out.println("masuk bawah");
+            //System.out.println("masuk bawah");
 
             String username = (String) request.getParameter("id_user");
             String password = (String) request.getParameter("pass");
-            System.out.println("username= " + username + "," + password);
+            //System.out.println("username= " + username + "," + password);
             boolean isValidUser = um.validateUser(username, password);
-            if (isValidUser) {
+            if (isValidUser) {            
                 HttpSession session = request.getSession(true);
-                session.setAttribute("currentUser", username);
+                session.setAttribute("currentUser", um.select(username));
             }
             response.sendRedirect("/SIOUIbackend/index?success=" + isValidUser);
         } else if (userPath.equals("/index/logout")) {

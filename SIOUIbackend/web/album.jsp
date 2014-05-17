@@ -7,16 +7,18 @@
 <%@page import="object.Organization"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String activePage = "album"; %>
-<%@include file="header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
 
 <div class="title">
     Album
 </div>
-<%
-    Organization o = (Organization) request.getAttribute("hehe");
-%>
 
 <div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <a href="album/add" class="btn btn-success pull-right" role="button">Create Album</a> 
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-4 col-md-3">
             <div class="thumbnail">
@@ -34,3 +36,6 @@
 
     </div>
 </div>
+
+
+<%@include file="/WEB-INF/footer.jspf" %>

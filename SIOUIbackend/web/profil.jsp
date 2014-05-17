@@ -8,7 +8,7 @@
 <%@page import="object.Organization"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String activePage = "profile"; %>
-<%@include file="header.jspf" %>
+<%@include file="/WEB-INF/header.jspf" %>
 
 <div class="alert <%=request.getAttribute("alertType")%>">
     <%=request.getAttribute("alertContent")%>
@@ -19,6 +19,11 @@
 </div>
 <%
     Organization org = (Organization) request.getAttribute("organization");
+    if(org==null){
+        out.print("org nya null");
+    }else{
+        out.print("org nya tidak null");
+    }
 %>
 
 
@@ -93,4 +98,4 @@
 
 
 
-<%@include file="footer.jspf" %>
+<%@include file="/WEB-INF/footer.jspf" %>

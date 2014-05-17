@@ -25,6 +25,7 @@ import javax.servlet.http.Part;
 import model.OrganizationModel;
 import model.StorageManager;
 import object.Organization;
+import object.User;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
@@ -59,11 +60,10 @@ public class Profil extends HttpServlet {
         String userPath = request.getServletPath();
         OrganizationModel om = new OrganizationModel();
         HttpSession session = request.getSession(true);
-        String username = session.getAttribute("currentUser").toString();
+        User user = (User)session.getAttribute("currentUser");
 
         if (userPath.equals("/profil")) {
-            System.out.println(username);
-            Organization org = om.selectFromId(username);
+            Organization org = om.selectFromId(user.getUsername());
             request.setAttribute("organization", (Object) org);
             if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
                 request.setAttribute("alertType", "alert-success");
@@ -110,7 +110,7 @@ public class Profil extends HttpServlet {
                     throw new Exception();
                 }
 
-                Organization o = new Organization(idOrganisasi, username,
+                Organization o = new Organization(idOrganisasi, user.getUsername(),
                         namaPanjang, namaPendek,
                         storageManager.getFileName("file_logo", request),
                         deskripsi, visi, jenis, alamat);
@@ -128,7 +128,7 @@ public class Profil extends HttpServlet {
              rd.forward(request, response);
              */
         } else if (userPath.equals("/profil/success")) {
-            Organization org = om.selectFromId(username);
+            Organization org = om.selectFromId(user.getUsername());
             request.setAttribute("organization", (Object) org);
             request.setAttribute("alertVisible", "visible");
 
