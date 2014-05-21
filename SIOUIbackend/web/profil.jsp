@@ -1,13 +1,14 @@
+<%@page import="object.Organisasi"%>
 <!-- 
     Document   : profil
     Created on : May 1, 2014, 11:41:09 AM
     Author     : Johanes
 -->
 
-<%@page import="model.OrganizationModel"%>
-<%@page import="object.Organization"%>
+<%@page import="model.OrganisasiModel"%>
+<%@page import="object.Organisasi"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String activePage = "profile"; %>
+<% String activePage = "profil"; %>
 <%@include file="/WEB-INF/header.jspf" %>
 
 <div class="alert <%=request.getAttribute("alertType")%>">
@@ -18,7 +19,7 @@
     Profil Organisasi
 </div>
 <%
-    Organization org = (Organization) request.getAttribute("organization");
+    Organisasi org = (Organisasi) request.getAttribute("organization");
     if(org==null){
         out.print("org nya null");
     }else{

@@ -20,6 +20,10 @@
         <servlet-name>Image</servlet-name>
         <servlet-class>controller.Image</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Manage</servlet-name>
+        <servlet-class>controller.OrganisasiController</servlet-class>
+    </servlet>
     
     <servlet-mapping>
         <servlet-name>Profil</servlet-name>
@@ -81,12 +85,22 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/index/login</url-pattern>
     </servlet-mapping> 
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping> 
      <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/index/logout</url-pattern>
     </servlet-mapping>  
+    <servlet-mapping>
+        <servlet-name>Manage</servlet-name>
+        <url-pattern>/manage</url-pattern>
+    </servlet-mapping>
+    
+    
     <welcome-file-list>
-        <welcome-file>index</welcome-file>
+        <welcome-file>login</welcome-file>
     </welcome-file-list>  
     <session-config>
         <session-timeout>

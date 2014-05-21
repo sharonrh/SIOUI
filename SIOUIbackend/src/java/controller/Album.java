@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import object.*;
-import model.OrganizationModel;
-import object.Organization;
+import model.OrganisasiModel;
+import object.Organisasi;
 
 /**
  *

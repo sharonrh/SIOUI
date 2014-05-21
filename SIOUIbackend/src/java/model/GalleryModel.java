@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Album;
 import object.Image;
-import object.Organization;
+import object.Organisasi;
 
 /**
  *

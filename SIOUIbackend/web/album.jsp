@@ -4,7 +4,7 @@
     Author     : Johanes
 --%>
 
-<%@page import="object.Organization"%>
+<%@page import="object.Organisasi"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String activePage = "album"; %>
 <%@include file="/WEB-INF/header.jspf" %>

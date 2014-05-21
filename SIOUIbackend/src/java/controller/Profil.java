@@ -5,28 +5,18 @@ package controller;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import model.OrganizationModel;
+import model.OrganisasiModel;
 import model.StorageManager;
-import object.Organization;
+import object.Organisasi;
 import object.User;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -58,12 +48,12 @@ public class Profil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
-        OrganizationModel om = new OrganizationModel();
+        OrganisasiModel om = new OrganisasiModel();
         HttpSession session = request.getSession(true);
         User user = (User)session.getAttribute("currentUser");
 
         if (userPath.equals("/profil")) {
-            Organization org = om.selectFromId(user.getUsername());
+            Organisasi org = om.selectFromId(user.getUsername());
             request.setAttribute("organization", (Object) org);
             if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
                 request.setAttribute("alertType", "alert-success");
@@ -110,7 +100,7 @@ public class Profil extends HttpServlet {
                     throw new Exception();
                 }
 
-                Organization o = new Organization(idOrganisasi, user.getUsername(),
+                Organisasi o = new Organisasi(idOrganisasi, user.getUsername(),
                         namaPanjang, namaPendek,
                         storageManager.getFileName("file_logo", request),
                         deskripsi, visi, jenis, alamat);
@@ -128,7 +118,7 @@ public class Profil extends HttpServlet {
              rd.forward(request, response);
              */
         } else if (userPath.equals("/profil/success")) {
-            Organization org = om.selectFromId(user.getUsername());
+            Organisasi org = om.selectFromId(user.getUsername());
             request.setAttribute("organization", (Object) org);
             request.setAttribute("alertVisible", "visible");
 

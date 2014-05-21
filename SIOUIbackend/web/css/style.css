@@ -1,19 +1,30 @@
 body{
-	font-family: 'Open Sans', 'sans-serif';
+    font-family: 'Open Sans', 'sans-serif';
 }
 
 footer{
-	text-align: center;
+    text-align: center;
 }
 
 .title{
-	border-bottom: solid 1px #CECECE;
-	font-size: 26px;
-	text-align: center;
-	padding-bottom: 10px;
-	margin-bottom: 25px;
+    border-bottom: solid 1px #CECECE;
+    font-size: 26px;
+    text-align: center;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .deskripsi-foto{
-	margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+/* The white background content wrapper */
+.container > .content {
+    background-color: #F7FAFA;
+    margin-top: 10%;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }

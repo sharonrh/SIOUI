@@ -28,26 +28,48 @@
                             </button>
                             <a class="navbar-brand" href="<%=request.getContextPath()%>/index">SIOUI Backend</a>
                         </div>
+                        <%
+                            HttpSession sess = request.getSession();
+                            Object userNameObj = sess.getAttribute("currentUser");
+                            String username = null;
+                            if (userNameObj != null) {
+                                username = userNameObj.toString();
+                            } else {
+                                response.sendRedirect("login.jsp");
+                            }
+                        %>
 
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
+                                <%if (username.equals("admin")) {
+                                %>
+                                <li class="<% if (activePage.equals("manage")) {
+                                        out.print("active");
+                                    }%>"><a href="<%=request.getContextPath()%>/manage">Manage</a></li>
+                                <li class="<% if (activePage.equals("pending")) {
+                                        out.print("active");
+                                    }%>"><a href="<%=request.getContextPath()%>/pending">Pending</a></li>
+                                
+                                <% } else {%>
+                                
                                 <li class="<% if (activePage.equals("profil")) {
-                                                    out.print("active");
-                                                } %>"><a href="<%=request.getContextPath()%>/profil">Profil</a></li>
+                                        out.print("active");
+                                    }%>"><a href="<%=request.getContextPath()%>/profil">Profil</a></li>
                                 <li class="<% if (activePage.equals("album")) {
-                                                    out.print("active");
-                                                } %>"><a href="<%=request.getContextPath()%>/album">Album</a></li>
+                                        out.print("active");
+                                    }%>"><a href="<%=request.getContextPath()%>/album">Album</a></li>
                                 <li class="<% if (activePage.equals("struktur")) {
-                                                    out.print("active");
-                                                } %>"><a href="<%=request.getContextPath()%>/struktur">Struktur Pengurus</a></li>
+                                        out.print("active");
+                                    }%>"><a href="<%=request.getContextPath()%>/struktur">Struktur Pengurus</a></li>
                                 <li class="<% if (activePage.equals("lowongan")) {
-                                                    out.print("active");
-                                                }%>"><a href="<%=request.getContextPath()%>/lowongan">Lowongan</a></li>
+                                        out.print("active");
+                                    }%>"><a href="<%=request.getContextPath()%>/lowongan">Lowongan</a></li>
+                                    <%}%>
                             </ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Hello, RISTEK! <b class="caret"></b></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Hello, <%=username%>! <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="#"></a></li>
                                         <li><a href="#">Another action</a></li>

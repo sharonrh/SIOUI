@@ -9,7 +9,7 @@ package object;
  *
  * @author Johanes
  */
-public class Organization {
+public class Organisasi {
     private int id;
     private String username;
     private String nama_panjang;
@@ -22,7 +22,7 @@ public class Organization {
     private String created_at;
     private String updated_at;
 
-    public Organization(int id, String username, String nama_panjang, String nama_pendek, String logo, String deskripsi, String visi, String jenis, String alamat) {
+    public Organisasi(int id, String username, String nama_panjang, String nama_pendek, String logo, String deskripsi, String visi, String jenis, String alamat) {
         this.id = id;
         this.username = username;
         this.nama_panjang = nama_panjang;
@@ -34,7 +34,7 @@ public class Organization {
         this.alamat = alamat;
     }
 
-    public Organization(int id, String username, String nama_panjang, 
+    public Organisasi(int id, String username, String nama_panjang, 
             String nama_pendek, String logo, String deskripsi, 
             String visi, String jenis, String alamat, String created_at, 
             String updated_at) {
