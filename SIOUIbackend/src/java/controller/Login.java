@@ -36,8 +36,20 @@ public class Login extends HttpServlet {
         String userPath = request.getServletPath();
         UserModel um = new UserModel();
         System.out.println("path: " + userPath);
-        if (userPath.equals("/index") || userPath.equals("/login")) {
+        if (userPath.equals("/index")) {
             System.out.println("masuk atas");
+            RequestDispatcher view;
+            if (request.getParameter("logout") != null) {
+                request.setAttribute("alertType", "alert-success");
+                request.setAttribute("alertContent", "Anda sudah logout.");
+                view = request.getRequestDispatcher("login.jsp");
+            } else {
+                request.setAttribute("alertType", "hidden");
+                request.setAttribute("alertContent", "");
+                view = request.getRequestDispatcher("index.jsp");
+            }
+            view.forward(request, response);
+        } else if (userPath.equals("/login")) {
             RequestDispatcher view;
             if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
                 request.setAttribute("alertType", "alert-success");
@@ -47,18 +59,14 @@ public class Login extends HttpServlet {
                 request.setAttribute("alertType", "alert-danger");
                 request.setAttribute("alertContent", "Username atau password yang dimasukkan salah");
                 view = request.getRequestDispatcher("login.jsp");
-            } else if (request.getParameter("logout") != null) {
-                request.setAttribute("alertType", "alert-success");
-                request.setAttribute("alertContent", "Anda sudah logout.");
-                view = request.getRequestDispatcher("login.jsp");
             } else {
                 request.setAttribute("alertType", "hidden");
                 request.setAttribute("alertContent", "");
                 view = request.getRequestDispatcher("login.jsp");
             }
             view.forward(request, response);
-            
-        } else if (userPath.equals("/index/login")) {
+        } else if (userPath.equals(
+                "/index/login")) {
             String username = (String) request.getParameter("id_user");
             String password = (String) request.getParameter("pass");
             //System.out.println("username= " + username + "," + password);
@@ -68,13 +76,15 @@ public class Login extends HttpServlet {
                 session.setAttribute("currentUser", um.select(username));
             }
             response.sendRedirect("/SIOUIbackend/login?success=" + isValidUser);
-        } else if (userPath.equals("/index/logout")) {
+        } else if (userPath.equals(
+                "/index/logout")) {
             HttpSession session = request.getSession(true);
             session.setAttribute("currentUser", null);
             response.sendRedirect("/SIOUIbackend/index?logout=true");
         }
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *

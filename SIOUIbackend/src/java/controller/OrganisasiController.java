@@ -27,43 +27,17 @@ public class OrganisasiController extends HttpServlet {
         String userPath = request.getServletPath();
         OrganisasiModel om = new OrganisasiModel();
         HttpSession session = request.getSession(true);
-        
+
         if (userPath.equals("/manage")) {
             ArrayList<Organisasi> listOrganisasi = om.selectAll();
             request.setAttribute("listOrganisasi", (Object) listOrganisasi);
             RequestDispatcher view = request.getRequestDispatcher("manage.jsp");
             view.forward(request, response);
-//        } else if (userPath.equals("/lowongan/details")) {
-//            System.out.println(userPath);
-//            Lowongan lw = om.select(3);
-//            request.setAttribute("detailLowongan", (Object) lw);
-//            RequestDispatcher view = request.getRequestDispatcher("form-lowongan.jsp");
-//            view.forward(request, response);
-//        } else if (userPath.equals("/lowongan/edit")) {
-//            int id = 3;
-//            System.out.println(userPath);
-//            System.out.println(request.getParameter("minimum_ipk"));
-//            System.out.println(request.getParameter("tanggal_buka"));
-//            System.out.println(request.getParameter("tanggal_tutup"));
-//            System.out.println(request.getParameter("judul"));
-//            System.out.println(request.getParameter("kategori"));
-//            System.out.println(request.getParameter("deskripsi"));
-//            int kapasitas = Integer.parseInt(request.getParameter("kapasitas"));
-//            String tanggal_buka = request.getParameter("tanggal_buka");
-//            String tanggal_tutup = request.getParameter("tanggal_tutup");
-//            String judul = request.getParameter("judul");
-//            String jabatan = request.getParameter("jabatan");
-//            String minimum_tahun = request.getParameter("minimum_tahun");
-//            double minimum_ipk = Double.parseDouble(request.getParameter("minimum_ipk"));
-//            String kategori = request.getParameter("kategori");
-//            String deskripsi = request.getParameter("deskripsi");
-//            Lowongan lw = new Lowongan(id, username, kapasitas,
-//                    tanggal_buka, tanggal_tutup, judul,
-//                    jabatan, kapasitas, minimum_ipk, kategori, deskripsi);
-//            om.update(lw);
-//            response.sendRedirect("/SIOUIbackend/");
-        } else if (userPath.equals("/lowongan/success")) {
-
+        } else if (userPath.equals("/pending")) {
+            ArrayList<Organisasi> listOrganisasi = om.selectAll();
+            request.setAttribute("listOrganisasi", (Object) listOrganisasi);
+            RequestDispatcher view = request.getRequestDispatcher("pending.jsp");
+            view.forward(request, response);
         }
     }
 

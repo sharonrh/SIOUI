@@ -42,7 +42,7 @@
                         <!-- Collect the nav links, forms, and other content for toggling -->
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav">
-                                <%if (username.equals("admin")) {
+                                <%if (username != null && username.equals("admin")) {
                                 %>
                                 <li class="<% if (activePage.equals("manage")) {
                                         out.print("active");
@@ -50,9 +50,9 @@
                                 <li class="<% if (activePage.equals("pending")) {
                                         out.print("active");
                                     }%>"><a href="<%=request.getContextPath()%>/pending">Pending</a></li>
-                                
+
                                 <% } else {%>
-                                
+
                                 <li class="<% if (activePage.equals("profil")) {
                                         out.print("active");
                                     }%>"><a href="<%=request.getContextPath()%>/profil">Profil</a></li>
@@ -83,3 +83,4 @@
                     </div><!-- /.container-fluid -->
                 </nav>
             </header>
+                                    

@@ -50,78 +50,83 @@ public class Profil extends HttpServlet {
         String userPath = request.getServletPath();
         OrganisasiModel om = new OrganisasiModel();
         HttpSession session = request.getSession(true);
-        User user = (User)session.getAttribute("currentUser");
+        User user = (User) session.getAttribute("currentUser");
 
-        if (userPath.equals("/profil")) {
-            Organisasi org = om.selectFromId(user.getUsername());
-            request.setAttribute("organization", (Object) org);
-            if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
-                request.setAttribute("alertType", "alert-success");
-                request.setAttribute("alertContent", "Update profil organisasi berhasil dilakukan!");
-            } else if (request.getParameter("success") != null && request.getParameter("success").equals("false")) {
-                request.setAttribute("alertType", "alert-danger");
-                request.setAttribute("alertContent", "Gambar tidak berhasil di-<i>upload</i>");
-            } else if (request.getParameter("success") != null && request.getParameter("success").equals("wrong_file_type")) {
-                request.setAttribute("alertType", "alert-warning");
-                request.setAttribute("alertContent", "Jenis File yang bisa di upload adalah: <b>jpg, jpeg, png, gif</b>");
-            } else if (request.getParameter("success") != null && request.getParameter("success").equals("size_too_big")) {
-                request.setAttribute("alertType", "alert-warning");
-                request.setAttribute("alertContent", "Maksimum ukuran File yang bisa di upload adalah: <b>5 MB</b>");
-            } else {
-                request.setAttribute("alertType", "hidden");
-                request.setAttribute("alertContent", "");
-            }
-            RequestDispatcher view = request.getRequestDispatcher("profil.jsp");
+        if (user == null) {
+            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
             view.forward(request, response);
-        } else if (userPath.equals("/profil/add")) {
-            RequestDispatcher view = request.getRequestDispatcher("profil.jsp");
-            view.forward(request, response);
-        } else if (userPath.equals("/profil/edit")) {
-            int idOrganisasi = 1;
-            System.out.println(userPath);
-            String namaPanjang = request.getParameter("nama_panjang");
-            String namaPendek = request.getParameter("nama_pendek");
-            String deskripsi = request.getParameter("deskripsi");
-            String visi = request.getParameter("visi");
-            String jenis = request.getParameter("jenis");
-            String alamat = request.getParameter("alamat");
+        } else {
+            if (userPath.equals("/profil")) {
+                Organisasi org = om.selectFromId(user.getUsername());
+                request.setAttribute("organization", (Object) org);
+                if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
+                    request.setAttribute("alertType", "alert-success");
+                    request.setAttribute("alertContent", "Update profil organisasi berhasil dilakukan!");
+                } else if (request.getParameter("success") != null && request.getParameter("success").equals("false")) {
+                    request.setAttribute("alertType", "alert-danger");
+                    request.setAttribute("alertContent", "Gambar tidak berhasil di-<i>upload</i>");
+                } else if (request.getParameter("success") != null && request.getParameter("success").equals("wrong_file_type")) {
+                    request.setAttribute("alertType", "alert-warning");
+                    request.setAttribute("alertContent", "Jenis File yang bisa di upload adalah: <b>jpg, jpeg, png, gif</b>");
+                } else if (request.getParameter("success") != null && request.getParameter("success").equals("size_too_big")) {
+                    request.setAttribute("alertType", "alert-warning");
+                    request.setAttribute("alertContent", "Maksimum ukuran File yang bisa di upload adalah: <b>5 MB</b>");
+                } else {
+                    request.setAttribute("alertType", "hidden");
+                    request.setAttribute("alertContent", "");
+                }
+                RequestDispatcher view = request.getRequestDispatcher("profil.jsp");
+                view.forward(request, response);
+            } else if (userPath.equals("/profil/add")) {
+                RequestDispatcher view = request.getRequestDispatcher("profil.jsp");
+                view.forward(request, response);
+            } else if (userPath.equals("/profil/edit")) {
+                int idOrganisasi = 1;
+                System.out.println(userPath);
+                String namaPanjang = request.getParameter("nama_panjang");
+                String namaPendek = request.getParameter("nama_pendek");
+                String deskripsi = request.getParameter("deskripsi");
+                String visi = request.getParameter("visi");
+                String jenis = request.getParameter("jenis");
+                String alamat = request.getParameter("alamat");
 
-            //proses upload
-            String[] expectedFileType = new String[]{"jpg", "png", "jpeg", "gif"};
+                //proses upload
+                String[] expectedFileType = new String[]{"jpg", "png", "jpeg", "gif"};
 
-            String returnValue = "false";
-            try {
-                String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Logo\\" + idOrganisasi + "\\", "file_logo", request, expectedFileType, 5 * 1024);
-                if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_WRONG_FILE_TYPE)) {
-                    returnValue = "wrong_file_type";
-                    throw new Exception();
-                } else if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_SIZE_TOO_BIG)) {
-                    returnValue = "size_too_big";
-                    throw new Exception();
+                String returnValue = "false";
+                try {
+                    String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Logo\\" + idOrganisasi + "\\", "file_logo", request, expectedFileType, 5 * 1024);
+                    if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_WRONG_FILE_TYPE)) {
+                        returnValue = "wrong_file_type";
+                        throw new Exception();
+                    } else if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_SIZE_TOO_BIG)) {
+                        returnValue = "size_too_big";
+                        throw new Exception();
+                    }
+
+                    Organisasi o = new Organisasi(idOrganisasi, user.getUsername(),
+                            namaPanjang, namaPendek,
+                            storageManager.getFileName("file_logo", request),
+                            deskripsi, visi, jenis, alamat);
+                    om.update(o);
+
+                    returnValue = "true";
+                    response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
+                } catch (Exception e) {
+                    response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
                 }
 
-                Organisasi o = new Organisasi(idOrganisasi, user.getUsername(),
-                        namaPanjang, namaPendek,
-                        storageManager.getFileName("file_logo", request),
-                        deskripsi, visi, jenis, alamat);
-                om.update(o);
+                /*
+                 ServletContext context= getServletContext();
+                 RequestDispatcher rd= context.getRequestDispatcher("/insertServlet");
+                 rd.forward(request, response);
+                 */
+            } else if (userPath.equals("/profil/success")) {
+                Organisasi org = om.selectFromId(user.getUsername());
+                request.setAttribute("organization", (Object) org);
+                request.setAttribute("alertVisible", "visible");
 
-                returnValue = "true";
-                response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
-            } catch (Exception e) {
-                response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
             }
-
-            /*
-             ServletContext context= getServletContext();
-             RequestDispatcher rd= context.getRequestDispatcher("/insertServlet");
-             rd.forward(request, response);
-             */
-        } else if (userPath.equals("/profil/success")) {
-            Organisasi org = om.selectFromId(user.getUsername());
-            request.setAttribute("organization", (Object) org);
-            request.setAttribute("alertVisible", "visible");
-
         }
     }
 

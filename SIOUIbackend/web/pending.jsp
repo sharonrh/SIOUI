@@ -8,11 +8,11 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% String activePage = "manage";%>
+<% String activePage = "pending";%>
 
 <%@include file="/WEB-INF/header.jspf" %>
 <div class="title">
-    Manage Organisasi
+    Pending Request
 </div>
 
 <div class="col-lg-12"> 
@@ -20,8 +20,8 @@
         <tr>    
             <th> # </th>
             <th> Username </th>
-            <th> Nama Organisasi </th>
             <th> Deskripsi </th>
+            <th> Tanggal Pengajuan </th>
             <th> Action </th>
         </tr>      
 
@@ -32,11 +32,12 @@
         <tr>
             <td> <%= a.getId()%> </td>
             <td> <%= a.getUsername()%> </td>
-            <td> <%= a.getNama_panjang()%> </td>
             <td> <%= a.getDeskripsi()%> </td>
+            <td> <%= a.getCreated_at()%> </td>
             <td> 
-                <form method="post" action="#">
-                    <button class="btn btn-default btn-danger" type="submit">Delete</button>
+                <form method="post" class="form-inline" action="#">
+                    <button class="btn btn-default btn-success" type="submit">Approve</button>
+                    <button class="btn btn-default btn-danger" type="submit">Reject</button>
                     <input type="hidden" name="act" value="del">
                     <input type="hidden" name="del_id" value="">                                
                 </form>

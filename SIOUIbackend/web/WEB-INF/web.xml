@@ -97,7 +97,10 @@
         <servlet-name>Manage</servlet-name>
         <url-pattern>/manage</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>Manage</servlet-name>
+        <url-pattern>/pending</url-pattern>
+    </servlet-mapping> 
     
     <welcome-file-list>
         <welcome-file>login</welcome-file>
