@@ -25,21 +25,55 @@ public class GalleryModel extends Model{
     final String ALBUM_TABLE_NAME = "album";
     final String IMAGE_TABLE_NAME = "image";
     
-    public void insertAlbum(Album alb){
+    public static void main(String[] arhs){
+        GalleryModel gm = new GalleryModel();
+        Album a = new Album("12", "asd", "asd");
+        gm.insertAlbum(a);
+    }
+    
+    public Album getSingleAlbum(int idAlbum){
         super.openConnection();
         String query;
-        query = String.format("INSERT INTO '%s'('id_organisasi', 'name', 'description') VALUES ('%s', '%s', '%s')", ALBUM_TABLE_NAME, alb.getId_organisasi(), alb.getName(), alb.getDescription());
+        query = String.format("SELECT * FROM %s WHERE id=%s", ALBUM_TABLE_NAME, idAlbum);
         
-        try {
-            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-            if(alb.getImages()!=null&&alb.getImages().size()>0){
-                cascadeImageFromAlbum(alb);
-            }
+        try{
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            res.next();
+            Album alb = new Album(res.getString("id"), 
+                    res.getString("id_organisasi"),
+                    res.getString("nama"),
+                    res.getString("deskripsi"),
+                    res.getString("created_at"),
+                    res.getString("updated_at"));
+            fetchIsiAlbum(alb);
+            return alb;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             closeConnection();
         }
+        
+        return null;
+    }
+    
+    public int insertAlbum(Album alb){
+        super.openConnection();
+        String query;
+        query = String.format("INSERT INTO %s (id_organisasi, nama, deskripsi) VALUES (%s, '%s', '%s')", ALBUM_TABLE_NAME, alb.getId_organisasi(), alb.getName(), alb.getDescription());
+        
+        try {
+            int id = super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            if(alb.getImages()!=null&&alb.getImages().size()>0){
+                cascadeImageFromAlbum(alb);
+            }
+            return id;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return -1;
     }
     
     private void cascadeImageFromAlbum(Album alb) {
@@ -74,8 +108,8 @@ public class GalleryModel extends Model{
             while (res.next()) {
                 Album alb = new Album(res.getString("id"), 
                         res.getString("id_organisasi"),
-                        res.getString("name"),
-                        res.getString("description"),
+                        res.getString("nama"),
+                        res.getString("deskripsi"),
                         res.getString("created_at"),
                         res.getString("updated_at"));
                 fetchIsiAlbum(alb);
@@ -98,7 +132,7 @@ public class GalleryModel extends Model{
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                alb.addImage(new Image(res.getString("id"), res.getString("id_album"), res.getString("name"), res.getString("description"), res.getString("created_at"), res.getString("updated_at")));
+                alb.addImage(new Image(res.getString("id"), res.getString("id_album"), res.getString("nama"), res.getString("deskripsi"), res.getString("created_at"), res.getString("updated_at")));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);

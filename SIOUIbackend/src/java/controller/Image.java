@@ -37,6 +37,7 @@ public class Image extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         final int BUFSIZE = 100;
+        
         final String path = "C:\\SIOUI_DATA\\Logo\\";
 
         // Get requested file by path info.

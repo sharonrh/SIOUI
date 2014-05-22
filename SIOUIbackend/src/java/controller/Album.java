@@ -7,6 +7,7 @@ package controller;
  */
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,13 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 import object.*;
 import model.OrganisasiModel;
 import object.Organisasi;
+import javax.servlet.http.HttpSession;
+import model.GalleryModel;
 
 /**
  *
  * @author Johanes
  */
 public class Album extends HttpServlet {
-
+    OrganizationModel om = new OrganizationModel();
+    GalleryModel gm = new GalleryModel();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,21 +36,52 @@ public class Album extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException {             
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("currentUser");
+        Organization org = om.selectFromId(user.getUsername());
+        
         String userPath = request.getServletPath();
         //response.getWriter().print(userPath);
         
         if(userPath.equals("/album")){
+            List<object.Album> a = gm.selectAlbumByOrganization(org.getId());
+            request.setAttribute("albums", (Object)a);
+            
             RequestDispatcher view = request.getRequestDispatcher("album.jsp");
             view.forward(request, response);
         }else if(userPath.equals("/album/add")){
             //bagian ini hanya menampilkan form
             request.setAttribute("title", (Object)"Create Album");
-            request.setAttribute("formAction", (Object)"/album/create");
+            request.setAttribute("formAction1", (Object)(request.getContextPath()+"/album/create"));
             request.setAttribute("role", (Object)"create");
             
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/albumform.jsp");
             view.forward(request, response);
+            
+        }else if(userPath.equals("/album/edit")){
+            String id = request.getParameter("id");
+            
+            object.Album album = gm.getSingleAlbum(Integer.parseInt(id));
+            
+            request.setAttribute("album", album);
+            request.setAttribute("title", "Update Album");
+            request.setAttribute("role", "edit");
+            request.setAttribute("formAction1", request.getContextPath()+"/album/updatealbuminfo");
+            request.setAttribute("formAction2", request.getContextPath()+"/album/uploadimage");
+            request.setAttribute("formAction3", request.getContextPath()+"/album/editimagedesc");
+            
+            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/albumform.jsp");
+            view.forward(request, response);
+        }else if(userPath.equals("/album/create")){
+            object.Album a = new object.Album(""+org.getId(), request.getParameter("nama-album"), request.getParameter("deskripsi-album"));
+            int lastID = gm.insertAlbum(a);
+            response.sendRedirect("/SIOUIbackend/album/edit?id="+lastID);
+        }else if(userPath.equals("/album/updatealbuminfo")){
+            
+        }else if(userPath.equals("/album/uploadimage")){
+            
+        }else if(userPath.equals("/album/editimagedesc")){
             
         }
     }
