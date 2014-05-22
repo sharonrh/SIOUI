@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package object;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author Johanes
  */
 public class Album {
+
     private String id;
     private String id_organisasi;
     private String name;
     private String description;
     private String created_at;
     private String updated_at;
-    private List<Image> images;
+    private List<Image> images = new ArrayList<Image>();
 
     public Album(String id, String id_organisasi, String name, String description, String created_at, String updated_at) {
         this.id = id;
@@ -29,7 +31,7 @@ public class Album {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
-    
+
     public Album(String id_organisasi, String name, String description) {
         this.id = id;
         this.id_organisasi = id_organisasi;
@@ -38,14 +40,24 @@ public class Album {
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
-    
-    public Album(){}
-    
-    public void addImage(Image img){
+
+    public Album() {
+    }
+
+    public Image getRandomImage() {
+        Random r = new Random();
+        if (images.size() > 0) {
+            return images.get(r.nextInt(images.size()));
+        } else {
+            return null;
+        }
+    }
+
+    public void addImage(Image img) {
         images.add(img);
     }
-    
-    public List<Image> getImages(){
+
+    public List<Image> getImages() {
         return images;
     }
 
@@ -96,6 +108,5 @@ public class Album {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-    
-    
+
 }

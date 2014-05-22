@@ -18,8 +18,7 @@ public class Image {
     private String created_at;
     private String updated_at;
 
-    public Image(String id, String id_album, String name, String description) {
-        this.id = id;
+    public Image(String id_album, String name, String description) {
         this.id_album = id_album;
         this.name = name;
         this.description = description;

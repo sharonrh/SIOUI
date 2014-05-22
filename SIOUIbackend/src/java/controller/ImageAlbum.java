@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author ACER
  */
-@WebServlet(name = "Image", urlPatterns = {"/Image"})
-public class Image extends HttpServlet {
+@WebServlet(name = "ImageAlbum", urlPatterns = {"/ImageAlbum"})
+public class ImageAlbum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,12 +36,16 @@ public class Image extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        final int BUFSIZE = 100;
+        final int BUFSIZE = 1000;
         
-        final String path = "C:\\SIOUI_DATA\\Logo\\";
+        String idOrganisasi = request.getParameter("idorg");
+        String idAlbum = request.getParameter("idalbum");
+        String fileName = request.getParameter("filename");         
+        
+        final String path = "C:\\SIOUI_DATA\\Album\\"+idOrganisasi+"\\"+idAlbum+"\\";
 
         // Get requested file by path info.
-        String requestedFile = path + request.getParameter("id");
+        String requestedFile = path + fileName;
 
         System.out.println(requestedFile);
 
