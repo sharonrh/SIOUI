@@ -26,10 +26,6 @@ import model.StorageManager;
  */
 @MultipartConfig
 public class Album extends HttpServlet {
-<<<<<<< HEAD
-=======
-
->>>>>>> cb4859e3c610c3164415ca83f5f03a8d90cc4637
     OrganisasiModel om = new OrganisasiModel();
     GalleryModel gm = new GalleryModel();
     StorageManager storageManager = new StorageManager();
@@ -46,15 +42,9 @@ public class Album extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-<<<<<<< HEAD
-        User user = (User)session.getAttribute("currentUser");
-        Organisasi org = om.selectFromId(user.getUsername());
-        
-=======
         User user = (User) session.getAttribute("currentUser");
         Organisasi org = om.selectFromId(user.getUsername());
 
->>>>>>> cb4859e3c610c3164415ca83f5f03a8d90cc4637
         String userPath = request.getServletPath();
         //response.getWriter().print(userPath);
 

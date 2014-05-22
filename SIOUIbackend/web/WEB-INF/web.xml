@@ -119,16 +119,12 @@
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending</url-pattern>
-<<<<<<< HEAD
     </servlet-mapping> 
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending/permit</url-pattern>
     </servlet-mapping> 
       
-=======
-    </servlet-mapping>
->>>>>>> cb4859e3c610c3164415ca83f5f03a8d90cc4637
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>
