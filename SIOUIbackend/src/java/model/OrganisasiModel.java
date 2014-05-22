@@ -160,10 +160,10 @@ public class OrganisasiModel extends Model {
         return null;
     }
 
-    public void insertOrganizationModel(String username, String nama_panjang,
-            String nama_pendek) {
+    public void addOrganisasi(String username, String nama_panjang,
+            String deskripsi) {
         super.openConnection();
-        String query = String.format("INSERT INTO %s(username, nama_panjang, nama_pendek) VALUES ('%s','%s','%s')", TABLE_NAME, username, nama_panjang, nama_pendek);
+        String query = String.format("INSERT INTO %s(username, nama_panjang, deskripsi) VALUES ('%s','%s','%s')", TABLE_NAME, username, nama_panjang, deskripsi);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
@@ -244,4 +244,17 @@ public class OrganisasiModel extends Model {
             closeConnection();
         }
     }
+    
+    public void deleteOrganisasi(String username) {
+         String query = "DELETE FROM " + TABLE_NAME
+                + " WHERE username= '" + username + "'";
+        openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }    
 }

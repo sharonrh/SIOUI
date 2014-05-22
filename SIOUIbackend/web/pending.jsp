@@ -4,6 +4,7 @@
     Author     : ACER
 --%>
 
+<%@page import="object.Permohonan"%>
 <%@page import="object.Organisasi"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,30 +18,28 @@
 
 <div class="col-lg-12"> 
     <table class="table table-hover table-striped">
-        <tr>    
+        <thead>    
             <th> # </th>
             <th> Username </th>
+            <th> Nama Panjang </th>
             <th> Deskripsi </th>
             <th> Tanggal Pengajuan </th>
             <th> Action </th>
-        </tr>      
+        </thead>      
 
-        <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
-            for (Organisasi a : listOrganisasi) {
+        <% ArrayList<Permohonan> listPermohonan = (ArrayList<Permohonan>) request.getAttribute("listPermohonan");
+            for (Permohonan a : listPermohonan) {
         %>
 
         <tr>
             <td> <%= a.getId()%> </td>
             <td> <%= a.getUsername()%> </td>
+            <td> <%= a.getNama_panjang()%> </td>
             <td> <%= a.getDeskripsi()%> </td>
-            <td> <%= a.getCreated_at()%> </td>
+            <td> not implemented </td>
             <td> 
-                <form method="post" class="form-inline" action="#">
-                    <button class="btn btn-default btn-success" type="submit">Approve</button>
-                    <button class="btn btn-default btn-danger" type="submit">Reject</button>
-                    <input type="hidden" name="act" value="del">
-                    <input type="hidden" name="del_id" value="">                                
-                </form>
+                <a href="pending/permit?act=approve&id=<%= a.getId()%>" class="btn btn-default btn-success">Approve</a>
+                <a href="pending/permit?act=reject&id=<%= a.getId()%>" class="btn btn-default btn-danger">Reject</a>                               
             </td>
         </tr>
         <%}%>

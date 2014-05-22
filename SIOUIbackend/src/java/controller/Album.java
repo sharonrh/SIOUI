@@ -24,7 +24,7 @@ import model.GalleryModel;
  * @author Johanes
  */
 public class Album extends HttpServlet {
-    OrganizationModel om = new OrganizationModel();
+    OrganisasiModel om = new OrganisasiModel();
     GalleryModel gm = new GalleryModel();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +39,7 @@ public class Album extends HttpServlet {
             throws ServletException, IOException {             
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("currentUser");
-        Organization org = om.selectFromId(user.getUsername());
+        Organisasi org = om.selectFromId(user.getUsername());
         
         String userPath = request.getServletPath();
         //response.getWriter().print(userPath);

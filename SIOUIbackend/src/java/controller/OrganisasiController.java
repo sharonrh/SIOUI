@@ -14,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.OrganisasiModel;
+import model.PermohonanModel;
 import object.Organisasi;
+import object.Permohonan;
 
 /**
  *
@@ -26,18 +28,31 @@ public class OrganisasiController extends HttpServlet {
             throws ServletException, IOException {
         String userPath = request.getServletPath();
         OrganisasiModel om = new OrganisasiModel();
+        PermohonanModel pm = new PermohonanModel();
         HttpSession session = request.getSession(true);
 
         if (userPath.equals("/manage")) {
             ArrayList<Organisasi> listOrganisasi = om.selectAll();
             request.setAttribute("listOrganisasi", (Object) listOrganisasi);
+
             RequestDispatcher view = request.getRequestDispatcher("manage.jsp");
             view.forward(request, response);
+        } else if (userPath.equals("/manage/delete")) {
+            String id = request.getParameter("del_id");
+            om.deleteOrganisasi(id);
+            response.sendRedirect("/SIOUIbackend/manage");
         } else if (userPath.equals("/pending")) {
-            ArrayList<Organisasi> listOrganisasi = om.selectAll();
-            request.setAttribute("listOrganisasi", (Object) listOrganisasi);
+            ArrayList<Permohonan> listPermohonan = pm.selectAll();
+            request.setAttribute("listPermohonan", (Object) listPermohonan);
             RequestDispatcher view = request.getRequestDispatcher("pending.jsp");
             view.forward(request, response);
+        } else if (userPath.equals("/pending/permit")) {
+            if (request.getParameter("act") != null && request.getParameter("act").equals("approve")) {
+
+            } else if (request.getParameter("act") != null && request.getParameter("act").equals("reject")) {
+                pm.deletePermohonan(Integer.parseInt(request.getParameter("id")));
+            }
+            response.sendRedirect("/SIOUIbackend/pending");
         }
     }
 

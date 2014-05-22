@@ -12,6 +12,22 @@
         <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>-->
         <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
         <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
+
+<!--        <script type="text/javascript">
+
+            function popConfirmation()
+            {
+                var answer = confirm("Apakah Anda yakin?");
+                if (answer) {
+                    document.myForm.answer.value = "true";
+                    document.myForm.submit();
+                    return true;
+                } else
+                    return false
+            }
+            // 
+        </script>-->
+
     </head>
     <body>
         <div class="container">
@@ -83,4 +99,3 @@
                     </div><!-- /.container-fluid -->
                 </nav>
             </header>
-                                    

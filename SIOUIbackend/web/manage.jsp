@@ -17,13 +17,13 @@
 
 <div class="col-lg-12"> 
     <table class="table table-hover table-striped">
-        <tr>    
+        <thead>    
             <th> # </th>
             <th> Username </th>
             <th> Nama Organisasi </th>
             <th> Deskripsi </th>
             <th> Action </th>
-        </tr>      
+        </thead>      
 
         <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
             for (Organisasi a : listOrganisasi) {
@@ -35,10 +35,9 @@
             <td> <%= a.getNama_panjang()%> </td>
             <td> <%= a.getDeskripsi()%> </td>
             <td> 
-                <form method="post" action="#">
+                <form method="post" action="manage/delete">
                     <button class="btn btn-default btn-danger" type="submit">Delete</button>
-                    <input type="hidden" name="act" value="del">
-                    <input type="hidden" name="del_id" value="">                                
+                    <input type="hidden" name="del_id" value="<%=a.getUsername()%>">                                
                 </form>
             </td>
         </tr>

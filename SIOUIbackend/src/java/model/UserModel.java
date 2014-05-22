@@ -61,4 +61,17 @@ public class UserModel extends Model {
         }
         return a;
     }
+    
+    public void addUser(String username, String password) {
+        super.openConnection();
+        String query = String.format("INSERT INTO %s(username, nama_panjang) VALUES ('%s','%s')", TABLE_NAME, username, password);
+        openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
 }
