@@ -18,13 +18,16 @@
     </servlet>
     <servlet>
         <servlet-name>Image</servlet-name>
-        <servlet-class>controller.Image</servlet-class>
+        <servlet-class>controller.ImageLogo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Manage</servlet-name>
         <servlet-class>controller.OrganisasiController</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>ImageAlbum</servlet-name>
+        <servlet-class>controller.ImageAlbum</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Profil</servlet-name>
         <url-pattern>/profil</url-pattern>
@@ -59,7 +62,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Album</servlet-name>
-        <url-pattern>/album/update</url-pattern>
+        <url-pattern>/album/updatealbuminfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/uploadimage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/editimagedesc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
+        <url-pattern>/album/delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Image</servlet-name>
@@ -84,15 +99,15 @@
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/index/login</url-pattern>
-    </servlet-mapping> 
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping> 
-     <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/index/logout</url-pattern>
-    </servlet-mapping>  
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/manage</url-pattern>
@@ -100,22 +115,24 @@
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending</url-pattern>
-    </servlet-mapping> 
-    
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
-    </welcome-file-list>  
+    </welcome-file-list>
+    <servlet-mapping>
+        <servlet-name>ImageAlbum</servlet-name>
+        <url-pattern>/ImageAlbum</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
-    <context-param> 
-        <description>Location to store uploaded file</description> 
-        <param-name>file-upload</param-name> 
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
         <param-value>
             c:\data-upload
-        </param-value> 
+        </param-value>
     </context-param>
 </web-app>

@@ -23,12 +23,34 @@ import object.Organisasi;
  */
 public class GalleryModel extends Model{
     final String ALBUM_TABLE_NAME = "album";
-    final String IMAGE_TABLE_NAME = "image";
+    final String IMAGE_TABLE_NAME = "foto";
     
     public static void main(String[] arhs){
         GalleryModel gm = new GalleryModel();
         Album a = new Album("12", "asd", "asd");
         gm.insertAlbum(a);
+    }
+    
+    public void updateAlbum(Album a){
+        String query = String.format("UPDATE %s SET "
+                + "id_organisasi=%s, "
+                + "nama='%s', "
+                + "deskripsi='%s' "
+                + "WHERE id=%s", 
+                this.ALBUM_TABLE_NAME,
+                a.getId_organisasi(),
+                a.getName(),
+                a.getDescription(),
+                a.getId());
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            cascadeImageFromAlbum(a);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
     }
     
     public Album getSingleAlbum(int idAlbum){
@@ -80,14 +102,16 @@ public class GalleryModel extends Model{
         List<Image> images = alb.getImages();
         
         for(Image img:images){
-            insertImage(img);
+            if(img.getId()==null){
+                insertImage(img);
+            }
         }
     }
     
     private void insertImage(Image img){
         super.openConnection();
         String query;
-        query = String.format("INSERT INTO '%s'('id_album', 'name', 'description') VALUES ('%s', '%s', '%s')", IMAGE_TABLE_NAME, img.getId_album(), img.getName(), img.getDescription());
+        query = String.format("INSERT INTO %s (id_album, nama, deskripsi) VALUES (%s, '%s', '%s')", IMAGE_TABLE_NAME, img.getId_album(), img.getName(), img.getDescription());
         
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);

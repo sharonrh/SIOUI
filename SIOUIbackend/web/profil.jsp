@@ -20,11 +20,6 @@
 </div>
 <%
     Organisasi org = (Organisasi) request.getAttribute("organization");
-    if(org==null){
-        out.print("org nya null");
-    }else{
-        out.print("org nya tidak null");
-    }
 %>
 
 
@@ -48,7 +43,7 @@
         <div class="col-sm-1">
             <img name="logo_img" src="<%
                 if (org.getLogo() != null) {
-                    out.print("image?id="+ org.getId() +"\\" + org.getLogo());
+                    out.print("ImageLogo?id="+ org.getId() +"\\" + org.getLogo());
                 }
                  %>" width="80" class="img-thumbnail" alt="">
         </div>

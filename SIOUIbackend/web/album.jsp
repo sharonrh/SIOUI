@@ -4,6 +4,7 @@
     Author     : Johanes
 --%>
 
+<%@page import="object.Image"%>
 <%@page import="object.Organisasi"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
@@ -33,12 +34,17 @@
     %>
     <div class="col-sm-4 col-md-3">
         <div class="thumbnail">
-            <img src="http://sioui.cloudapp.net:8080/SIOUI/img/c3.jpg" alt="...">
+            <img src="<%
+                Image img = albums.get(i).getRandomImage();
+                if (img!=null && img.getName() != null) {
+                    out.print(request.getContextPath() + "/ImageAlbum?idorg=" + albums.get(i).getId_organisasi() + "&idalbum=" + albums.get(i).getId() + "&filename=" + img.getName());
+                }%>" alt="...">
+            
             <div class="caption">
                 <h3><% out.print(albums.get(i).getName()); %></h3>
-                <p><% %></p>
+                <p><%%></p>
                 <p>
-                    <a href="<%= request.getContextPath() %>/album/edit?id=<%=albums.get(i).getId()%>" class="btn btn-xs btn-success" role="button">Manage</a>  
+                    <a href="<%= request.getContextPath()%>/album/edit?id=<%=albums.get(i).getId()%>" class="btn btn-xs btn-success" role="button">Manage</a>  
                     <a href="#" class="btn btn-xs btn-danger" role="button">Delete</a>
                 </p>
             </div>
@@ -49,4 +55,4 @@
         }
     %>
 </div>
-    <%@include file="/WEB-INF/footer.jspf" %>
+<%@include file="/WEB-INF/footer.jspf" %>
