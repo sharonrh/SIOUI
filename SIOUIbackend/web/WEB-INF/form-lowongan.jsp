@@ -10,13 +10,12 @@
 <!DOCTYPE html>
 <%String activePage="Lowongan";%>
 <%@include file="/WEB-INF/header.jspf" %>
+
 <div class="title">
     Detail Lowongan
 </div>
-<div class="alert-info">
-</div>
+
 <%
-    //Organization org = (Organization) request.getAttribute("organization");
     Lowongan lw = (Lowongan) request.getAttribute("detailLowongan");
     String status = request.getAttribute("status").toString();
     out.println(status);
