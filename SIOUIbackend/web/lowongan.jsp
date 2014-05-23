@@ -32,7 +32,9 @@
     
     <div class="row">
         <div class ="col-xs-1">
-            Delete
+            <a href="<%=request.getContextPath()%>/lowongan/delete?id=<%out.print(listLowongan.get(ii).getId());%>">
+                <button type="submit" class="btn btn-default btn-danger">Delete</button>
+            </a>
         </div>
         <div class ="col-xs-7">
             <b> <%out.print(listLowongan.get(ii).getJudul());%> </b>

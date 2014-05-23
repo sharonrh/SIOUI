@@ -175,4 +175,16 @@ public class LowonganModel extends Model {
             closeConnection();
         }
     }
+    
+    public void deleteLowongan(int id){
+        String query="DELETE FROM "+TABLE_NAME+" WHERE id="+id;
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
 }

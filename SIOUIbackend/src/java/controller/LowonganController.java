@@ -79,6 +79,11 @@ public class LowonganController extends HttpServlet {
             }
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/form-lowongan.jsp");
             view.forward(request, response);
+        } else if (userPath.equals("/lowongan/delete")) {
+            System.out.println(userPath);            
+            int id = Integer.parseInt(request.getParameter("id"));
+            lm.deleteLowongan(id);
+            response.sendRedirect("/SIOUIbackend/lowongan");
         }
     }
 
