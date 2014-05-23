@@ -74,6 +74,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Album</servlet-name>
+        <url-pattern>/album/deleteimage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Album</servlet-name>
         <url-pattern>/album/delete</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

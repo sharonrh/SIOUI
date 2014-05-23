@@ -36,16 +36,16 @@
         <div class="thumbnail">
             <img src="<%
                 Image img = albums.get(i).getRandomImage();
-                if (img!=null && img.getName() != null) {
+                if (img != null && img.getName() != null) {
                     out.print(request.getContextPath() + "/ImageAlbum?idorg=" + albums.get(i).getId_organisasi() + "&idalbum=" + albums.get(i).getId() + "&filename=" + img.getName());
                 }%>" alt="...">
-            
+
             <div class="caption">
-                <h3><% out.print(albums.get(i).getName()); %></h3>
+                <h3><% out.print(albums.get(i).getName());%></h3>
                 <p><%%></p>
                 <p>
                     <a href="<%= request.getContextPath()%>/album/edit?id=<%=albums.get(i).getId()%>" class="btn btn-xs btn-success" role="button">Manage</a>  
-                    <a href="#" class="btn btn-xs btn-danger" role="button">Delete</a>
+                    <a href="<%= request.getContextPath()%>/album/delete?id=<%=albums.get(i).getId()%>" class="hapus btn btn-xs btn-danger" role="button">Delete</a>
                 </p>
             </div>
         </div>
@@ -55,4 +55,14 @@
         }
     %>
 </div>
+<script>
+    $(document).ready(function() {
+        $(".hapus").bind("click", function(event) {
+            if (!confirm('Anda yakin untuk menghapus data ini?')) {
+                event.preventDefault();
+            }
+        });
+
+    });
+</script>
 <%@include file="/WEB-INF/footer.jspf" %>

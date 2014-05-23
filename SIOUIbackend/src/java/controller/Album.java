@@ -6,6 +6,7 @@ package controller;
  * and open the template in the editor.
  */
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,12 +14,12 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import object.*;
-import model.OrganisasiModel;
-import object.Organisasi;
 import javax.servlet.http.HttpSession;
 import model.GalleryModel;
+import model.OrganisasiModel;
 import model.StorageManager;
+import object.*;
+import object.Organisasi;
 
 /**
  *
@@ -82,13 +83,15 @@ public class Album extends HttpServlet {
             request.setAttribute("formAction1", request.getContextPath() + "/album/updatealbuminfo?id=" + album.getId());
             request.setAttribute("formAction2", request.getContextPath() + "/album/uploadimage?id=" + album.getId());
             request.setAttribute("formAction3", request.getContextPath() + "/album/editimagedesc?id=" + album.getId());
+            request.setAttribute("formAction4", request.getContextPath() + "/album/deleteimage?id=" + album.getId());
 
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/albumform.jsp");
             view.forward(request, response);
         } else if (userPath.equals("/album/create")) {
             object.Album a = new object.Album("" + org.getId(), request.getParameter("nama-album"), request.getParameter("deskripsi-album"));
-            int lastID = gm.insertAlbum(a);
-            response.sendRedirect(request.getContextPath() + "/album/edit?id=" + lastID + "&status=sukses");
+            gm.insertAlbum(a);
+            object.Album lastInserted = gm.getLastInsertedAlbum();
+            response.sendRedirect(request.getContextPath() + "/album/edit?id=" + lastInserted.getId() + "&status=sukses");
         } else if (userPath.equals("/album/updatealbuminfo")) {
             object.Album a = new object.Album("" + org.getId(), request.getParameter("nama-album"), request.getParameter("deskripsi-album"));
             a.setId(request.getParameter("id"));
@@ -127,13 +130,55 @@ public class Album extends HttpServlet {
                 }
 
             } else {
-                response.sendRedirect(request.getContextPath() + "/album/");
+                response.sendRedirect(request.getContextPath() + "/album");
             }
 
         } else if (userPath.equals("/album/editimagedesc")) {
-
-        } else if (userPath.equals("/album/delete")){
+            Object objId = request.getParameter("id");
+            if(objId==null){
+                //redirect here
+            }
+            String id = objId.toString();
             
+            object.Album a = gm.getSingleAlbum(Integer.parseInt(id));
+            
+            for(Image img:a.getImages()){
+                Object objDesc = request.getParameter("imgdesc_"+img.getId());
+                if(objDesc!=null){
+                    img.setDescription(objDesc.toString());
+                    gm.updateImage(img);
+                }
+            }
+            response.sendRedirect(request.getContextPath() + "/album/edit?id=" + a.getId() + "&status=sukses");
+        } else if (userPath.equals("/album/deleteimage")){
+            ArrayList<String> toDelete = new ArrayList<String>();
+            
+            Object objId = request.getParameter("id");
+            if(objId==null){
+                //redirect here
+            }
+            String id = objId.toString();
+            object.Album a = gm.getSingleAlbum(Integer.parseInt(id));
+            
+            for(Image img:a.getImages()){
+                Object objDelete = request.getParameter("imgdelete_"+img.getId());
+                if(objDelete!=null){
+                    toDelete.add(img.getId());
+                }
+            }
+            
+            for(String td:toDelete){
+                gm.deleteImage(td);
+            }
+            response.sendRedirect(request.getContextPath() + "/album/edit?id=" + a.getId() + "&status=sukses");
+        } else if (userPath.equals("/album/delete")){
+            Object objId = request.getParameter("id");
+            if(objId==null){
+                //redirect here
+            }
+            String id = objId.toString();
+            gm.deleteAlbum(id);
+            response.sendRedirect(request.getContextPath() + "/album");
         }
     }
 

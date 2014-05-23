@@ -60,6 +60,15 @@ public class Album {
     public List<Image> getImages() {
         return images;
     }
+    
+    public void deleteImage(String idImg){
+        for(int i=0;i<images.size();i++){
+            if(images.get(i).getId().equals(idImg)){
+                images.remove(i);
+                break;
+            }
+        }
+    }
 
     public String getId() {
         return id;

@@ -164,6 +164,91 @@ public class GalleryModel extends Model{
             closeConnection();
         }
     }
+    
+    public void deleteImage(String id){
+        String query="DELETE FROM "+IMAGE_TABLE_NAME+" WHERE id="+id;
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
+    public void deleteImageByAlbumId(String idAlbum){
+        String query="DELETE FROM "+IMAGE_TABLE_NAME+" WHERE id_album="+idAlbum;
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
+    public Album getLastInsertedAlbum(){
+        super.openConnection();
+        String query;
+        query = String.format("SELECT * FROM %s ORDER BY created_at DESC", ALBUM_TABLE_NAME);
+        
+        try{
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            res.next();
+            Album alb = new Album(res.getString("id"), 
+                    res.getString("id_organisasi"),
+                    res.getString("nama"),
+                    res.getString("deskripsi"),
+                    res.getString("created_at"),
+                    res.getString("updated_at"));
+            fetchIsiAlbum(alb);
+            return alb;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        
+        return null;
+    }
+    
+    public void deleteAlbum(String id){
+        String query="DELETE FROM "+ALBUM_TABLE_NAME+" WHERE id="+id;
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+            deleteImageByAlbumId(id);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
+    public int updateImage(Image img){
+        String query = String.format("UPDATE %s SET "
+                + "id_album=%s, "
+                + "nama='%s', "
+                + "deskripsi='%s' "
+                + "WHERE id=%s", 
+                this.IMAGE_TABLE_NAME,
+                img.getId_album(),
+                img.getName(),
+                img.getDescription(),
+                img.getId());
+        super.openConnection();
+        try {
+            return super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return -1;
+    }
 
     
 }

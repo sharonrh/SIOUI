@@ -13,6 +13,14 @@
 <% String activePage = "album";%>
 <%@include file="header.jspf" %>
 
+<script>
+    function submitForm(action)
+    {
+        document.getElementById('form-image').action = action;
+        document.getElementById('form-image').submit();
+    }
+</script>
+
 <%
     Object objAlbum = request.getAttribute("album");
     Object objUser = session.getAttribute("currentUser");
@@ -121,9 +129,7 @@
         <h3 class="panel-title">Isi Album</h3>
     </div>
     <div class="panel-body">
-        <form class="form-horizontal" role="form" method="POST" action="<% if (request.getAttribute("formAction3") != null) {
-                out.print(request.getAttribute("formAction3").toString());
-            } %>">
+        <form id="form-image" class="form-horizontal" role="form" method="POST" action="">
             <div class="row">
                 <%
                     if (a != null && a.getImages() != null) {
@@ -134,14 +140,14 @@
                     <div class="thumbnail">
                         <img src="<%
                             if (img.getName() != null) {
-                                out.print(request.getContextPath()+"/ImageAlbum?idorg=" + a.getId_organisasi() + "&idalbum=" + a.getId()+"&filename="+img.getName());
+                                out.print(request.getContextPath() + "/ImageAlbum?idorg=" + a.getId_organisasi() + "&idalbum=" + a.getId() + "&filename=" + img.getName());
                             }%>" alt="">
                         <div class="caption">
-                            <textarea class="form-control deskripsi-foto" rows="3" id="textarea" name=""><%=img.getDescription()%></textarea>
+                            <textarea class="form-control deskripsi-foto" rows="3" id="textarea" name="imgdesc_<%=img.getId()%>"><%=img.getDescription()%></textarea>
                             <p>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox">hapus
+                                    <input type="checkbox" name="imgdelete_<%=img.getId()%>">hapus
                                 </label>
                             </div>
                             </p>
@@ -149,15 +155,31 @@
                     </div>
                 </div>
                 <%}
-                                }%>
+                    }%>
             </div>
 
-            <a href="#" class="btn btn-warning <% if (a == null) {
+            <a href="#" class="btn btn-warning <% if (a == null || a.getImages().size()==0) {
                     out.print("hide");
-                } %>" role="button">Update All</a>
-            <a href="#" class="btn btn-danger <% if (a == null) {
+                               } %>" role="button" onclick="submitForm('<% if (request.getAttribute("formAction3") != null) {
+                                   out.print(request.getAttribute("formAction3").toString());
+                } %>')">Update All</a>
+            <a href="#" class="hapus btn btn-danger <% if (a == null || a.getImages().size()==0) {
                     out.print("hide");
-                }%>" role="button">Delete Selected</a>
+                }%>" role="button" onclick="submitForm('<% if (request.getAttribute("formAction4") != null) {
+                        out.print(request.getAttribute("formAction4").toString());
+                    }%>')">Delete Selected</a>
         </form>
     </div>
 </div>     
+<script>
+$( document ).ready( function() {
+		$( ".hapus" ).bind( "click", function(event) {
+			if( !confirm( 'Anda yakin untuk menghapus data ini?' ) ){
+				 event.preventDefault();
+			}
+		});
+
+});
+</script>
+
+<%@include file="/WEB-INF/footer.jspf" %>
