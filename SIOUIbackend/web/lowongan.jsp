@@ -42,7 +42,7 @@
             Close Recruitment
         </div>
         <div class ="col-xs-1">
-            <a href="<%=request.getContextPath()%>/lowongan/form?id=13">
+            <a href="<%=request.getContextPath()%>/lowongan/form?id=<%out.print(listLowongan.get(ii).getId());%>">
                 <button type="submit" class="btn btn-default btn-success">Details</button>
             </a>
         </div>
