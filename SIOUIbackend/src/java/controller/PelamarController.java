@@ -31,7 +31,22 @@ public class PelamarController extends HttpServlet{
         HttpSession session = request.getSession(true);
         if (userPath.equals("/daftar-pelamar")) {
             int id = Integer.parseInt(request.getParameter("id"));
-            ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
+            ArrayList<Pelamar> listPelamar = new ArrayList<Pelamar>();
+            String status = request.getParameter("status_recruitment");
+            String jenis = request.getParameter("jenis_recruitment");
+            if(status.equals("open") && jenis.equals("accept")){
+                //isi list pelamar
+            } else if(status.equals("open") && jenis.equals("reject")){
+                // isi
+            } else if(status.equals("open") && jenis.equals("wait")){
+                
+            } else if(status.equals("close") && jenis.equals("accept")){
+                
+            } else if(status.equals("close") && jenis.equals("reject")){
+                
+            } else if(status.equals("close") && jenis.equals("wait")){
+                
+            }
             request.setAttribute("listPelamar", (Object) listPelamar);
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/daftar-pelamar.jsp");
             view.forward(request, response);

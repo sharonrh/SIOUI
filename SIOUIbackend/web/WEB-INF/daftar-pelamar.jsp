@@ -12,13 +12,13 @@
 
 <%@include file="/WEB-INF/header.jspf" %>
 <% ArrayList<Pelamar> listPelamar = (ArrayList<Pelamar>) request.getAttribute("listPelamar");%>
-<form class="form-horizontal" role="form" method="POST" action="profil/edit" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" method="POST" action="/daftar-pelamar">
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Jenis Recruitment</label>
         <div class="col-sm-4">
             <select id="selectbasic" name="jenis_recruitment" class="form-control">
                 <option value="open">Open Recruitment</option>
-                <option value="close" selected>Close Recruitment</option>
+                <option value="close">Close Recruitment</option>
             </select>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <select id="selectbasic" name="status_recruitment" class="form-control">
                 <option value="wait">Menunggu Konfirmasi</option>
                 <option value="reject">Ditolak</option>
-                <option value="accept" selected>Diterima</option>
+                <option value="accept">Diterima</option>
             </select>
         </div>
     </div>

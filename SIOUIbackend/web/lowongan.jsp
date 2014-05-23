@@ -52,7 +52,7 @@
                         <button type="submit" class="btn btn-default btn-info">Details</button>
                     </a>
 
-                    <a href="<%=request.getContextPath()%>/daftar-pelamar?id=<%out.print(listLowongan.get(ii).getId());%>">
+                    <a href="<%=request.getContextPath()%>/daftar-pelamar?jenis_recruitment=open&status_recruitment=wait&id=<%out.print(listLowongan.get(ii).getId());%>">
                         <button type="submit" class="btn btn-default btn-info">Manage Pendaftar</button>
                     </a>
                 </td>  
