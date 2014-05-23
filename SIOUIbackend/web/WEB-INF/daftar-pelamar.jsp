@@ -12,7 +12,7 @@
 
 <%@include file="/WEB-INF/header.jspf" %>
 <% ArrayList<Pelamar> listPelamar = (ArrayList<Pelamar>) request.getAttribute("listPelamar");%>
-<form class="form-horizontal" role="form" method="POST" action="/daftar-pelamar">
+<form class="form-horizontal" role="form" method="POST" action="/SIOUIbackend/daftar-pelamar?id=<%%>">
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Jenis Recruitment</label>
         <div class="col-sm-4">

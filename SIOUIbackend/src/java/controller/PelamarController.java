@@ -31,7 +31,7 @@ public class PelamarController extends HttpServlet{
         HttpSession session = request.getSession(true);
         if (userPath.equals("/daftar-pelamar")) {
             int id = Integer.parseInt(request.getParameter("id"));
-            ArrayList<Pelamar> listPelamar = new ArrayList<Pelamar>();
+            ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
             String status = request.getParameter("status_recruitment");
             String jenis = request.getParameter("jenis_recruitment");
             if(status.equals("open") && jenis.equals("accept")){
