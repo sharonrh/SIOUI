@@ -25,7 +25,11 @@ public class Lowongan {
     private String created_at;
     private String updated_at;
 
-    public Lowongan(int id, String username, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
+    public Lowongan() {
+
+    }
+
+    public Lowongan(int i, String username, String jabatan, String judul, int kapasitas, String tanggal_buka, String tanggal_tutup, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
         this.id = id;
         this.username = username;
         this.kapasitas = kapasitas;
@@ -38,7 +42,7 @@ public class Lowongan {
         this.kategori = kategori;
         this.deskripsi = deskripsi;
     }
-    
+
     public Lowongan(int id, String username, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi, String created_at, String updated_at) {
         this.id = id;
         this.username = username;
@@ -150,6 +154,5 @@ public class Lowongan {
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
     }
-    
-    
+
 }

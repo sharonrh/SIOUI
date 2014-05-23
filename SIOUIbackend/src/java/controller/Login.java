@@ -72,6 +72,7 @@ public class Login extends HttpServlet {
             if (isValidUser) {
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentUser", um.select(username));
+                System.out.println(username);
             }
             response.sendRedirect("/SIOUIbackend/login?success=" + isValidUser);
         } else if (userPath.equals(

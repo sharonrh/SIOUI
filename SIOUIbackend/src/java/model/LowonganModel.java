@@ -25,6 +25,7 @@ public class LowonganModel extends Model {
     public ArrayList<Lowongan> selectAll(String username) {
         super.openConnection();
         String query = String.format("Select * FROM %s WHERE username ='%s'",TABLE_NAME,username);
+        System.out.println(query);
         ArrayList<Lowongan> result = new ArrayList<Lowongan>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
@@ -94,10 +95,27 @@ public class LowonganModel extends Model {
         } finally {
             closeConnection();
         }
-
         return lowonganList;
     }
 
+    public void addLowongan(Lowongan lw) {
+        super.openConnection();
+        String query = String.format("INSERT INTO %s(username, kapasitas, tanggal_buka, "
+                + "tanggal_tutup, judul, jabatan, minimum_tahun, minimum_ipk, kategori, deskripsi) "
+                + "VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", TABLE_NAME, 
+                lw.getUsername(), lw.getKapasitas(), lw.getTanggal_buka(), lw.getTanggal_tutup(), 
+                lw.getJudul(), lw.getJabatan(), lw.getMinimum_tahun(), lw.getMinimum_ipk(), 
+                lw.getKategori(), lw.getDeskripsi());
+        openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+    
     public ArrayList<Lowongan> getLowonganRekomendasi(String kategori) {
         ArrayList<Lowongan> lowonganList = new ArrayList<Lowongan>();
         String[] arr = kategori.split(",");
@@ -134,6 +152,8 @@ public class LowonganModel extends Model {
                 + "minimum_ipk='%s',kategori='%s', deskripsi='%s' WHERE id=%s", this.TABLE_NAME, lw.getKapasitas(), lw.getTanggal_buka(), 
                 lw.getTanggal_tutup(), lw.getJudul(), lw.getJabatan(), 
                 lw.getMinimum_tahun(), lw.getMinimum_ipk(), lw.getKategori(), lw.getDeskripsi(), lw.getId());
+        
+        System.out.println(query);
         super.openConnection();
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);

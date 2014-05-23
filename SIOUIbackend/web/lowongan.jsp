@@ -20,10 +20,16 @@
     <div class="title">
         Daftar Lowongan
         <br>
-        <button type="button" class="btn-lg">Tambah Lowongan</button>
+        <a href="<%=request.getContextPath()%>/lowongan/form">
+            <button type="button" class="btn-lg">
+                Tambah Lowongan
+            </button>
+        </a>
     </div>
     <% ArrayList<Lowongan> listLowongan = (ArrayList<Lowongan>) request.getAttribute("listLowongan");%>
+    <% out.println(listLowongan.size());%>
     <% for(int ii=0;ii<listLowongan.size();ii++){ %>
+    
     <div class="row">
         <div class ="col-xs-1">
             Delete
@@ -36,7 +42,7 @@
             Close Recruitment
         </div>
         <div class ="col-xs-1">
-            <a href="form-lowongan?id=<%out.println(listLowongan.get(ii).getId());%>">
+            <a href="<%=request.getContextPath()%>/lowongan/form?id=13">
                 <button type="submit" class="btn btn-default btn-success">Details</button>
             </a>
         </div>

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class Model {
     public static final String DATABASE_DRIVER = "com.mysql.jdbc.Driver";
     //UNTUK KONEKSI LOKAL
-    public static final String DATABASE_URL = "jdbc:mysql://localhost/sioui_db";
+    public static final String DATABASE_URL = "jdbc:mysql://localhost/sioui_joef";
     public static final String DATABASE_USERNAME = "root";
     public static final String DATABASE_PASSWORD = "";
     

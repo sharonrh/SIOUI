@@ -15,56 +15,70 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.LowonganModel;
 import object.Lowongan;
+import object.User;
 
 /**
  *
  * @author daniel.januar
  */
 public class LowonganController extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
         LowonganModel lm = new LowonganModel();
         HttpSession session = request.getSession(true);
-        String username = session.getAttribute("currentUser").toString();
-
+        String username = ((User)session.getAttribute("currentUser")).getUsername();
         if (userPath.equals("/lowongan")) {
             ArrayList<Lowongan> listLowongan = lm.selectAll(username);
             request.setAttribute("listLowongan", (Object) listLowongan);
             RequestDispatcher view = request.getRequestDispatcher("lowongan.jsp");
             view.forward(request, response);
-        } else if (userPath.equals("/lowongan/details")) {
+        } else if (userPath.equals("/lowongan/add")) {
             System.out.println(userPath);
-            Lowongan lw = lm.select(3);
-            request.setAttribute("detailLowongan", (Object) lw);
-            RequestDispatcher view = request.getRequestDispatcher("form-lowongan.jsp");
-            view.forward(request, response);
-        } else if (userPath.equals("/lowongan/edit")) {
-            int id = 3;
-            System.out.println(userPath);
-            System.out.println(request.getParameter("minimum_ipk"));
-            System.out.println(request.getParameter("tanggal_buka"));
-            System.out.println(request.getParameter("tanggal_tutup"));
-            System.out.println(request.getParameter("judul"));
-            System.out.println(request.getParameter("kategori"));
-            System.out.println(request.getParameter("deskripsi"));
+            String jabatan = request.getParameter("jabatan");
+            String judul = request.getParameter("judul");
             int kapasitas = Integer.parseInt(request.getParameter("kapasitas"));
             String tanggal_buka = request.getParameter("tanggal_buka");
             String tanggal_tutup = request.getParameter("tanggal_tutup");
-            String judul = request.getParameter("judul");
-            String jabatan = request.getParameter("jabatan");
-            String minimum_tahun = request.getParameter("minimum_tahun");
+            String deskripsi = request.getParameter("deskripsi");
+            int minimum_tahun = Integer.parseInt(request.getParameter("minimum_tahun"));
             double minimum_ipk = Double.parseDouble(request.getParameter("minimum_ipk"));
             String kategori = request.getParameter("kategori");
+            lm.addLowongan(new Lowongan(1, username, jabatan, 
+                    judul, kapasitas, tanggal_buka, 
+                    tanggal_tutup,minimum_tahun,minimum_ipk,kategori,deskripsi));
+            response.sendRedirect("/SIOUIbackend/lowongan");
+        } else if (userPath.equals("/lowongan/edit")) {
+            System.out.println(userPath);
+            int id = Integer.parseInt(request.getParameter("id"));
+            String jabatan = request.getParameter("jabatan");
+            String judul = request.getParameter("judul");
+            int kapasitas = Integer.parseInt(request.getParameter("kapasitas"));
+            String tanggal_buka = request.getParameter("tanggal_buka");
+            String tanggal_tutup = request.getParameter("tanggal_tutup");
             String deskripsi = request.getParameter("deskripsi");
-            Lowongan lw = new Lowongan(id, username, kapasitas,
-                    tanggal_buka, tanggal_tutup, judul,
-                    jabatan, kapasitas, minimum_ipk, kategori, deskripsi);
-            lm.update(lw);
-            response.sendRedirect("/SIOUIbackend/");
-        } else if (userPath.equals("/lowongan/success")) {
-
+            int minimum_tahun = Integer.parseInt(request.getParameter("minimum_tahun"));
+            double minimum_ipk = Double.parseDouble(request.getParameter("minimum_ipk"));
+            String kategori = request.getParameter("kategori");
+            lm.update(new Lowongan(id, username, jabatan, 
+                    judul, kapasitas, tanggal_buka, 
+                    tanggal_tutup,minimum_tahun,minimum_ipk,kategori,deskripsi));
+            response.sendRedirect("/SIOUIbackend/lowongan");
+        } else if (userPath.equals("/lowongan/form")) {
+            String par = request.getParameter("id");
+            if(par != null){
+            int id = Integer.parseInt(par);
+            Lowongan lw = lm.select(id);
+            request.setAttribute("detailLowongan", lw);
+            request.setAttribute("status", "edit");
+            } else{
+            Lowongan lw = new Lowongan();
+            request.setAttribute("detailLowongan", (Object) lw);
+            request.setAttribute("status", "add");
+            }
+            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/form-lowongan.jsp");
+            view.forward(request, response);
         }
     }
 
