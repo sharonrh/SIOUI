@@ -51,7 +51,8 @@
                     <a href="<%=request.getContextPath()%>/lowongan/form?id=<%out.print(listLowongan.get(ii).getId());%>">
                         <button type="submit" class="btn btn-default btn-info">Details</button>
                     </a>
-                    <a href="#">
+
+                    <a href="<%=request.getContextPath()%>/daftar-pelamar?id=<%out.print(listLowongan.get(ii).getId());%>">
                         <button type="submit" class="btn btn-default btn-info">Manage Pendaftar</button>
                     </a>
                 </td>  
