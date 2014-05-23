@@ -94,7 +94,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Lowongan</servlet-name>
-        <url-pattern>/lowongan/details</url-pattern>
+        <url-pattern>/lowongan/add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>

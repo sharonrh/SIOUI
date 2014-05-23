@@ -13,11 +13,25 @@
 <div class="title">
     Detail Lowongan
 </div>
+<div class="alert-info">
+    <% String alert = request.getParameter("success");%>
+    <% if(alert.equals("true-add")){
+        out.println("Lowongan berhasil disimpan");
+    } else if(alert.equals("true-edit")){
+        out.println("Lowongan berhasil diubah");
+    } else if(alert.equals("false")){
+        out.println("Lowongan gagal disimpan");
+    } else if(alert == null){
+        out.println("");
+    }
+}%>
+</div>
 <%
     //Organization org = (Organization) request.getAttribute("organization");
     Lowongan lw = (Lowongan) request.getAttribute("detailLowongan");
+    
 %>
-<form class="form-horizontal" role="form" method="POST" action="lowongan/edit">
+<form class="form-horizontal" role="form" method="POST" action="lowongan/edit?alert=true">
     <div class="form-group">
         <label for="Jabatan" class="col-sm-2 control-label">Jabatan</label>
         <div class="col-sm-3">

@@ -25,6 +25,9 @@ public class Lowongan {
     private String created_at;
     private String updated_at;
 
+    public Lowongan(){
+    
+    }
     public Lowongan(int id, String username, int kapasitas, String tanggal_buka, String tanggal_tutup, String judul, String jabatan, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
         this.id = id;
         this.username = username;

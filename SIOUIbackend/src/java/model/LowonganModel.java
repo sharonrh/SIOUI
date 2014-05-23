@@ -25,6 +25,7 @@ public class LowonganModel extends Model {
     public ArrayList<Lowongan> selectAll(String username) {
         super.openConnection();
         String query = String.format("Select * FROM %s WHERE username ='%s'",TABLE_NAME,username);
+        System.out.println(query);
         ArrayList<Lowongan> result = new ArrayList<Lowongan>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
