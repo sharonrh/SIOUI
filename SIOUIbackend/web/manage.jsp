@@ -14,15 +14,18 @@
 <div class="title">
     Manage Organisasi
 </div>
+<div class="alert <%=request.getAttribute("alertType")%>">
+    <%=request.getAttribute("alertContent")%>
+</div>
 
 <div class="col-lg-12"> 
     <table class="table table-hover table-striped">
         <thead>    
-            <th> # </th>
-            <th> Username </th>
-            <th> Nama Organisasi </th>
-            <th> Deskripsi </th>
-            <th> Action </th>
+        <th> # </th>
+        <th> Username </th>
+        <th> Nama Organisasi </th>
+        <th> Deskripsi </th>
+        <th> Action </th>
         </thead>      
 
         <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
@@ -36,7 +39,7 @@
             <td> <%= a.getDeskripsi()%> </td>
             <td> 
                 <form method="post" action="manage/delete">
-                    <button class="btn btn-default btn-danger" type="submit">Delete</button>
+                    <button class="hapus btn btn-default btn-danger" type="submit">Delete</button>
                     <input type="hidden" name="del_id" value="<%=a.getUsername()%>">                                
                 </form>
             </td>
@@ -44,5 +47,15 @@
         <%}%>
     </table>
 </div>
+<script>
+    $(document).ready(function() {
+        $(".hapus").bind("click", function(event) {
+            if (!confirm('Anda yakin untuk menghapus data ini?')) {
+                event.preventDefault();
+            }
+        });
+
+    });
+</script>
 </body>
 </html>

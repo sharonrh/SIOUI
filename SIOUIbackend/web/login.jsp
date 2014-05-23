@@ -31,13 +31,13 @@
                     <div class="form-group">
                         <label for="namaPanjang" class="col-sm-2 control-label">Username</label>
                         <div class="col-sm-4">
-                            <input name="id_user" type="text" class="form-control" id="namaPanjang">
+                            <input name="id_user" type="text" class="form-control" id="namaPanjang" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="namaPanjang" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-4">
-                            <input name="pass" type="password" class="form-control" id="namaPanjang">
+                            <input name="pass" type="password" class="form-control" id="namaPanjang" required>
                         </div>
                     </div>
                     <div class="form-group">

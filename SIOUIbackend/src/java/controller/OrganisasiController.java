@@ -34,25 +34,51 @@ public class OrganisasiController extends HttpServlet {
         if (userPath.equals("/manage")) {
             ArrayList<Organisasi> listOrganisasi = om.selectAll();
             request.setAttribute("listOrganisasi", (Object) listOrganisasi);
-
+            if (request.getParameter("success") != null) {
+                request.setAttribute("alertType", "alert-success");
+                request.setAttribute("alertContent", "Penghapusan organisasi berhasil dilakukan");
+            } else {
+                request.setAttribute("alertType", "hidden");
+                request.setAttribute("alertContent", "");
+            }
             RequestDispatcher view = request.getRequestDispatcher("manage.jsp");
             view.forward(request, response);
         } else if (userPath.equals("/manage/delete")) {
             String id = request.getParameter("del_id");
             om.deleteOrganisasi(id);
-            response.sendRedirect("/SIOUIbackend/manage");
+            response.sendRedirect("/SIOUIbackend/manage?success=true");
         } else if (userPath.equals("/pending")) {
             ArrayList<Permohonan> listPermohonan = pm.selectAll();
             request.setAttribute("listPermohonan", (Object) listPermohonan);
+            if (request.getParameter("stat") != null && request.getParameter("stat").equals("0")) {
+                request.setAttribute("alertType", "alert-danger");
+                request.setAttribute("alertContent", "Gagal mengabulkan permohonan, duplikasi username atau nama");
+            } else if (request.getParameter("stat") != null && request.getParameter("stat").equals("1")) {
+                request.setAttribute("alertType", "alert-success");
+                request.setAttribute("alertContent", "Approve permohonan berhasil dilakukan");
+            } else if (request.getParameter("stat") != null && request.getParameter("stat").equals("2")) {
+                request.setAttribute("alertType", "alert-success");
+                request.setAttribute("alertContent", "Reject permohonan berhasil dilakukan");
+            } else {
+                request.setAttribute("alertType", "hidden");
+                request.setAttribute("alertContent", "");
+            }
             RequestDispatcher view = request.getRequestDispatcher("pending.jsp");
             view.forward(request, response);
         } else if (userPath.equals("/pending/permit")) {
+            int stat = 0;
+            // case approve
             if (request.getParameter("act") != null && request.getParameter("act").equals("approve")) {
-
-            } else if (request.getParameter("act") != null && request.getParameter("act").equals("reject")) {
-                pm.deletePermohonan(Integer.parseInt(request.getParameter("id")));
+                // ada duplikasi data
+                if (pm.deletePermohonan(Integer.parseInt(request.getParameter("id")), true) > 0) {
+                    stat = 1;
+                }
+            } // case reject
+            else if (request.getParameter("act") != null && request.getParameter("act").equals("reject")) {
+                pm.deletePermohonan(Integer.parseInt(request.getParameter("id")), false);
+                stat = 2;
             }
-            response.sendRedirect("/SIOUIbackend/pending");
+            response.sendRedirect("/SIOUIbackend/pending?stat=" + stat);
         }
     }
 

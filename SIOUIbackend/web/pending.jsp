@@ -15,16 +15,19 @@
 <div class="title">
     Pending Request
 </div>
+<div class="alert <%=request.getAttribute("alertType")%>">
+    <%=request.getAttribute("alertContent")%>
+</div>
 
 <div class="col-lg-12"> 
     <table class="table table-hover table-striped">
         <thead>    
-            <th> # </th>
-            <th> Username </th>
-            <th> Nama Panjang </th>
-            <th> Deskripsi </th>
-            <th> Tanggal Pengajuan </th>
-            <th> Action </th>
+        <th> # </th>
+        <th> Username </th>
+        <th> Nama Panjang </th>
+        <th> Deskripsi </th>
+        <th> Tanggal Pengajuan </th>
+        <th> Action </th>
         </thead>      
 
         <% ArrayList<Permohonan> listPermohonan = (ArrayList<Permohonan>) request.getAttribute("listPermohonan");
@@ -39,11 +42,21 @@
             <td> not implemented </td>
             <td> 
                 <a href="pending/permit?act=approve&id=<%= a.getId()%>" class="btn btn-default btn-success">Approve</a>
-                <a href="pending/permit?act=reject&id=<%= a.getId()%>" class="btn btn-default btn-danger">Reject</a>                               
+                <a href="pending/permit?act=reject&id=<%= a.getId()%>" class="hapus btn btn-default btn-danger">Reject</a>                               
             </td>
         </tr>
         <%}%>
     </table>
 </div>
+<script>
+    $(document).ready(function() {
+        $(".hapus").bind("click", function(event) {
+            if (!confirm('Anda yakin untuk menghapus data ini?')) {
+                event.preventDefault();
+            }
+        });
+
+    });
+</script>
 </body>
 </html>
