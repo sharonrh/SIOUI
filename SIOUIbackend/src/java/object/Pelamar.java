@@ -15,13 +15,19 @@ public class Pelamar {
     private int id;
     private int id_lowongan;
     private String username;
+    //Jenis : oprec / closerec
+    private String jenis;
+    //Status : wait / accept / reject
+    private String status;
     private String created_at;
     private String updated_at;
 
-    public Pelamar(int id, int id_lowongan, String username, String created_at, String updated_at) {
+    public Pelamar(int id, int id_lowongan, String username, String jenis, String status, String created_at, String updated_at) {
         this.id = id;
         this.id_lowongan = id_lowongan;
         this.username = username;
+        this.jenis = jenis;
+        this.status = status;
         this.created_at = created_at;
         this.updated_at = updated_at;
     }
@@ -65,4 +71,22 @@ public class Pelamar {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
+
+    public String getJenis() {
+        return jenis;
+    }
+
+    public void setJenis(String jenis) {
+        this.jenis = jenis;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
 }
