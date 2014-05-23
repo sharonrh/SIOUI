@@ -11,7 +11,8 @@
 <% String activePage = "daftar-pelamar"; %>
 
 <%@include file="/WEB-INF/header.jspf" %>
-<% ArrayList<Pelamar> listPelamar = (ArrayList<Pelamar>) request.getAttribute("listPelamar");%>
+<% PelamarModel pm = new PelamarModel();%>
+<% ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(3); %>
 
 <div class="container">
     <div class="title">
@@ -33,7 +34,6 @@
         <div class ="col-xs-1">
             <%=ii+1%>
         </div>
-        <!-- Nanti webservicenya taro di bagian sini-->
         <div class ="col-xs-8">
             <b> <%=listPelamar.get(ii).getUsername()%> </b>
         </div>
