@@ -22,15 +22,13 @@ import object.User;
  * @author daniel.januar
  */
 public class LowonganController extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
         LowonganModel lm = new LowonganModel();
         HttpSession session = request.getSession(true);
         String username = ((User)session.getAttribute("currentUser")).getUsername();
-        System.out.println(username);
-
         if (userPath.equals("/lowongan")) {
             ArrayList<Lowongan> listLowongan = lm.selectAll(username);
             request.setAttribute("listLowongan", (Object) listLowongan);
@@ -38,20 +36,49 @@ public class LowonganController extends HttpServlet {
             view.forward(request, response);
         } else if (userPath.equals("/lowongan/add")) {
             System.out.println(userPath);
+            String jabatan = request.getParameter("jabatan");
+            String judul = request.getParameter("judul");
+            int kapasitas = Integer.parseInt(request.getParameter("kapasitas"));
+            String tanggal_buka = request.getParameter("tanggal_buka");
+            String tanggal_tutup = request.getParameter("tanggal_tutup");
+            String deskripsi = request.getParameter("deskripsi");
+            int minimum_tahun = Integer.parseInt(request.getParameter("minimum_tahun"));
+            double minimum_ipk = Double.parseDouble(request.getParameter("minimum_ipk"));
+            String kategori = request.getParameter("kategori");
+            lm.addLowongan(new Lowongan(1, username, jabatan, 
+                    judul, kapasitas, tanggal_buka, 
+                    tanggal_tutup,minimum_tahun,minimum_ipk,kategori,deskripsi));
+            response.sendRedirect("/SIOUIbackend/lowongan");
+        } else if (userPath.equals("/lowongan/edit")) {
+            System.out.println(userPath);
+            int id = Integer.parseInt(request.getParameter("id"));
+            String jabatan = request.getParameter("jabatan");
+            String judul = request.getParameter("judul");
+            int kapasitas = Integer.parseInt(request.getParameter("kapasitas"));
+            String tanggal_buka = request.getParameter("tanggal_buka");
+            String tanggal_tutup = request.getParameter("tanggal_tutup");
+            String deskripsi = request.getParameter("deskripsi");
+            int minimum_tahun = Integer.parseInt(request.getParameter("minimum_tahun"));
+            double minimum_ipk = Double.parseDouble(request.getParameter("minimum_ipk"));
+            String kategori = request.getParameter("kategori");
+            lm.update(new Lowongan(id, username, jabatan, 
+                    judul, kapasitas, tanggal_buka, 
+                    tanggal_tutup,minimum_tahun,minimum_ipk,kategori,deskripsi));
+            response.sendRedirect("/SIOUIbackend/lowongan");
+        } else if (userPath.equals("/lowongan/form")) {
+            String par = request.getParameter("id");
+            if(par != null){
+            int id = Integer.parseInt(par);
+            Lowongan lw = lm.select(id);
+            request.setAttribute("detailLowongan", lw);
+            request.setAttribute("status", "edit");
+            } else{
             Lowongan lw = new Lowongan();
             request.setAttribute("detailLowongan", (Object) lw);
-            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/form-lowongan.jsp?alert=success");
-            view.forward(request, response);
-        } else if (userPath.equals("/lowongan/edit")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            System.out.println(id);
-            Lowongan lw = lm.select(id);
-            lm.update(lw);
-            request.setAttribute("detailLowongan", lw);
+            request.setAttribute("status", "add");
+            }
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/form-lowongan.jsp");
             view.forward(request, response);
-        } else if (userPath.equals("/lowongan/success")) {
-
         }
     }
 

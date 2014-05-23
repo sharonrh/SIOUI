@@ -20,7 +20,7 @@
     <div class="title">
         Daftar Lowongan
         <br>
-        <a href="<%=request.getContextPath()%>/lowongan/add">
+        <a href="<%=request.getContextPath()%>/lowongan/form">
             <button type="button" class="btn-lg">
                 Tambah Lowongan
             </button>
@@ -42,7 +42,7 @@
             Close Recruitment
         </div>
         <div class ="col-xs-1">
-            <a href="<%=request.getContextPath()%>/lowongan/edit?id=13">
+            <a href="<%=request.getContextPath()%>/lowongan/form?id=13">
                 <button type="submit" class="btn btn-default btn-success">Details</button>
             </a>
         </div>

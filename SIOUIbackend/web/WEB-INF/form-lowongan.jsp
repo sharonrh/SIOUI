@@ -14,25 +14,19 @@
     Detail Lowongan
 </div>
 <div class="alert-info">
-    <% String alert = request.getParameter("success");%>
-    <% if(alert.equals("true-add")){
-        out.println("Lowongan berhasil disimpan");
-    } else if(alert.equals("true-edit")){
-        out.println("Lowongan berhasil diubah");
-    } else if(alert.equals("false")){
-        out.println("Lowongan gagal disimpan");
-    } else if(alert == null){
-        out.println("");
-    }
-}%>
 </div>
 <%
     //Organization org = (Organization) request.getAttribute("organization");
     Lowongan lw = (Lowongan) request.getAttribute("detailLowongan");
-    
+    String status = request.getAttribute("status").toString();
+    out.println(status);
 %>
-<form class="form-horizontal" role="form" method="POST" action="lowongan/edit?alert=true">
+<form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath()%>/lowongan/<%=status%>">
     <div class="form-group">
+        <% if(status.equals("edit")){
+            %><input name="id" type="hidden" id="id" value="<%=lw.getId()%>"><%
+        }
+        %>
         <label for="Jabatan" class="col-sm-2 control-label">Jabatan</label>
         <div class="col-sm-3">
             <input name="jabatan" type="text" class="form-control" id="jabatan" value="<%if (lw.getJabatan()!= null) {
@@ -56,15 +50,15 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Tanggal Buka</label>
         <div class="col-sm-3">
-            <input name="tanggal_buka" type="datetime" class="form-control" id="tanggal_buka" value="<%if (lw.getTanggal_buka() != null) {
+            <input name="tanggal_buka" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_buka" value="<%if (lw.getTanggal_buka() != null) {
                     out.print(lw.getTanggal_buka());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Tanggal Buka</label>
         <div class="col-sm-3">
-            <input name="tanggal_tutup" type="datetime" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
-                    out.print(lw.getTanggal_tutup());}%>">
+            <input name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
+                out.print(lw.getTanggal_tutup());}%>" required/>
         </div>
     </div>
     <div class="form-group">
