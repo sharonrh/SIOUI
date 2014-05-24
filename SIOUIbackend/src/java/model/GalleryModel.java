@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
 
 import java.sql.ResultSet;
@@ -21,22 +20,23 @@ import object.Organisasi;
  *
  * @author Johanes
  */
-public class GalleryModel extends Model{
+public class GalleryModel extends Model {
+
     final String ALBUM_TABLE_NAME = "album";
     final String IMAGE_TABLE_NAME = "foto";
-    
-    public static void main(String[] arhs){
+
+    public static void main(String[] arhs) {
         GalleryModel gm = new GalleryModel();
         Album a = new Album("12", "asd", "asd");
         gm.insertAlbum(a);
     }
-    
-    public void updateAlbum(Album a){
+
+    public void updateAlbum(Album a) {
         String query = String.format("UPDATE %s SET "
                 + "id_organisasi=%s, "
                 + "nama='%s', "
                 + "deskripsi='%s' "
-                + "WHERE id=%s", 
+                + "WHERE id=%s",
                 this.ALBUM_TABLE_NAME,
                 a.getId_organisasi(),
                 a.getName(),
@@ -52,17 +52,17 @@ public class GalleryModel extends Model{
             closeConnection();
         }
     }
-    
-    public Album getSingleAlbum(int idAlbum){
+
+    public Album getSingleAlbum(int idAlbum) {
         super.openConnection();
         String query;
         query = String.format("SELECT * FROM %s WHERE id=%s", ALBUM_TABLE_NAME, idAlbum);
-        
-        try{
+
+        try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             res.next();
-            Album alb = new Album(res.getString("id"), 
+            Album alb = new Album(res.getString("id"),
                     res.getString("id_organisasi"),
                     res.getString("nama"),
                     res.getString("deskripsi"),
@@ -75,18 +75,18 @@ public class GalleryModel extends Model{
         } finally {
             closeConnection();
         }
-        
+
         return null;
     }
-    
-    public int insertAlbum(Album alb){
-        super.openConnection();
+
+    public int insertAlbum(Album alb) {
         String query;
         query = String.format("INSERT INTO %s (id_organisasi, nama, deskripsi) VALUES (%s, '%s', '%s')", ALBUM_TABLE_NAME, alb.getId_organisasi(), alb.getName(), alb.getDescription());
-        
+        openConnection();
+
         try {
-            int id = super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-            if(alb.getImages()!=null&&alb.getImages().size()>0){
+            int id = super.getStatement().executeUpdate(query);
+            if (alb.getImages() != null && alb.getImages().size() > 0) {
                 cascadeImageFromAlbum(alb);
             }
             return id;
@@ -97,22 +97,22 @@ public class GalleryModel extends Model{
         }
         return -1;
     }
-    
+
     private void cascadeImageFromAlbum(Album alb) {
         List<Image> images = alb.getImages();
-        
-        for(Image img:images){
-            if(img.getId()==null){
+
+        for (Image img : images) {
+            if (img.getId() == null) {
                 insertImage(img);
             }
         }
     }
-    
-    private void insertImage(Image img){
+
+    private void insertImage(Image img) {
         super.openConnection();
         String query;
         query = String.format("INSERT INTO %s (id_album, nama, deskripsi) VALUES (%s, '%s', '%s')", IMAGE_TABLE_NAME, img.getId_album(), img.getName(), img.getDescription());
-        
+
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException ex) {
@@ -122,15 +122,15 @@ public class GalleryModel extends Model{
         }
     }
 
-    public List<Album> selectAlbumByOrganization(int idOrganisasi){
+    public List<Album> selectAlbumByOrganization(int idOrganisasi) {
         super.openConnection();
         String query = "SELECT * FROM " + ALBUM_TABLE_NAME;
         List<Album> result = new ArrayList<Album>();
-        try{
+        try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                Album alb = new Album(res.getString("id"), 
+                Album alb = new Album(res.getString("id"),
                         res.getString("id_organisasi"),
                         res.getString("nama"),
                         res.getString("deskripsi"),
@@ -145,13 +145,13 @@ public class GalleryModel extends Model{
         } finally {
             closeConnection();
         }
-        
+
         return null;
     }
-    
+
     private void fetchIsiAlbum(Album alb) {
         super.openConnection();
-        String query = "SELECT * FROM " + IMAGE_TABLE_NAME + " WHERE id_album="+alb.getId();
+        String query = "SELECT * FROM " + IMAGE_TABLE_NAME + " WHERE id_album=" + alb.getId();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
@@ -164,9 +164,9 @@ public class GalleryModel extends Model{
             closeConnection();
         }
     }
-    
-    public void deleteImage(String id){
-        String query="DELETE FROM "+IMAGE_TABLE_NAME+" WHERE id="+id;
+
+    public void deleteImage(String id) {
+        String query = "DELETE FROM " + IMAGE_TABLE_NAME + " WHERE id=" + id;
         super.openConnection();
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
@@ -176,9 +176,9 @@ public class GalleryModel extends Model{
             closeConnection();
         }
     }
-    
-    public void deleteImageByAlbumId(String idAlbum){
-        String query="DELETE FROM "+IMAGE_TABLE_NAME+" WHERE id_album="+idAlbum;
+
+    public void deleteImageByAlbumId(String idAlbum) {
+        String query = "DELETE FROM " + IMAGE_TABLE_NAME + " WHERE id_album=" + idAlbum;
         super.openConnection();
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
@@ -188,17 +188,17 @@ public class GalleryModel extends Model{
             closeConnection();
         }
     }
-    
-    public Album getLastInsertedAlbum(){
+
+    public Album getLastInsertedAlbum() {
         super.openConnection();
         String query;
         query = String.format("SELECT * FROM %s ORDER BY created_at DESC", ALBUM_TABLE_NAME);
-        
-        try{
+
+        try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             res.next();
-            Album alb = new Album(res.getString("id"), 
+            Album alb = new Album(res.getString("id"),
                     res.getString("id_organisasi"),
                     res.getString("nama"),
                     res.getString("deskripsi"),
@@ -211,12 +211,12 @@ public class GalleryModel extends Model{
         } finally {
             closeConnection();
         }
-        
+
         return null;
     }
-    
-    public void deleteAlbum(String id){
-        String query="DELETE FROM "+ALBUM_TABLE_NAME+" WHERE id="+id;
+
+    public void deleteAlbum(String id) {
+        String query = "DELETE FROM " + ALBUM_TABLE_NAME + " WHERE id=" + id;
         super.openConnection();
         try {
             super.getStatement().executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
@@ -227,13 +227,13 @@ public class GalleryModel extends Model{
             closeConnection();
         }
     }
-    
-    public int updateImage(Image img){
+
+    public int updateImage(Image img) {
         String query = String.format("UPDATE %s SET "
                 + "id_album=%s, "
                 + "nama='%s', "
                 + "deskripsi='%s' "
-                + "WHERE id=%s", 
+                + "WHERE id=%s",
                 this.IMAGE_TABLE_NAME,
                 img.getId_album(),
                 img.getName(),
@@ -250,5 +250,4 @@ public class GalleryModel extends Model{
         return -1;
     }
 
-    
 }

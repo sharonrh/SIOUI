@@ -27,22 +27,16 @@
     Object objRole = request.getAttribute("role");
     Object objTitle = request.getAttribute("title");
     Object objNotif = request.getAttribute("notif");
-
-    User u;
-    if (objUser != null) {
-        u = (User) objUser;
-    } else {
-        //redirect here
-    }
+    Object objStatus = request.getAttribute("status");
 
     Album a = ((objAlbum != null) ? (Album) objAlbum : null);
     String role = ((objRole != null) ? (String) objRole : null);
     String title = ((objTitle != null) ? (String) objTitle : null);
     String notif = ((objNotif != null) ? (String) objNotif : null);
-
+    String status = ((objStatus != null) ? (String) objStatus : "success");
 %>
 
-<div class="alert alert-success <%if (notif == null) {
+<div class="alert alert-<%=status%> <%if (notif == null) {
         out.print("hide");
     }%>">
     <%=notif%>
@@ -158,28 +152,28 @@
                     }%>
             </div>
 
-            <a href="#" class="btn btn-warning <% if (a == null || a.getImages().size()==0) {
+            <a href="#" class="btn btn-warning <% if (a == null || a.getImages().size() == 0) {
                     out.print("hide");
-                               } %>" role="button" onclick="submitForm('<% if (request.getAttribute("formAction3") != null) {
-                                   out.print(request.getAttribute("formAction3").toString());
-                } %>')">Update All</a>
-            <a href="#" class="hapus btn btn-danger <% if (a == null || a.getImages().size()==0) {
+                   } %>" role="button" onclick="submitForm('<% if (request.getAttribute("formAction3") != null) {
+                                          out.print(request.getAttribute("formAction3").toString());
+                                   } %>')">Update All</a>
+            <a href="#" class="hapus btn btn-danger <% if (a == null || a.getImages().size() == 0) {
                     out.print("hide");
                 }%>" role="button" onclick="submitForm('<% if (request.getAttribute("formAction4") != null) {
-                        out.print(request.getAttribute("formAction4").toString());
-                    }%>')">Delete Selected</a>
+                      out.print(request.getAttribute("formAction4").toString());
+                  }%>')">Delete Selected</a>
         </form>
     </div>
 </div>     
 <script>
-$( document ).ready( function() {
-		$( ".hapus" ).bind( "click", function(event) {
-			if( !confirm( 'Anda yakin untuk menghapus data ini?' ) ){
-				 event.preventDefault();
-			}
-		});
+    $(document).ready(function() {
+        $(".hapus").bind("click", function(event) {
+            if (!confirm('Anda yakin untuk menghapus data ini?')) {
+                event.preventDefault();
+            }
+        });
 
-});
+    });
 </script>
 
 <%@include file="/WEB-INF/footer.jspf" %>

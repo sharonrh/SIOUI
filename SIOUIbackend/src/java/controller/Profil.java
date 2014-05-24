@@ -26,15 +26,6 @@ import object.User;
 public class Profil extends HttpServlet {
 
     StorageManager storageManager = new StorageManager();
-    /*
-     @Override
-     public void init() throws ServletException{
-     DiskFileItemFactory fileFactory = new DiskFileItemFactory();
-     File filesDir = (File) getServletContext().getAttribute("FILES_DIR_FILE");
-     fileFactory.setRepository(filesDir);
-     this.uploader = new ServletFileUpload(fileFactory);
-     }
-     */
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -114,11 +105,6 @@ public class Profil extends HttpServlet {
                     response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
                 }
 
-                /*
-                 ServletContext context= getServletContext();
-                 RequestDispatcher rd= context.getRequestDispatcher("/insertServlet");
-                 rd.forward(request, response);
-                 */
             } else if (userPath.equals("/profil/success")) {
                 Organisasi org = om.selectFromId(user.getUsername());
                 request.setAttribute("organization", (Object) org);

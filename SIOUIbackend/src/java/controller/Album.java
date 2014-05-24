@@ -72,10 +72,18 @@ public class Album extends HttpServlet {
                 String id = request.getParameter("id");
                 String status = request.getParameter("status");
 
-                if (status != null && !status.equals("")) {
+                if (status != null && status.equals("sukses")) {
                     request.setAttribute("notif", "Data berhasil disimpan!");
+                } else if (status != null && status.equals("wrong_file_type")) {
+                    request.setAttribute("notif", "Jenis File yang bisa di upload adalah: <b>jpg, jpeg, png, gif</b>");
+                    request.setAttribute("status", "warning");
+                } else if (status != null && status.equals("size_too_big")) {
+                    request.setAttribute("notif", "Maksimum ukuran File yang bisa di upload adalah: <b>5 MB</b>");
+                    request.setAttribute("status", "warning");
+                } else if (status != null && status.equals("file_not_exist")) {
+                    request.setAttribute("notif", "Gambar tidak ada!");
+                    request.setAttribute("status", "warning");
                 }
-
                 object.Album album = gm.getSingleAlbum(Integer.parseInt(id));
 
                 request.setAttribute("album", album);
@@ -107,9 +115,9 @@ public class Album extends HttpServlet {
 
                     //proses upload
                     String[] expectedFileType = new String[]{"jpg", "png", "jpeg", "gif"};
-
-                    String returnValue = "false";
+                    String returnValue = "";
                     try {
+
                         String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Album\\" + a.getId_organisasi() + "\\" + a.getId() + "\\", "file_gambar", request, expectedFileType, 5 * 1024);
                         if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_WRONG_FILE_TYPE)) {
                             returnValue = "wrong_file_type";
@@ -117,9 +125,10 @@ public class Album extends HttpServlet {
                         } else if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_SIZE_TOO_BIG)) {
                             returnValue = "size_too_big";
                             throw new Exception();
+                        } else if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_FILE_NOT_FOUND)) {
+                            returnValue = "file_not_exist";
+                            throw new Exception();
                         }
-
-                        returnValue = "true";
 
                         object.Image img = new object.Image(id, fileName, request.getParameter("deskripsi"));
                         a.addImage(img);
@@ -127,7 +136,7 @@ public class Album extends HttpServlet {
 
                         response.sendRedirect(request.getContextPath() + "/album/edit?id=" + a.getId() + "&status=sukses");
                     } catch (Exception e) {
-                        response.sendRedirect(request.getContextPath() + "/album/edit?id=" + a.getId() + "&status=gagal");
+                        response.sendRedirect(request.getContextPath() + "/album/edit?id=" + a.getId() + "&status=" + returnValue);
                     }
 
                 } else {
@@ -136,9 +145,6 @@ public class Album extends HttpServlet {
 
             } else if (userPath.equals("/album/editimagedesc")) {
                 Object objId = request.getParameter("id");
-                if (objId == null) {
-                     response.sendRedirect("/album");
-                }
                 String id = objId.toString();
 
                 object.Album a = gm.getSingleAlbum(Integer.parseInt(id));
@@ -155,9 +161,6 @@ public class Album extends HttpServlet {
                 ArrayList<String> toDelete = new ArrayList<String>();
 
                 Object objId = request.getParameter("id");
-                if (objId == null) {
-                    response.sendRedirect("/album");
-                }
                 String id = objId.toString();
                 object.Album a = gm.getSingleAlbum(Integer.parseInt(id));
 
@@ -171,11 +174,12 @@ public class Album extends HttpServlet {
                 for (String td : toDelete) {
                     gm.deleteImage(td);
                 }
+
                 response.sendRedirect(request.getContextPath() + "/album/edit?id=" + a.getId() + "&status=sukses");
             } else if (userPath.equals("/album/delete")) {
                 Object objId = request.getParameter("id");
                 if (objId == null) {
-                     response.sendRedirect("/album");
+                    response.sendRedirect("/album");
                 }
                 String id = objId.toString();
                 gm.deleteAlbum(id);

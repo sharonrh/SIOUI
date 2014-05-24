@@ -44,16 +44,12 @@ public class PelamarController extends HttpServlet {
                 }
                 //ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
                 String status = request.getParameter("status_recruitment") == null
-                        ? "open" : request.getParameter("status_recruitment");
+                        ? "wait" : request.getParameter("status_recruitment");
                 String jenis = request.getParameter("jenis_recruitment") == null
-                        ? "wait" : request.getParameter("jenis_recruitment");
+                        ? "open" : request.getParameter("jenis_recruitment");
 
                 session.setAttribute("recStat", status);
                 session.setAttribute("recType", jenis);
-
-                System.out.println("id=" + id);
-                System.out.println("status=" + status);
-                System.out.println("jenis=" + jenis);
 
                 ArrayList<Pelamar> listPelamar = pm.selectPelamarJenisStatus(id, jenis, status);
                 request.setAttribute("status_recruitment", (Object) status);
