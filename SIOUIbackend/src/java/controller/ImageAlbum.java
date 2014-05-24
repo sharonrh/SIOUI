@@ -11,7 +11,6 @@ import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +36,12 @@ public class ImageAlbum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         final int BUFSIZE = 1000;
-        
+
         String idOrganisasi = request.getParameter("idorg");
         String idAlbum = request.getParameter("idalbum");
-        String fileName = request.getParameter("filename");         
-        
-        final String path = "C:\\SIOUI_DATA\\Album\\"+idOrganisasi+"\\"+idAlbum+"\\";
+        String fileName = request.getParameter("filename");
+
+        final String path = "C:\\SIOUI_DATA\\Album\\" + idOrganisasi + "\\" + idAlbum + "\\";
 
         // Get requested file by path info.
         String requestedFile = path + fileName;

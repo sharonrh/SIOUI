@@ -53,8 +53,7 @@ public class Profil extends HttpServlet {
         User user = (User) session.getAttribute("currentUser");
 
         if (user == null) {
-            RequestDispatcher view = request.getRequestDispatcher("index.jsp");
-            view.forward(request, response);
+            response.sendRedirect("/SIOUIbackend/login");
         } else {
             if (userPath.equals("/profil")) {
                 Organisasi org = om.selectFromId(user.getUsername());

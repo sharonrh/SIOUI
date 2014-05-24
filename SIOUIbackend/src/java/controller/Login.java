@@ -34,8 +34,8 @@ public class Login extends HttpServlet {
         String userPath = request.getServletPath();
         UserModel um = new UserModel();
         System.out.println("path: " + userPath);
+        
         if (userPath.equals("/index")) {
-            System.out.println("masuk atas");
             RequestDispatcher view;
             if (request.getParameter("logout") != null) {
                 request.setAttribute("alertType", "alert-success");
@@ -44,7 +44,7 @@ public class Login extends HttpServlet {
             } else {
                 request.setAttribute("alertType", "hidden");
                 request.setAttribute("alertContent", "");
-                view = request.getRequestDispatcher("index.jsp");
+                view = request.getRequestDispatcher("login.jsp");
             }
             view.forward(request, response);
         } else if (userPath.equals("/login")) {
@@ -63,8 +63,7 @@ public class Login extends HttpServlet {
                 view = request.getRequestDispatcher("login.jsp");
             }
             view.forward(request, response);
-        } else if (userPath.equals(
-                "/index/login")) {
+        } else if (userPath.equals("/index/login")) {
             String username = (String) request.getParameter("id_user");
             String password = (String) request.getParameter("pass");
             //System.out.println("username= " + username + "," + password);
