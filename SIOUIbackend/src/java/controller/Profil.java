@@ -97,7 +97,7 @@ public class Profil extends HttpServlet {
 
                     Organisasi o = new Organisasi(idOrganisasi, user,
                             namaPanjang, namaPendek,
-                            storageManager.getFileName("file_logo", request),
+                            uploadStatus,
                             deskripsi, visi, jenis, alamat);
                     if (returnValue.equals("empty")) {
                         om.updateExceptLogo(o);
