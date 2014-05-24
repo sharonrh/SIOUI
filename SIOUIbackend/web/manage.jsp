@@ -26,7 +26,6 @@
             <th> Username </th>
             <th> Nama Organisasi </th>
             <th> Deskripsi </th>
-            <th> Action </th>
             </thead>      
 
             <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
