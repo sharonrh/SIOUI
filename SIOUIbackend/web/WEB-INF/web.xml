@@ -28,6 +28,10 @@
         <servlet-name>ImageAlbum</servlet-name>
         <servlet-class>controller.ImageAlbum</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <servlet-class>controller.SusunanOrganisasi</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Profil</servlet-name>
         <url-pattern>/profil</url-pattern>
@@ -127,18 +131,41 @@
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending</url-pattern>
-    </servlet-mapping> 
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending/permit</url-pattern>
-    </servlet-mapping> 
-      
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>
     <servlet-mapping>
         <servlet-name>ImageAlbum</servlet-name>
         <url-pattern>/ImageAlbum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <url-pattern>/susunanorganisasi</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <url-pattern>/susunanorganisasi/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <url-pattern>/susunanorganisasi/edit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <url-pattern>/susunanorganisasi/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <url-pattern>/susunanorganisasi/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SusunanOrganisasi</servlet-name>
+        <url-pattern>/susunanorganisasi/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

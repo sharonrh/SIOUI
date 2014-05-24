@@ -77,7 +77,7 @@
                                     }%>"><a href="<%=request.getContextPath()%>/album">Album</a></li>
                                 <li class="<% if (activePage.equals("struktur")) {
                                         out.print("active");
-                                    }%>"><a href="<%=request.getContextPath()%>/struktur">Struktur Pengurus</a></li>
+                                    }%>"><a href="<%=request.getContextPath()%>/susunanorganisasi">Struktur Pengurus</a></li>
                                 <li class="<% if (activePage.equals("lowongan")) {
                                         out.print("active");
                                     }%>"><a href="<%=request.getContextPath()%>/lowongan">Lowongan</a></li>
