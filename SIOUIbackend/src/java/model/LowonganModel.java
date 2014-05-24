@@ -160,6 +160,7 @@ public class LowonganModel extends Model {
     }
     
     public void update(Lowongan lw){
+        System.out.println(lw.getId());
         String query = String.format("UPDATE %s SET kapasitas='%s', tanggal_buka='%s', tanggal_tutup='%s', "
                 + "judul='%s', jabatan='%s', minimum_tahun='%s', "
                 + "minimum_ipk='%s',kategori='%s', deskripsi='%s' WHERE id=%s", this.TABLE_NAME, lw.getKapasitas(), lw.getTanggal_buka(), 

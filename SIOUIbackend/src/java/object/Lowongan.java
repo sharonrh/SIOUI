@@ -29,7 +29,7 @@ public class Lowongan {
 
     }
 
-    public Lowongan(int i, String username, String jabatan, String judul, int kapasitas, String tanggal_buka, String tanggal_tutup, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
+    public Lowongan(int id, String username, String jabatan, String judul, int kapasitas, String tanggal_buka, String tanggal_tutup, int minimum_tahun, double minimum_ipk, String kategori, String deskripsi) {
         this.id = id;
         this.username = username;
         this.kapasitas = kapasitas;

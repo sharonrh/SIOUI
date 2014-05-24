@@ -18,7 +18,6 @@
 <%
     Lowongan lw = (Lowongan) request.getAttribute("detailLowongan");
     String status = request.getAttribute("status").toString();
-    out.println(status);
 %>
 <form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath()%>/lowongan/<%=status%>">
     <div class="form-group">

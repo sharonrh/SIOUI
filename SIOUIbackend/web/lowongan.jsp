@@ -49,13 +49,12 @@
                 <td> Close Recruitment </td>  
                 <td>            
                     <a href="<%=request.getContextPath()%>/lowongan/form?id=<%out.print(listLowongan.get(ii).getId());%>">
-                        <button type="submit" class="btn btn-default btn-info">Details</button>
+                        <button type="submit" class="btn btn-default btn-info">Edit</button>
                     </a>
 
                     <a href="<%=request.getContextPath()%>/pelamar?id=<%out.print(listLowongan.get(ii).getId());%>">
                         <button type="submit" class="btn btn-default btn-info">Manage Pendaftar</button>
-                    </a>
-                        
+                    </a>    
                 </td>  
             </tr>
             <%}%>
