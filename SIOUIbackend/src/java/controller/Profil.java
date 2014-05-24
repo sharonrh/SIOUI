@@ -41,14 +41,13 @@ public class Profil extends HttpServlet {
         String userPath = request.getServletPath();
         OrganisasiModel om = new OrganisasiModel();
         HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("currentUser");
+        String user = (String) session.getAttribute("currentUser");
 
         if (user == null) {
             response.sendRedirect("/SIOUIbackend/login");
         } else {
             if (userPath.equals("/profil")) {
-                Organisasi org = om.selectFromId(user.getUsername());
-                System.out.println(org.getUsername());
+                Organisasi org = om.selectFromId(user);
                 request.setAttribute("organization", (Object) org);
                 if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
                     request.setAttribute("alertType", "alert-success");
@@ -72,7 +71,7 @@ public class Profil extends HttpServlet {
                 RequestDispatcher view = request.getRequestDispatcher("profil.jsp");
                 view.forward(request, response);
             } else if (userPath.equals("/profil/edit")) {
-                String username = user.getUsername();
+                int idOrganisasi = om.selectFromId(user).getId();
                 String namaPanjang = request.getParameter("nama_panjang");
                 String namaPendek = request.getParameter("nama_pendek");
                 String deskripsi = request.getParameter("deskripsi");
@@ -85,21 +84,27 @@ public class Profil extends HttpServlet {
 
                 String returnValue = "false";
                 try {
-                    String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Logo\\" + username + "\\", "file_logo", request, expectedFileType, 5 * 1024);
+                    String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Logo\\" + idOrganisasi + "\\", "file_logo", request, expectedFileType, 5 * 1024);
                     if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_WRONG_FILE_TYPE)) {
                         returnValue = "wrong_file_type";
                         throw new Exception();
                     } else if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_SIZE_TOO_BIG)) {
                         returnValue = "size_too_big";
                         throw new Exception();
+                    } else if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_FILE_NOT_FOUND)) {
+                        returnValue = "empty";
                     }
 
-                    Organisasi o = new Organisasi(user.getUsername(),
+                    Organisasi o = new Organisasi(idOrganisasi, user,
                             namaPanjang, namaPendek,
                             storageManager.getFileName("file_logo", request),
                             deskripsi, visi, jenis, alamat);
-                    om.update(o);
-
+                    if (returnValue.equals("empty")) {
+                        om.updateExceptLogo(o);
+                    } else {
+                        om.update(o);
+                    }
+                    
                     returnValue = "true";
                     response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
                 } catch (Exception e) {
@@ -107,7 +112,7 @@ public class Profil extends HttpServlet {
                 }
 
             } else if (userPath.equals("/profil/success")) {
-                Organisasi org = om.selectFromId(user.getUsername());
+                Organisasi org = om.selectFromId(user);
                 request.setAttribute("organization", (Object) org);
                 request.setAttribute("alertVisible", "visible");
             }
