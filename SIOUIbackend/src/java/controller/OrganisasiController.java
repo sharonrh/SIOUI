@@ -17,7 +17,6 @@ import model.OrganisasiModel;
 import model.PermohonanModel;
 import object.Organisasi;
 import object.Permohonan;
-import object.User;
 
 /**
  *
@@ -35,6 +34,9 @@ public class OrganisasiController extends HttpServlet {
 
         if (user == null) {
             response.sendRedirect("/SIOUIbackend/login");
+        } // organisasi nyasar 
+        else if (!user.equals("admin")) {
+            response.sendRedirect("/SIOUIbackend/index");
         } else {
             if (userPath.equals("/manage")) {
                 ArrayList<Organisasi> listOrganisasi = om.selectAll();

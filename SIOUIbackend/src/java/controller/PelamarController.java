@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.OrganisasiModel;
 import model.PelamarModel;
-import model.PermohonanModel;
 import object.Pelamar;
-import object.User;
 
 /**
  *
@@ -33,6 +30,9 @@ public class PelamarController extends HttpServlet {
         String user = (String) session.getAttribute("currentUser");
         if (user == null) {
             response.sendRedirect("/SIOUIbackend/login");
+        } // admin nyasar 
+        else if (user.equals("admin")) {
+            response.sendRedirect("/SIOUIbackend/index");
         } else {
             if (userPath.equals("/pelamar")) {
                 int id = 0;

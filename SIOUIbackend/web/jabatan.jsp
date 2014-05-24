@@ -18,13 +18,6 @@
     Object objJabatans = request.getAttribute("jabatans");
     Object objUser = session.getAttribute("currentUser");
     String notif = request.getParameter("notif");
-    
-    User u;
-    if (objUser != null) {
-        u = (User) objUser;
-    } else {
-        //redirect here
-    }
 
     List<Jabatan> jabs = ((objJabatans != null) ? (List<Jabatan>) objJabatans : null);
 %>

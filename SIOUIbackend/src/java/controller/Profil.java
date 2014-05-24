@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import model.OrganisasiModel;
 import model.StorageManager;
 import object.Organisasi;
-import object.User;
 
 /**
  *
@@ -45,6 +44,9 @@ public class Profil extends HttpServlet {
 
         if (user == null) {
             response.sendRedirect("/SIOUIbackend/login");
+        } // admin nyasar 
+        else if (user.equals("admin")) {
+            response.sendRedirect("/SIOUIbackend/index");
         } else {
             if (userPath.equals("/profil")) {
                 Organisasi org = om.selectFromId(user);
@@ -104,7 +106,7 @@ public class Profil extends HttpServlet {
                     } else {
                         om.update(o);
                     }
-                    
+
                     returnValue = "true";
                     response.sendRedirect("/SIOUIbackend/profil?success=" + returnValue);
                 } catch (Exception e) {
@@ -119,7 +121,7 @@ public class Profil extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

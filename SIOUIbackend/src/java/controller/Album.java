@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 import model.GalleryModel;
 import model.OrganisasiModel;
 import model.StorageManager;
-import object.*;
+import object.Image;
 import object.Organisasi;
 
 /**
@@ -45,10 +45,14 @@ public class Album extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("currentUser");
-
         String userPath = request.getServletPath();
-        //response.getWriter().print(userPath);
-        try {
+        
+        if (user == null) {
+            response.sendRedirect("/SIOUIbackend/login");
+        } // admin nyasar 
+        else if (user.equals("admin")) {
+            response.sendRedirect("/SIOUIbackend/index");
+        } else {
             Organisasi org = om.selectFromId(user);
             if (userPath.equals("/album")) {
                 List<object.Album> a = gm.selectAlbumByOrganization(org.getId());
@@ -185,8 +189,6 @@ public class Album extends HttpServlet {
                 gm.deleteAlbum(id);
                 response.sendRedirect(request.getContextPath() + "/album");
             }
-        } catch (NullPointerException e) {
-            response.sendRedirect("/SIOUIbackend/login");
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

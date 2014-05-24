@@ -19,13 +19,6 @@
     Object objNotif = request.getAttribute("notif");
     Object objUser = session.getAttribute("currentUser");
 
-    User u;
-    if (objUser != null) {
-        u = (User) objUser;
-    } else {
-        //redirect here
-    }
-
     Jabatan a = ((objJabatan != null) ? (Jabatan) objJabatan : null);
     String title = ((objTitle != null) ? (String) objTitle : null);
     String role = ((objRole != null) ? (String) objRole : null);

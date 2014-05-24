@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.LowonganModel;
 import object.Lowongan;
-import object.User;
 
 /**
  *
@@ -28,8 +27,14 @@ public class LowonganController extends HttpServlet {
         String userPath = request.getServletPath();
         LowonganModel lm = new LowonganModel();
         HttpSession session = request.getSession(true);
-        try {
-            String user = (String) session.getAttribute("currentUser");
+        String user = (String) session.getAttribute("currentUser");
+
+        if (user == null) {
+            response.sendRedirect("/SIOUIbackend/login");
+        } // admin nyasar 
+        else if (user.equals("admin")) {
+            response.sendRedirect("/SIOUIbackend/index");
+        } else {
             if (userPath.equals("/lowongan")) {
                 if (request.getParameter("act") != null) {
                     String act = request.getParameter("act");
@@ -102,8 +107,6 @@ public class LowonganController extends HttpServlet {
                 lm.deleteLowongan(id);
                 response.sendRedirect("/SIOUIbackend/lowongan?act=del");
             }
-        } catch (NullPointerException e) {
-            response.sendRedirect("/SIOUIbackend/login");
         }
     }
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
