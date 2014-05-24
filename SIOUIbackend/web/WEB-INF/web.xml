@@ -31,8 +31,8 @@
     <servlet>
         <servlet-name>SusunanOrganisasi</servlet-name>
         <servlet-class>controller.SusunanOrganisasi</servlet-class>
-	</servlet>
-	<servlet>
+    </servlet>
+    <servlet>
         <servlet-name>PelamarController</servlet-name>
         <servlet-class>controller.PelamarController</servlet-class>
     </servlet>
@@ -144,13 +144,14 @@
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending/permit</url-pattern>
     </servlet-mapping> 
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>PelamarController</servlet-name>
         <url-pattern>/pelamar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PelamarController</servlet-name>
+        <url-pattern>/pelamar/detail</url-pattern>
     </servlet-mapping>  
-    <welcome-file-list>
-        <welcome-file>login</welcome-file>
-    </welcome-file-list>
     <servlet-mapping>
         <servlet-name>ImageAlbum</servlet-name>
         <url-pattern>/ImageAlbum</url-pattern>
@@ -179,6 +180,11 @@
         <servlet-name>SusunanOrganisasi</servlet-name>
         <url-pattern>/susunanorganisasi/delete</url-pattern>
     </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>login</welcome-file>
+    </welcome-file-list>
+
     <session-config>
         <session-timeout>
             30

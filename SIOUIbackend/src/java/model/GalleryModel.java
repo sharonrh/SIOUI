@@ -124,7 +124,7 @@ public class GalleryModel extends Model {
 
     public List<Album> selectAlbumByOrganization(int idOrganisasi) {
         super.openConnection();
-        String query = "SELECT * FROM " + ALBUM_TABLE_NAME;
+        String query = "SELECT * FROM " + ALBUM_TABLE_NAME+ " WHERE id_organisasi="+idOrganisasi;
         List<Album> result = new ArrayList<Album>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);

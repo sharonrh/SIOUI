@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.PelamarModel;
 import object.Pelamar;
+import webservice.UserCV;
 
 /**
  *
@@ -42,14 +44,11 @@ public class PelamarController extends HttpServlet {
                     id = Integer.parseInt(request.getParameter("id"));
                     session.setAttribute("currentLowongan", id);
                 }
-                //ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
+
                 String status = request.getParameter("status_recruitment") == null
                         ? "wait" : request.getParameter("status_recruitment");
                 String jenis = request.getParameter("jenis_recruitment") == null
                         ? "open" : request.getParameter("jenis_recruitment");
-
-                session.setAttribute("recStat", status);
-                session.setAttribute("recType", jenis);
 
                 ArrayList<Pelamar> listPelamar = pm.selectPelamarJenisStatus(id, jenis, status);
                 request.setAttribute("status_recruitment", (Object) status);
@@ -57,6 +56,25 @@ public class PelamarController extends HttpServlet {
                 request.setAttribute("listPelamar", (Object) listPelamar);
 
                 RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/daftar-pelamar.jsp");
+                view.forward(request, response);
+            } else if (userPath.equals("/pelamar/detail")) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                // sementara, ntar ganti dari ws
+                UserCV cv = new UserCV();
+                cv.setName("Ragen Vadascovinich");
+                cv.setAddress("Kratliev 27th block, 3rd");
+                cv.setEmail("ragen@gmail.com");
+                cv.setInterests("Berkebun, berternak, menabung");
+                cv.setPhoneNumber("532-302-11");
+                cv.setObjective("Menafkahi keluarga nan bahagia. Sungguh merupakan suatu kewajiban "
+                        + "bagi setiap pria yang berkeluarga. Demikian harapan saya, saudara-saudara. "
+                        + "Kala malam menyapa-- hendaknya kita berjumpa lagi.");
+                cv.setQualification("What qualification?");
+                cv.setReference("Prof. Ibrahim Vadascovinich");
+                cv.setTitle("Curriculum Vitae");
+                
+                request.setAttribute("cv", (Object) cv);
+                RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/detail-pelamar.jsp");
                 view.forward(request, response);
             }
         }
@@ -99,4 +117,10 @@ public class PelamarController extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private static java.util.List<webservice.UserCV> getAllCV(java.lang.String username) {
+        webservice.SivimuWebService_Service service = new webservice.SivimuWebService_Service();
+        webservice.SivimuWebService port = service.getSivimuWebServicePort();
+        return port.getAllCV(username);
+    }
 }

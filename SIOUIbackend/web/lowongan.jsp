@@ -21,22 +21,23 @@
         Daftar Lowongan
     </div>
 </div>
+<% ArrayList<Lowongan> listLowongan = (ArrayList<Lowongan>) request.getAttribute("listLowongan");%>
+
 <div class="container">
     <div class="col-lg-12"> 
-        <a href="<%=request.getContextPath()%>/lowongan/form" class="btn-lg btn-success pull-left">
+        <a href="<%=request.getContextPath()%>/lowongan/form" class="btn btn-success pull-left">
             Tambah Lowongan 
         </a>
         <table class="table table-hover table-striped">
+            <% if (listLowongan.size() > 0) {%>
             <thead>    
             <th>  </th>
             <th> Nama Lowongan </th>
             <th> Status </th>
-            <th> Action </th>
+            <th>  </th>
             </thead>      
 
-            <% ArrayList<Lowongan> listLowongan = (ArrayList<Lowongan>) request.getAttribute("listLowongan");%>
             <% for (int ii = 0; ii < listLowongan.size(); ii++) {%>
-
             <tr>
                 <td> 
                     <a href="<%=request.getContextPath()%>/lowongan/delete?id=<%out.print(listLowongan.get(ii).getId());%>">
@@ -57,6 +58,9 @@
                     </a>    
                 </td>  
             </tr>
+            <%}
+            } else {%>
+            <h4 class="text-primary ">Belum ada lowongan yang tercatat.</h4>
             <%}%>
         </table>
     </div>

@@ -17,20 +17,22 @@
 <div class="alert <%=request.getAttribute("alertType")%>">
     <%=request.getAttribute("alertContent")%>
 </div>
+<%ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");%>
 
 <div class="container">
     <div class="col-lg-12"> 
         <table class="table table-hover table-striped">
+            <% if (listOrganisasi.size() > 0) {%>
             <thead>    
             <th> # </th>
             <th> Username </th>
             <th> Nama Organisasi </th>
             <th> Deskripsi </th>
+            <th>  </th>
+
             </thead>      
 
-            <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
-                for (Organisasi a : listOrganisasi) {
-            %>
+            <%  for (Organisasi a : listOrganisasi) {%>
 
             <tr>
                 <td> <%= a.getId()%> </td>
@@ -44,6 +46,9 @@
                     </form>
                 </td>
             </tr>
+            <%}
+            } else {%>
+            <h4 class="text-primary">Belum ada organisasi yang tercatat.</h4>
             <%}%>
         </table>
     </div>

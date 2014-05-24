@@ -8,7 +8,7 @@
 <%@page import="model.LowonganModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%String activePage="Lowongan";%>
+<%String activePage="lowongan";%>
 <%@include file="/WEB-INF/header.jspf" %>
 
 <div class="title">
@@ -41,7 +41,7 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Kapasitas</label>
         <div class="col-sm-3">
-            <input min="0" required name="kapasitas" type="number" class="form-control" id="kapasitas" value="<%if (lw.getKapasitas() != 0) {
+            <input required min="0" name="kapasitas" type="number" class="form-control" id="kapasitas" value="<%if (lw.getKapasitas() != 0) {
                     out.print(lw.getKapasitas());}%>">
         </div>
     </div>
@@ -57,7 +57,7 @@
         <label for="inputEmail" class="col-sm-2 control-label">Waktu Tutup</label>
         
         <div class="col-sm-3">
-            <input placeholder="yyyy-mm-dd hh:mm:ss" required name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
+            <input required placeholder="yyyy-mm-dd hh:mm:ss" name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
                 out.print(lw.getTanggal_tutup().substring(0, lw.getTanggal_tutup().length()-2));}%>" required/>
         </div>
     </div>
@@ -71,14 +71,14 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Angkatan Minimum</label>
         <div class="col-sm-3">
-            <input placeholder="1990-9999" name="minimum_tahun" type="number" min="1990" max="9999" class="form-control" id="minimum_tahun" value="<%if (lw.getMinimum_tahun() != 0) {
+            <input required placeholder="1990-2020" name="minimum_tahun" type="number" min="1990" max="2020" class="form-control" id="minimum_tahun" value="<%if (lw.getMinimum_tahun() != 0) {
                     out.print(lw.getMinimum_tahun());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">IPK Minimum</label>
         <div class="col-sm-3">
-            <input step="0.1" min="0" max="4" name="minimum_ipk" type="number" class="form-control" id="minimum_ipk" value="<%if (lw.getMinimum_ipk() != 0) {
+            <input required step="0.1" min="0" max="4" name="minimum_ipk" type="number" class="form-control" id="minimum_ipk" value="<%if (lw.getMinimum_ipk() != 0) {
                     out.print(lw.getMinimum_ipk());}%>">
         </div>
     </div>

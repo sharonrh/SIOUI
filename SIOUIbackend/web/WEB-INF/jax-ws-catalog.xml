@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?wsdl" uri="wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.wsdl"/>
+    <system systemId="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?xsd=1" uri="wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.xsd_1.xsd"/>
+</catalog>
