@@ -27,14 +27,14 @@
     <div class="form-group">
         <label for="namaPanjang" class="col-sm-2 control-label">Nama Panjang</label>
         <div class="col-sm-3">
-            <input name="nama_panjang" type="text" class="form-control" id="namaPanjang" value="<%if (org.getNama_panjang() != null) {
+            <input required name="nama_panjang" type="text" class="form-control" id="namaPanjang" value="<%if (org.getNama_panjang() != null) {
                     out.print(org.getNama_panjang());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Nama Pendek</label>
         <div class="col-sm-3">
-            <input name="nama_pendek" type="text" class="form-control" id="inputEmail" value="<%if (org.getNama_pendek() != null) {
+            <input required name="nama_pendek" type="text" class="form-control" id="inputEmail" value="<%if (org.getNama_pendek() != null) {
                     out.print(org.getNama_pendek());}%>">
         </div>
     </div>
@@ -61,14 +61,14 @@
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Visi</label>
         <div class="col-sm-3">
-            <input name="visi" type="text" class="form-control" id="inputEmail" value="<%if (org.getVisi() != null) {
-                    out.print(org.getVisi());}%>">
+            <textarea class="form-control" rows="6" id="visi" name="visi"><%if (org.getVisi() != null) {
+                    out.print(org.getVisi());}%></textarea>
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Jenis</label>
         <div class="col-sm-4">
-            <select id="selectbasic" name="jenis" class="form-control">
+            <select required id="selectbasic" name="jenis" class="form-control">
                 <option value="ukm" <%if (org.getJenis() != null && org.getJenis().equals("ukm")) {
                         out.print("selected");}%>>Unit Kegiatan Mahasiswa (UKM)</option>
                 <option value="ukf" <%if (org.getJenis() != null && org.getJenis().equals("ukf")) {

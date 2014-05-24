@@ -41,23 +41,25 @@
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Kapasitas</label>
-        <div class="col-sm-8">
-            <input required name="kapasitas" type="number" class="form-control" id="kapasitas" value="<%if (lw.getKapasitas() != 0) {
+        <div class="col-sm-3">
+            <input min="0" required name="kapasitas" type="number" class="form-control" id="kapasitas" value="<%if (lw.getKapasitas() != 0) {
                     out.print(lw.getKapasitas());}%>">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Tanggal Buka</label>
+        <label for="inputEmail" class="col-sm-2 control-label">Waktu Buka</label>
+       
         <div class="col-sm-3">
-            <input required name="tanggal_buka" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_buka" value="<%if (lw.getTanggal_buka() != null) {
-                    out.print(lw.getTanggal_buka());}%>">
+            <input required placeholder="yyyy-mm-dd hh:mm:ss" name="tanggal_buka" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_buka" value="<%if (lw.getTanggal_buka() != null) {
+                    out.print(lw.getTanggal_buka().substring(0, lw.getTanggal_tutup().length()-2));}%>">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Tanggal Buka</label>
+        <label for="inputEmail" class="col-sm-2 control-label">Waktu Tutup</label>
+        
         <div class="col-sm-3">
-            <input required name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
-                out.print(lw.getTanggal_tutup());}%>" required/>
+            <input placeholder="yyyy-mm-dd hh:mm:ss" required name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
+                out.print(lw.getTanggal_tutup().substring(0, lw.getTanggal_tutup().length()-2));}%>" required/>
         </div>
     </div>
     <div class="form-group">
@@ -68,16 +70,16 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Minimum Tahun</label>
+        <label for="inputEmail" class="col-sm-2 control-label">Angkatan Minimum</label>
         <div class="col-sm-3">
-            <input name="minimum_tahun" type="number" class="form-control" id="minimum_tahun" value="<%if (lw.getMinimum_tahun() != 0) {
+            <input placeholder="1990-9999" name="minimum_tahun" type="number" min="1990" max="9999" class="form-control" id="minimum_tahun" value="<%if (lw.getMinimum_tahun() != 0) {
                     out.print(lw.getMinimum_tahun());}%>">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputEmail" class="col-sm-2 control-label">Minimum IPK</label>
+        <label for="inputEmail" class="col-sm-2 control-label">IPK Minimum</label>
         <div class="col-sm-3">
-            <input name="minimum_ipk" type="number" class="form-control" id="minimum_ipk" value="<%if (lw.getMinimum_ipk() != 0) {
+            <input step="0.1" min="0" max="4" name="minimum_ipk" type="number" class="form-control" id="minimum_ipk" value="<%if (lw.getMinimum_ipk() != 0) {
                     out.print(lw.getMinimum_ipk());}%>">
         </div>
     </div>
@@ -90,7 +92,13 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default btn-success">Update Lowongan</button>
+            <button type="submit" class="btn btn-default btn-success">
+            <%if(status.equals("edit")){
+                out.print("Update Lowongan");
+            } else{
+                out.print("Tambah Lowongan");
+            }%>     
+            </button>
         </div>
     </div>
 </form>

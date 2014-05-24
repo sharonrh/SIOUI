@@ -38,8 +38,10 @@ public class PelamarController extends HttpServlet {
                 session.setAttribute("currentLowongan", id);
             }
             //ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
-            String status = request.getParameter("status_recruitment") == null ? "open" : request.getParameter("status_recruitment");
-            String jenis = request.getParameter("jenis_recruitment") == null ? "wait" : request.getParameter("jenis_recruitment");
+            String status = request.getParameter("status_recruitment") == null ? 
+                    "open" : request.getParameter("status_recruitment");
+            String jenis = request.getParameter("jenis_recruitment") == null ? 
+                    "wait" : request.getParameter("jenis_recruitment");
 
             session.setAttribute("recStat", status);
             session.setAttribute("recType", jenis);
@@ -49,20 +51,8 @@ public class PelamarController extends HttpServlet {
             System.out.println("jenis=" + jenis);
 
             ArrayList<Pelamar> listPelamar = pm.selectPelamarJenisStatus(id, jenis, status);
-
-//            if(status.equals("open") && jenis.equals("accept")){
-//                //isi list pelamar
-//            } else if(status.equals("open") && jenis.equals("reject")){
-//                // isi
-//            } else if(status.equals("open") && jenis.equals("wait")){
-//                
-//            } else if(status.equals("close") && jenis.equals("accept")){
-//                
-//            } else if(status.equals("close") && jenis.equals("reject")){
-//                
-//            } else if(status.equals("close") && jenis.equals("wait")){
-//                
-//            }
+            request.setAttribute("status_recruitment", (Object) status);
+            request.setAttribute("jenis_recruitment", (Object) jenis);
             request.setAttribute("listPelamar", (Object) listPelamar);
 
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/daftar-pelamar.jsp");
