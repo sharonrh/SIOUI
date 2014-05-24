@@ -142,7 +142,7 @@
     </servlet-mapping> 
      <servlet-mapping>
         <servlet-name>PelamarController</servlet-name>
-        <url-pattern>/daftar-pelamar</url-pattern>
+        <url-pattern>/pelamar</url-pattern>
     </servlet-mapping>  
     <welcome-file-list>
         <welcome-file>login</welcome-file>

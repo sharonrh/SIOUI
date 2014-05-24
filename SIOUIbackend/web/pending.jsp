@@ -27,7 +27,6 @@
             <th> Nama Panjang </th>
             <th> Deskripsi </th>
             <th> Tanggal Pengajuan </th>
-            <th> Action </th>
             </thead>      
 
             <% ArrayList<Permohonan> listPermohonan = (ArrayList<Permohonan>) request.getAttribute("listPermohonan");

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package controller;
 
 import java.io.IOException;
@@ -23,36 +22,54 @@ import object.Pelamar;
  *
  * @author daniel.januar
  */
-public class PelamarController extends HttpServlet{
+public class PelamarController extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
         PelamarModel pm = new PelamarModel();
         HttpSession session = request.getSession(true);
-        if (userPath.equals("/daftar-pelamar")) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
-            String status = request.getParameter("status_recruitment");
-            String jenis = request.getParameter("jenis_recruitment");
-            if(status.equals("open") && jenis.equals("accept")){
-                //isi list pelamar
-            } else if(status.equals("open") && jenis.equals("reject")){
-                // isi
-            } else if(status.equals("open") && jenis.equals("wait")){
-                
-            } else if(status.equals("close") && jenis.equals("accept")){
-                
-            } else if(status.equals("close") && jenis.equals("reject")){
-                
-            } else if(status.equals("close") && jenis.equals("wait")){
-                
+        if (userPath.equals("/pelamar")) {
+            int id = 0;
+            if (request.getParameter("id") == null) {
+                id = (int) session.getAttribute("currentLowongan");
+            } else {
+                id = Integer.parseInt(request.getParameter("id"));
+                session.setAttribute("currentLowongan", id);
             }
+            //ArrayList<Pelamar> listPelamar = pm.selectAllPelamar(id);
+            String status = request.getParameter("status_recruitment") == null ? "open" : request.getParameter("status_recruitment");
+            String jenis = request.getParameter("jenis_recruitment") == null ? "wait" : request.getParameter("jenis_recruitment");
+
+            session.setAttribute("recStat", status);
+            session.setAttribute("recType", jenis);
+
+            System.out.println("id=" + id);
+            System.out.println("status=" + status);
+            System.out.println("jenis=" + jenis);
+
+            ArrayList<Pelamar> listPelamar = pm.selectPelamarJenisStatus(id, jenis, status);
+
+//            if(status.equals("open") && jenis.equals("accept")){
+//                //isi list pelamar
+//            } else if(status.equals("open") && jenis.equals("reject")){
+//                // isi
+//            } else if(status.equals("open") && jenis.equals("wait")){
+//                
+//            } else if(status.equals("close") && jenis.equals("accept")){
+//                
+//            } else if(status.equals("close") && jenis.equals("reject")){
+//                
+//            } else if(status.equals("close") && jenis.equals("wait")){
+//                
+//            }
             request.setAttribute("listPelamar", (Object) listPelamar);
+
             RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/daftar-pelamar.jsp");
             view.forward(request, response);
         }
     }
-        
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
