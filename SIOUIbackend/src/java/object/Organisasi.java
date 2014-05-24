@@ -34,6 +34,17 @@ public class Organisasi {
         this.alamat = alamat;
     }
 
+    public Organisasi(String username, String nama_panjang, String nama_pendek, String logo, String deskripsi, String visi, String jenis, String alamat) {
+        this.username = username;
+        this.nama_panjang = nama_panjang;
+        this.nama_pendek = nama_pendek;
+        this.logo = logo;
+        this.deskripsi = deskripsi;
+        this.visi = visi;
+        this.jenis = jenis;
+        this.alamat = alamat;
+    }
+    
     public Organisasi(int id, String username, String nama_panjang, 
             String nama_pendek, String logo, String deskripsi, 
             String visi, String jenis, String alamat, String created_at, 

@@ -41,7 +41,7 @@ public class PermohonanModel extends Model {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-                Permohonan a = new Permohonan(res.getInt("id"), res.getString("username"), res.getString("password"), res.getString("nama_panjang"), res.getString("deskripsi"));
+                Permohonan a = new Permohonan(res.getInt("id"), res.getString("username"), res.getString("password"), res.getString("nama_panjang"), res.getString("deskripsi"),res.getString("created_at"), res.getString("updated_at"));
                 result.add(a);
             }
             return result;

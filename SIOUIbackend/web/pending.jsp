@@ -38,7 +38,7 @@
                 <td> <%= a.getUsername()%> </td>
                 <td> <%= a.getNama_panjang()%> </td>
                 <td> <%= a.getDeskripsi()%> </td>
-                <td> not implemented </td>
+                <td> <%= a.getCreated_at()%> </td>
                 <td> 
                     <a href="pending/permit?act=approve&id=<%= a.getId()%>" class="btn btn-default btn-success">Approve</a>
                     <a href="pending/permit?act=reject&id=<%= a.getId()%>" class="hapus btn btn-default btn-danger">Reject</a>                               

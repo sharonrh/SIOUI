@@ -20,6 +20,7 @@
 </div>
 <%
     Organisasi org = (Organisasi) request.getAttribute("organization");
+    System.out.println(org.getUsername());
 %>
 
 
