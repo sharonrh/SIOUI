@@ -29,7 +29,7 @@ public class LowonganController extends HttpServlet {
         LowonganModel lm = new LowonganModel();
         HttpSession session = request.getSession(true);
         try {
-            String user = ((User) session.getAttribute("currentUser")).getUsername();
+            String user = (String) session.getAttribute("currentUser");
             if (userPath.equals("/lowongan")) {
                 if (request.getParameter("act") != null) {
                     String act = request.getParameter("act");
@@ -68,7 +68,6 @@ public class LowonganController extends HttpServlet {
             } else if (userPath.equals("/lowongan/edit")) {
                 System.out.println(userPath);
                 int id = Integer.parseInt(request.getParameter("id"));
-            System.out.println(id);
                 String jabatan = request.getParameter("jabatan");
                 String judul = request.getParameter("judul");
                 int kapasitas = Integer.parseInt(request.getParameter("kapasitas"));
@@ -84,6 +83,7 @@ public class LowonganController extends HttpServlet {
                 response.sendRedirect("/SIOUIbackend/lowongan?act=edit");
             } else if (userPath.equals("/lowongan/form")) {
                 String par = request.getParameter("id");
+
                 if (par != null) {
                     int id = Integer.parseInt(par);
                     Lowongan lw = lm.select(id);

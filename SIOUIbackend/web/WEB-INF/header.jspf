@@ -13,20 +13,20 @@
         <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
         <script src="<%=request.getContextPath()%>/js/jquery-1.10.1.min.js"></script>
 
-<!--        <script type="text/javascript">
-
-            function popConfirmation()
-            {
-                var answer = confirm("Apakah Anda yakin?");
-                if (answer) {
-                    document.myForm.answer.value = "true";
-                    document.myForm.submit();
-                    return true;
-                } else
-                    return false
-            }
-            // 
-        </script>-->
+        <!--        <script type="text/javascript">
+        
+                    function popConfirmation()
+                    {
+                        var answer = confirm("Apakah Anda yakin?");
+                        if (answer) {
+                            document.myForm.answer.value = "true";
+                            document.myForm.submit();
+                            return true;
+                        } else
+                            return false
+                    }
+                    // 
+                </script>-->
 
     </head>
     <body>
@@ -46,12 +46,9 @@
                         </div>
                         <%
                             HttpSession sess = request.getSession();
-                            Object userNameObj = sess.getAttribute("currentUser");
-                            String username = null;
-                            if (userNameObj != null) {
-                                username = userNameObj.toString();
-                            } else {
-                                response.sendRedirect("login.jsp");
+                            String username = (String) sess.getAttribute("currentUser");
+                            if (username == null) {
+                                response.sendRedirect("/SIOUIbackend/login");
                             }
                         %>
 

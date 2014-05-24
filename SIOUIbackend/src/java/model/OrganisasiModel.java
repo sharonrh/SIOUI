@@ -134,9 +134,9 @@ public class OrganisasiModel extends Model {
      * @return
      */
     public ArrayList<Organisasi> selectAll() {
+        super.openConnection();
         String query = String.format("SELECT * FROM %s", TABLE_NAME);
         ArrayList<Organisasi> result = new ArrayList<Organisasi>();
-        openConnection();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
@@ -162,6 +162,7 @@ public class OrganisasiModel extends Model {
 
     public void addOrganisasi(String username, String nama_panjang,
             String deskripsi) {
+        super.openConnection();
         String query = String.format("INSERT INTO %s(username, nama_panjang, deskripsi) VALUES ('%s','%s','%s')", TABLE_NAME, username, nama_panjang, deskripsi);
         openConnection();
         try {
@@ -180,7 +181,24 @@ public class OrganisasiModel extends Model {
                 org.getNama_panjang(), org.getNama_pendek(),
                 org.getDeskripsi(), org.getVisi(), org.getJenis(),
                 org.getAlamat(), org.getLogo(), org.getId());
-        openConnection();
+        super.openConnection();
+        try {
+            System.out.println(super.getStatement().executeUpdate(query));
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
+
+    public void updateExceptLogo(Organisasi org) {
+        String query = String.format("UPDATE %s SET nama_panjang='%s', nama_pendek='%s', deskripsi='%s', "
+                + "visi='%s', jenis='%s', alamat='%s' "
+                + "WHERE id=%s", this.TABLE_NAME,
+                org.getNama_panjang(), org.getNama_pendek(),
+                org.getDeskripsi(), org.getVisi(), org.getJenis(),
+                org.getAlamat(), org.getId());
+        super.openConnection();
         try {
             System.out.println(super.getStatement().executeUpdate(query));
         } catch (SQLException ex) {
@@ -212,6 +230,7 @@ public class OrganisasiModel extends Model {
                 + " jenis='" + jenis + "',"
                 + " alamat='" + alamat + "'"
                 + " WHERE username= '" + username + "'";
+        System.out.println(query);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);

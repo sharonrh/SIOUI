@@ -41,8 +41,8 @@ public class SusunanOrganisasi extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("currentUser");
-        Organisasi org = om.selectFromId(user.getUsername());
+        String user = (String) session.getAttribute("currentUser");
+        Organisasi org = om.selectFromId(user);
 
         String userPath = request.getServletPath();
         //response.getWriter().print(userPath);

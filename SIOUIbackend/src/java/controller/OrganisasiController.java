@@ -31,7 +31,7 @@ public class OrganisasiController extends HttpServlet {
         OrganisasiModel om = new OrganisasiModel();
         PermohonanModel pm = new PermohonanModel();
         HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("currentUser");
+        String user = (String) session.getAttribute("currentUser");
 
         if (user == null) {
             response.sendRedirect("/SIOUIbackend/login");

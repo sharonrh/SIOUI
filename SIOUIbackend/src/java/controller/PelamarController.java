@@ -30,7 +30,7 @@ public class PelamarController extends HttpServlet {
         String userPath = request.getServletPath();
         PelamarModel pm = new PelamarModel();
         HttpSession session = request.getSession(true);
-        User user = (User) session.getAttribute("currentUser");
+        String user = (String) session.getAttribute("currentUser");
         if (user == null) {
             response.sendRedirect("/SIOUIbackend/login");
         } else {

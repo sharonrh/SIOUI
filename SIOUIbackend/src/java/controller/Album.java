@@ -44,12 +44,12 @@ public class Album extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("currentUser");
+        String user = (String) session.getAttribute("currentUser");
 
         String userPath = request.getServletPath();
         //response.getWriter().print(userPath);
         try {
-            Organisasi org = om.selectFromId(user.getUsername());
+            Organisasi org = om.selectFromId(user);
             if (userPath.equals("/album")) {
                 List<object.Album> a = gm.selectAlbumByOrganization(org.getId());
                 request.setAttribute("albums", (Object) a);

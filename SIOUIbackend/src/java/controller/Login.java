@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.UserModel;
+import object.User;
 
 /**
  *
@@ -34,7 +35,9 @@ public class Login extends HttpServlet {
         String userPath = request.getServletPath();
         UserModel um = new UserModel();
         System.out.println("path: " + userPath);
-        
+
+        HttpSession session = request.getSession(true);
+        String user = (String) session.getAttribute("currentUser");
         if (userPath.equals("/index")) {
             RequestDispatcher view;
             if (request.getParameter("logout") != null) {
@@ -44,45 +47,47 @@ public class Login extends HttpServlet {
             } else {
                 request.setAttribute("alertType", "hidden");
                 request.setAttribute("alertContent", "");
-                view = request.getRequestDispatcher("login.jsp");
+                view = request.getRequestDispatcher("index.jsp");
             }
             view.forward(request, response);
         } else if (userPath.equals("/login")) {
-            RequestDispatcher view;
-            if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
-                request.setAttribute("alertType", "alert-success");
-                request.setAttribute("alertContent", "Anda berhasil login!");
-                view = request.getRequestDispatcher("index.jsp");
-            } else if (request.getParameter("success") != null && request.getParameter("success").equals("false")) {
-                request.setAttribute("alertType", "alert-danger");
-                request.setAttribute("alertContent", "Username atau password yang dimasukkan salah");
-                view = request.getRequestDispatcher("login.jsp");
+            if (user == null) {
+                RequestDispatcher view;
+                if (request.getParameter("success") != null && request.getParameter("success").equals("true")) {
+                    request.setAttribute("alertType", "alert-success");
+                    request.setAttribute("alertContent", "Anda berhasil login!");
+                    view = request.getRequestDispatcher("index.jsp");
+                } else if (request.getParameter("success") != null && request.getParameter("success").equals("false")) {
+                    request.setAttribute("alertType", "alert-danger");
+                    request.setAttribute("alertContent", "Username atau password yang dimasukkan salah");
+                    view = request.getRequestDispatcher("login.jsp");
+                } else {
+                    request.setAttribute("alertType", "hidden");
+                    request.setAttribute("alertContent", "");
+                    view = request.getRequestDispatcher("login.jsp");
+                }
+                view.forward(request, response);
             } else {
-                request.setAttribute("alertType", "hidden");
-                request.setAttribute("alertContent", "");
-                view = request.getRequestDispatcher("login.jsp");
+                response.sendRedirect("/SIOUIbackend/index");
             }
-            view.forward(request, response);
         } else if (userPath.equals("/index/login")) {
             String username = (String) request.getParameter("id_user");
             String password = (String) request.getParameter("pass");
             //System.out.println("username= " + username + "," + password);
             boolean isValidUser = um.validateUser(username, password);
             if (isValidUser) {
-                HttpSession session = request.getSession(true);
-                session.setAttribute("currentUser", um.select(username));
+                session.setAttribute("currentUser", username);
                 System.out.println(username);
             }
             response.sendRedirect("/SIOUIbackend/login?success=" + isValidUser);
         } else if (userPath.equals(
                 "/index/logout")) {
-            HttpSession session = request.getSession(true);
             session.setAttribute("currentUser", null);
             response.sendRedirect("/SIOUIbackend/index?logout=true");
         }
     }
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
