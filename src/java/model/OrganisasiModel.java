@@ -29,12 +29,12 @@ public class OrganisasiModel extends Model {
      */
     public Organisasi select(int id) {
         super.openConnection();
-        String query = String.format("SELECT * FROM %s WHERE id ='%s'", TABLE_NAME, id);
+        String query = String.format("SELECT * FROM %s WHERE id = %s", TABLE_NAME, id);
         Organisasi a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            a = new Organisasi(res.getInt("id"), res.getString("id_user"),
+            a = new Organisasi(res.getInt("id"), res.getString("username"),
                     res.getString("nama_panjang"), res.getString("nama_pendek"),
                     res.getString("logo"), res.getString("deskripsi"),
                     res.getString("visi"),

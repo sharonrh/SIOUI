@@ -4,24 +4,30 @@
     Author     : Johanes
 --%>
 
+<%@page import="object.Organisasi"%>
 <%@page import="object.Lowongan"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="model.LowonganModel"%>
-<%@include file="header.jsp" %>
+<%@include file="/WEB-INF/header.jsp" %>
 
 <%
-    LowonganModel lm = new LowonganModel();
-    List<Lowongan> result = lm.selectAll();
+    Object objLwgs = request.getAttribute("lwgs");
+    ArrayList<Lowongan> lwgs = ((objLwgs != null) ? (ArrayList<Lowongan>) objLwgs : null);
+    
+    Object objOrg = request.getAttribute("org");
+    
+    Organisasi org = ((objOrg != null) ? (Organisasi) objOrg : null);
+    
+    if(org==null){
+        response.sendRedirect(request.getContextPath());
+    }
 %>
 
 
 <!-- BODY DIMULAI -->
 <div class="inner-page">
-    <div class="container">
-        <%
-            if (session.getAttribute("currentUser") != null) {
-        %>
+    <div class="container"> 
         <div class="row">
             <div class="col-md-3">
                 <!-- Inner Page Content Sidebar -->
@@ -29,22 +35,14 @@
                     <!-- Page Title -->
                     <div class="page-title br-green">
                         <!-- Inner Page Title // Heading -->
-                        <h2>BEM Fasilkom UI</h2>
+                        <h2><%=org.getNama_pendek() %></h2>
                         <!-- Paragraph -->
-                        <p>Roosevelt accusal et gusto sod pianist moss dulcimers blandish desideratum voluptuary lenitive.</p>
+                        <p><%=org.getDeskripsi() %></p>
                     </div>
                     <!-- Sidebar Links -->
                     <div class="sidebar-link col-disable">
                         <!-- Search Box -->
                         <div class="search">
-                            <form>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Text to search">
-                                    <span class="input-group-btn">
-                                        <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div>
-                            </form>
                         </div>
                         <ul class="list-unstyled">
                             <li><a href="index.html" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
@@ -62,7 +60,7 @@
                 </div>
                 <div class="list-lowongan">
                     <%                        // cetak setiap detil lowongan 
-                        for (Lowongan l : result) {
+                        for (Lowongan l : lwgs) {
                     %>
                     <div class="item-lowongan">
                         <div class="row">
@@ -76,11 +74,8 @@
                                 <div class="deskripsi-lowongan">
                                     <p><%=l.getDeskripsi()%></p>
 
-                                    <form action="lowongan-details.jsp" method="post">
-                                        <input type="hidden" name="id_lowongan" value="<%=l.getId_lowongan()%>">
-                                        <input type="hidden" name="id_organisasi" value="<%=l.getId_organisasi()%>">
-                                        <input class="btn btn-sm btn-danger pull-right" type="submit" value="read more"/> 
-                                    </form>
+                                    <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id="<%=l.getId() %>>read more</a>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -89,11 +84,8 @@
                 </div>
             </div>
         </div>
-        <% } else {
-        %>
         <div class="alert alert-danger">Anda harus login terlebih dahulu untuk melihat konten dari halaman ini.</div>
-        <% }%>
     </div>
 </div>
 
-<%@include file="footer.jsp" %>
+<%@include file="/WEB-INF/footer.jsp" %>

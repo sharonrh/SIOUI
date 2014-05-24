@@ -10,42 +10,11 @@
 <%@page import="org.apache.tomcat.util.http.Cookies"%>
 
 
-<%@include file="header.jsp" %>
+<%@include file="/WEB-INF/header.jsp" %>
 <!-- Slider Start -->
 
 <div class="container">
-    <%
-        String loginStatus = request.getParameter("login");
-        if (loginStatus != null) {
-            if (loginStatus.equals("success")) {
-    %>
-    <div class="alert alert-success">Anda berhasil login</div>
-    <%
-    } else if (loginStatus.equals("fail")) {
-    %>
-    <div class="alert alert-danger">Username atau password salah</div>
-    <%
-    } else if (loginStatus.equals("dologout")) {
-        session.setAttribute("currentUser", null);
-        response.sendRedirect("index.jsp?login=logout");
-    } else if (loginStatus.equals("logout")) {%>
-    <div class="alert alert-success">Anda berhasil logout.</div>
-    <%}
-        }
-        Cookie[] cl = request.getCookies();
-        Cookie recentCookie;
-        Lowongan l = null;
-        LowonganModel lm = new LowonganModel();
-
-        if (cl != null) {
-            for (Cookie c : cl) {
-                if (c.getName().equals("recent_" + session.getAttribute("currentUser"))) {
-                    recentCookie = c;
-                    String[] s = recentCookie.getValue().split("_");
-                    l = lm.select(s[0], s[1]);
-                }
-            }
-        }%>
+    <% %>
     <!--
     #################################
             - THEMEPUNCH BANNER -
@@ -98,26 +67,19 @@
                         <p>Lihat lowongan-lowongan baru yang butuh kontribusimu. Buruan daftar!</p>
                         <!-- Box Service List -->
                         <ul class="list-unstyled">
-                            <%
-                                ArrayList<Lowongan> newestLowonganList = lm.getLowonganBaru(2);
-                                for (Lowongan low : newestLowonganList) {
-                            %>
                             <div class="lowongan-home">
-                                <li><i class="fa fa-check-square-o"></i> <b><%= low.getJudul()%></b> </li>
-                                    <p><%= low.getDeskripsi()%>  
-                                        <a href="lowongan-details.jsp?id_organisasi=<%=low.getId_organisasi()%>&id_lowongan=<%=low.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs" > read more<i class="fa fa-angle-right"></i></a>
+                                <li><i class="fa fa-check-square-o"></i> <b></b> </li>
+                                    <p>
+                                        <a href="lowongan-details.jsp?id_organisasi=&id_lowongan=" class="btn btn-warning pull-right btn-xs" > read more<i class="fa fa-angle-right"></i></a>
                                     </p>
                               
                             </div>
                             <hr>
-                            <%}%>
                         </ul>
                     </div>
                 </div>
             </div>
-            <%                // jika user belum login
-                if (session.getAttribute("currentUser") == null) {
-            %>
+                        
             <div class="col-md-4 col-sm-4">
 
                 <!-- Box Outer Layer [ Box 15 ] -->
@@ -126,7 +88,7 @@
                         <!-- Heading -->
                         <h4><i class="fa fa-sign-in"></i> User Login</h4>
                         <!-- Sign in Form Start -->
-                        <form class="form-horizontal" role="form" method="POST" action="LoginServlet">
+                        <form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath() %>/dologin">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                             </div>
@@ -158,8 +120,6 @@
                 </div>
             </div>
         </div>
-        <%} // jika user sudah login
-        else {%>
         <div class="box box-lg br-orange animated">
             <div class="box-content box-service-counter box-default">
                 <!-- Heading -->
@@ -169,29 +129,21 @@
                         <!-- Box Outer Layer [ Box 3 ] -->
                         <div class="box-content box-service box-default">
                             <ul class="list-unstyled">
-                                <%
-                                    // jika ada lowongan yang tersimpan dalam cookies, tampilkan                
-                                    if (l != null) {%>
                                 <div class="lowongan-home">
-                                    <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul()%></b></li>
+                                    <li><i class="fa fa-check-square-o"></i> <b></b></li>
                                     <p>
-                                        <%=l.getDeskripsi()%>
-                                        <a href="lowongan-details.jsp?id=<%=l.getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
+                                        
+                                        <a href="lowongan-details.jsp?id=" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
                                     </p>	
                                 </div>
                                 <hr>
-                                <%
-                                    // jika belum ada lowongan yang dilihat / tersimpan dalam cookies                                 
-                                } else {%>
                                 <p>Anda belum melihat lowongan sama sekali.</p>
-                                <%}%>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div></div>
-        <%}%>
     <!-- Box First Row -->
     <div class="row">
         <div class="col-md-4 col-sm-6">
@@ -343,4 +295,4 @@
             </div>
         </div>
     </div>
-    <%@include file="footer.jsp" %>
+    <%@include file="/WEB-INF/footer.jsp" %>

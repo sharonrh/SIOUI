@@ -46,15 +46,41 @@ public class LowonganModel extends Model {
         }
         return null;
     }
-
-    public Lowongan select(String username) {
+    
+    public ArrayList<Lowongan> selectMultipleByOrganizationID(String idOrg) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE uername='" + username +"'";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_organisasi=" + idOrg;
+        ArrayList<Lowongan> result = new ArrayList<Lowongan>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+                Lowongan lw = new Lowongan(res.getInt("id"), res.getString("username"),
+                        res.getInt("kapasitas"),
+                        res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
+                        res.getString("judul"), res.getString("jabatan"),
+                        res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
+                        res.getString("kategori"), res.getString("deskripsi"),
+                        res.getString("created_at"),res.getString("updated_at"));
+                result.add(lw);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
+    public Lowongan select(String id) {
+        super.openConnection();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id=" + id;
         Lowongan a = null;
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            Lowongan lw = new Lowongan(res.getInt("id"), res.getString("username"),
+            Lowongan lw = new Lowongan(res.getInt("id"), res.getString("id_organisasi"),
                         res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
                         res.getString("judul"), res.getString("jabatan"),

@@ -20,6 +20,12 @@ public class UserModel extends Model {
 
     private final String TABLE_NAME = "user";
 
+    
+    public boolean doLogin(String username, String password){
+        return tryLogin(username, password);
+    }
+    
+    
     /**
      * Untuk ambil user dengan id tertentu
      *
@@ -90,5 +96,11 @@ public class UserModel extends Model {
             }
         }
         return false;
+    }
+
+    private static boolean tryLogin(java.lang.String username, java.lang.String password) {
+        ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
+        ws.SivimuWebService port = service.getSivimuWebServicePort();
+        return port.tryLogin(username, password);
     }
 }

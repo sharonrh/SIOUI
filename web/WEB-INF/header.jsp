@@ -12,23 +12,23 @@
 
         <!-- Styles -->
         <!-- Bootstrap CSS -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
         <!-- Animate CSS -->
-        <link href="css/animate.min.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/animate.min.css" rel="stylesheet">
         <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
-        <link href="css/settings.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/settings.css" rel="stylesheet">
         <!--[if IE ]><link rel="stylesheet" href="css/settings-ie8.css"><![endif]-->
         <!-- Portfolio CSS -->
-        <link href="css/prettyPhoto.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/prettyPhoto.css" rel="stylesheet">
         <!-- Countdown CSS -->
-        <link href="css/jquery.countdown.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/jquery.countdown.css" rel="stylesheet">
         <!-- Font awesome CSS -->
-        <link href="css/font-awesome.min.css" rel="stylesheet">		
+        <link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet">		
         <!-- Custom CSS -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 
         <link href="css/style-joef.css" rel="stylesheet">
-        <!--[if IE]><link rel="stylesheet" href="css/ie-style.css"><![endif]-->
+        <!--[if IE]><link rel="stylesheet" href="<%=request.getContextPath()%>/css/ie-style.css"><![endif]-->
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="#">
@@ -116,14 +116,14 @@
                                                 if (session.getAttribute("currentUser") == null) {
                                             %>
                                             <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle br-pink" data-toggle="dropdown">
+                                                <a href="" class="dropdown-toggle br-pink" data-toggle="dropdown">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-unlock link-icon"></i>
                                                     <!-- Link Title -->
                                                     <span class="link-title">Login <b class="fa fa-angle-down"></b></span> 
                                                 </a>
                                                 <ul class="dropdown-menu dropdown-default dropdown-login">
-                                                    <form class="form login-nav-form" role="form" method="POST" action="LoginServlet">
+                                                    <form class="form login-nav-form" role="form" method="POST" action="<%=request.getContextPath()%>/login/dologin">
                                                         <div class="form-group">
                                                             <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                                                         </div>
@@ -168,7 +168,7 @@
                                                 </ul>
                                             </li>
                                             <li class="dropdown">
-                                                <a href="index.jsp?login=dologout" class="dropdown-toggle br-black">
+                                                <a href="<%=request.getContextPath()%>/login/dologout" class="dropdown-toggle br-black">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-unlock link-icon"></i>
                                                     <!-- Link Title -->
@@ -192,6 +192,9 @@
                                                                     <h4 class="br-green"><i class="fa fa-filter heading-icon"></i> UKM</h4>
                                                                     <!-- Paragraph -->
                                                                     <p>Unit Kegiatan Mahasiswa merupakan organisasi tetap yang terbuka untuk seluruh mahasiswa Universitas Indonesia.</p>
+                                                                    <div class="view-button">
+                                                                        <a href="<%=request.getContextPath() %>/explore/showlistorg?jenis=ukm" class="btn btn-danger btn-sm">Lihat Daftar UKM <i class="fa fa-angle-right"></i></a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-4">
@@ -202,7 +205,7 @@
                                                                     <p>Unit Kegiatan Fakultas merupakan organisasi tetap yang dikhususkan untuk mahasiswa Fakultas Ilmu Komputer UI.</p>
                                                                     <!-- View Next Button -->
                                                                     <div class="view-button">
-                                                                        <a href="list-lowongan.jsp" class="btn btn-danger btn-sm">Lihat Daftar Lowongan <i class="fa fa-angle-right"></i></a>
+                                                                        <a href="<%=request.getContextPath() %>/explore/showlistorg?jenis=ukf" class="btn btn-danger btn-sm">Lihat Daftar UKF <i class="fa fa-angle-right"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -212,6 +215,9 @@
                                                                     <h4 class="br-blue"><i class="fa fa-filter heading-icon"></i> Event</h4>
                                                                     <!-- Paragraph -->
                                                                     <p>Event merupakan organisasi yang dikhususkan untuk pelaksanaan suatu event tertentu.</p>
+                                                                    <div class="view-button">
+                                                                        <a href="<%=request.getContextPath() %>/explore/showlistorg?jenis=event" class="btn btn-danger btn-sm">Lihat Daftar Event <i class="fa fa-angle-right"></i></a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -105,36 +105,36 @@
 
 <!-- Javascript files -->
 <!-- jQuery -->
-<script src="js/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.js"></script>
 <!-- Bootstrap JS -->
-<script src="js/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
-<script type="text/javascript" src="js/jquery.themepunch.plugins.min.js"></script>
-<script type="text/javascript" src="js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.themepunch.plugins.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.themepunch.revolution.min.js"></script>
 <!-- Masonry JS -->
-<script src="js/masonry.pkgd.min.js"></script>
-<script src="js/imagesloaded.pkgd.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/masonry.pkgd.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/imagesloaded.pkgd.min.js"></script>
 <!-- Cycle JS -->
-<script type="text/javascript" src="js/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.cycle.all.js"></script>
 <!-- jQuery flot -->
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/excanvas.min.js"></script><![endif]-->
-<script src="js/jquery.flot.min.js"></script>     
-<script src="js/jquery.flot.resize.min.js"></script>
+<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="<%=request.getContextPath()%>/js/excanvas.min.js"></script><![endif]-->
+<script src="<%=request.getContextPath()%>/js/jquery.flot.min.js"></script>     
+<script src="<%=request.getContextPath()%>/js/jquery.flot.resize.min.js"></script>
 <!-- Count To JS  -->
-<script src="js/jquery.countTo.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.countTo.js"></script>
 <!-- jQuery way points -->
-<script src="js/waypoints.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/waypoints.min.js"></script>
 <!-- jQuery prettyPhoto & Isotope -->
-<script src="js/jquery.prettyPhoto.js"></script>
-<script src="js/isotope.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.prettyPhoto.js"></script>
+<script src="<%=request.getContextPath()%>/js/isotope.js"></script>
 <!-- Jquery for Countdown  -->
-<script type="text/javascript" src="js/jquery.countdown.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.countdown.min.js"></script>
 <!-- Respond JS for IE8 -->
-<script src="js/respond.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/respond.min.js"></script>
 <!-- HTML5 Support for IE -->
-<script src="js/html5shiv.js"></script>
+<script src="<%=request.getContextPath()%>/js/html5shiv.js"></script>
 <!-- Custom JS -->
-<script src="js/custom.js"></script>
+<script src="<%=request.getContextPath()%>/js/custom.js"></script>
 <!-- This Page JavaScript -->
 <script type="text/javascript" >
 
