@@ -8,7 +8,7 @@ package object;
 
 /**
  *
- * @author Johanes
+ * @author ACER
  */
 public class User {
     private String username;
@@ -35,5 +35,8 @@ public class User {
         this.password = password;
     }
     
-    
+    @Override
+    public String toString(){
+        return username;        
+    }           
 }

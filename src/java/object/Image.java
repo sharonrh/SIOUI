@@ -3,72 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package object;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+package object;
 
 /**
  *
  * @author Johanes
  */
-public class Album {
-
+public class Image {
     private String id;
-    private String id_organisasi;
+    private String id_album;
     private String name;
     private String description;
     private String created_at;
     private String updated_at;
-    private List<Image> images = new ArrayList<Image>();
 
-    public Album(String id, String id_organisasi, String name, String description, String created_at, String updated_at) {
+    public Image(String id_album, String name, String description) {
+        this.id_album = id_album;
+        this.name = name;
+        this.description = description;
+    }
+
+    public Image(String id, String id_album, String name, String description, String created_at, String updated_at) {
         this.id = id;
-        this.id_organisasi = id_organisasi;
+        this.id_album = id_album;
         this.name = name;
         this.description = description;
         this.created_at = created_at;
         this.updated_at = updated_at;
-    }
-
-    public Album(String id_organisasi, String name, String description) {
-        this.id = id;
-        this.id_organisasi = id_organisasi;
-        this.name = name;
-        this.description = description;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
-
-    public Album() {
-    }
-
-    public Image getRandomImage() {
-        Random r = new Random();
-        if (images.size() > 0) {
-            return images.get(r.nextInt(images.size()));
-        } else {
-            return null;
-        }
-    }
-
-    public void addImage(Image img) {
-        images.add(img);
-    }
-
-    public List<Image> getImages() {
-        return images;
     }
     
-    public void deleteImage(String idImg){
-        for(int i=0;i<images.size();i++){
-            if(images.get(i).getId().equals(idImg)){
-                images.remove(i);
-                break;
-            }
-        }
-    }
+    
 
     public String getId() {
         return id;
@@ -78,12 +43,12 @@ public class Album {
         this.id = id;
     }
 
-    public String getId_organisasi() {
-        return id_organisasi;
+    public String getId_album() {
+        return id_album;
     }
 
-    public void setId_organisasi(String id_organisasi) {
-        this.id_organisasi = id_organisasi;
+    public void setId_album(String id_album) {
+        this.id_album = id_album;
     }
 
     public String getName() {
@@ -117,5 +82,6 @@ public class Album {
     public void setUpdated_at(String updated_at) {
         this.updated_at = updated_at;
     }
-
+    
+    
 }
