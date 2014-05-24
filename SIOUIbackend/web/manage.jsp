@@ -18,34 +18,36 @@
     <%=request.getAttribute("alertContent")%>
 </div>
 
-<div class="col-lg-12"> 
-    <table class="table table-hover table-striped">
-        <thead>    
-        <th> # </th>
-        <th> Username </th>
-        <th> Nama Organisasi </th>
-        <th> Deskripsi </th>
-        <th> Action </th>
-        </thead>      
+<div class="container">
+    <div class="col-lg-12"> 
+        <table class="table table-hover table-striped">
+            <thead>    
+            <th> # </th>
+            <th> Username </th>
+            <th> Nama Organisasi </th>
+            <th> Deskripsi </th>
+            <th> Action </th>
+            </thead>      
 
-        <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
-            for (Organisasi a : listOrganisasi) {
-        %>
+            <% ArrayList<Organisasi> listOrganisasi = (ArrayList<Organisasi>) request.getAttribute("listOrganisasi");
+                for (Organisasi a : listOrganisasi) {
+            %>
 
-        <tr>
-            <td> <%= a.getId()%> </td>
-            <td> <%= a.getUsername()%> </td>
-            <td> <%= a.getNama_panjang()%> </td>
-            <td> <%= a.getDeskripsi()%> </td>
-            <td> 
-                <form method="post" action="manage/delete">
-                    <button class="hapus btn btn-default btn-danger" type="submit">Delete</button>
-                    <input type="hidden" name="del_id" value="<%=a.getUsername()%>">                                
-                </form>
-            </td>
-        </tr>
-        <%}%>
-    </table>
+            <tr>
+                <td> <%= a.getId()%> </td>
+                <td> <%= a.getUsername()%> </td>
+                <td> <%= a.getNama_panjang()%> </td>
+                <td> <%= a.getDeskripsi()%> </td>
+                <td> 
+                    <form method="post" action="manage/delete">
+                        <button class="hapus btn btn-default btn-danger" type="submit">Delete</button>
+                        <input type="hidden" name="del_id" value="<%=a.getUsername()%>">                                
+                    </form>
+                </td>
+            </tr>
+            <%}%>
+        </table>
+    </div>
 </div>
 <script>
     $(document).ready(function() {
@@ -57,5 +59,4 @@
 
     });
 </script>
-</body>
-</html>
+<%@include file="/WEB-INF/footer.jspf" %>

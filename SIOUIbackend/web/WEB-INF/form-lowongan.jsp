@@ -10,13 +10,12 @@
 <!DOCTYPE html>
 <%String activePage="Lowongan";%>
 <%@include file="/WEB-INF/header.jspf" %>
+
 <div class="title">
     Detail Lowongan
 </div>
-<div class="alert-info">
-</div>
+
 <%
-    //Organization org = (Organization) request.getAttribute("organization");
     Lowongan lw = (Lowongan) request.getAttribute("detailLowongan");
     String status = request.getAttribute("status").toString();
     out.println(status);
@@ -29,35 +28,35 @@
         %>
         <label for="Jabatan" class="col-sm-2 control-label">Jabatan</label>
         <div class="col-sm-3">
-            <input name="jabatan" type="text" class="form-control" id="jabatan" value="<%if (lw.getJabatan()!= null) {
+            <input required name="jabatan" type="text" class="form-control" id="jabatan" value="<%if (lw.getJabatan()!= null) {
                     out.print(lw.getJabatan());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Judul</label>
         <div class="col-sm-3">
-            <input name="judul" type="text" class="form-control" id="judul" value="<%if (lw.getJudul() != null) {
+            <input required name="judul" type="text" class="form-control" id="judul" value="<%if (lw.getJudul() != null) {
                     out.print(lw.getJudul());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Kapasitas</label>
         <div class="col-sm-8">
-            <input name="kapasitas" type="number" class="form-control" id="kapasitas" value="<%if (lw.getKapasitas() != 0) {
+            <input required name="kapasitas" type="number" class="form-control" id="kapasitas" value="<%if (lw.getKapasitas() != 0) {
                     out.print(lw.getKapasitas());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Tanggal Buka</label>
         <div class="col-sm-3">
-            <input name="tanggal_buka" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_buka" value="<%if (lw.getTanggal_buka() != null) {
+            <input required name="tanggal_buka" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_buka" value="<%if (lw.getTanggal_buka() != null) {
                     out.print(lw.getTanggal_buka());}%>">
         </div>
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Tanggal Buka</label>
         <div class="col-sm-3">
-            <input name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
+            <input required name="tanggal_tutup" type="datetime" pattern="(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})" class="form-control" id="tanggal_tutup" value="<%if (lw.getTanggal_tutup() != null) {
                 out.print(lw.getTanggal_tutup());}%>" required/>
         </div>
     </div>

@@ -18,35 +18,36 @@
 <div class="alert <%=request.getAttribute("alertType")%>">
     <%=request.getAttribute("alertContent")%>
 </div>
+<div class="container">
+    <div class="col-lg-12"> 
+        <table class="table table-hover table-striped">
+            <thead>    
+            <th> # </th>
+            <th> Username </th>
+            <th> Nama Panjang </th>
+            <th> Deskripsi </th>
+            <th> Tanggal Pengajuan </th>
+            <th> Action </th>
+            </thead>      
 
-<div class="col-lg-12"> 
-    <table class="table table-hover table-striped">
-        <thead>    
-        <th> # </th>
-        <th> Username </th>
-        <th> Nama Panjang </th>
-        <th> Deskripsi </th>
-        <th> Tanggal Pengajuan </th>
-        <th> Action </th>
-        </thead>      
+            <% ArrayList<Permohonan> listPermohonan = (ArrayList<Permohonan>) request.getAttribute("listPermohonan");
+                for (Permohonan a : listPermohonan) {
+            %>
 
-        <% ArrayList<Permohonan> listPermohonan = (ArrayList<Permohonan>) request.getAttribute("listPermohonan");
-            for (Permohonan a : listPermohonan) {
-        %>
-
-        <tr>
-            <td> <%= a.getId()%> </td>
-            <td> <%= a.getUsername()%> </td>
-            <td> <%= a.getNama_panjang()%> </td>
-            <td> <%= a.getDeskripsi()%> </td>
-            <td> not implemented </td>
-            <td> 
-                <a href="pending/permit?act=approve&id=<%= a.getId()%>" class="btn btn-default btn-success">Approve</a>
-                <a href="pending/permit?act=reject&id=<%= a.getId()%>" class="hapus btn btn-default btn-danger">Reject</a>                               
-            </td>
-        </tr>
-        <%}%>
-    </table>
+            <tr>
+                <td> <%= a.getId()%> </td>
+                <td> <%= a.getUsername()%> </td>
+                <td> <%= a.getNama_panjang()%> </td>
+                <td> <%= a.getDeskripsi()%> </td>
+                <td> not implemented </td>
+                <td> 
+                    <a href="pending/permit?act=approve&id=<%= a.getId()%>" class="btn btn-default btn-success">Approve</a>
+                    <a href="pending/permit?act=reject&id=<%= a.getId()%>" class="hapus btn btn-default btn-danger">Reject</a>                               
+                </td>
+            </tr>
+            <%}%>
+        </table>
+    </div>
 </div>
 <script>
     $(document).ready(function() {
@@ -58,5 +59,4 @@
 
     });
 </script>
-</body>
-</html>
+<%@include file="/WEB-INF/footer.jspf" %>

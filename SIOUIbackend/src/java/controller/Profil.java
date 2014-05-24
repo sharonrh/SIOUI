@@ -82,7 +82,6 @@ public class Profil extends HttpServlet {
                 view.forward(request, response);
             } else if (userPath.equals("/profil/edit")) {
                 int idOrganisasi = 1;
-                System.out.println(userPath);
                 String namaPanjang = request.getParameter("nama_panjang");
                 String namaPendek = request.getParameter("nama_pendek");
                 String deskripsi = request.getParameter("deskripsi");
@@ -125,7 +124,6 @@ public class Profil extends HttpServlet {
                 Organisasi org = om.selectFromId(user.getUsername());
                 request.setAttribute("organization", (Object) org);
                 request.setAttribute("alertVisible", "visible");
-
             }
         }
     }

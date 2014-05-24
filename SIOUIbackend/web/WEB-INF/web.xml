@@ -31,6 +31,10 @@
     <servlet>
         <servlet-name>SusunanOrganisasi</servlet-name>
         <servlet-class>controller.SusunanOrganisasi</servlet-class>
+	</servlet>
+	<servlet>
+        <servlet-name>PelamarController</servlet-name>
+        <servlet-class>controller.PelamarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Profil</servlet-name>
@@ -102,6 +106,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Lowongan</servlet-name>
+        <url-pattern>/lowongan/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Lowongan</servlet-name>
         <url-pattern>/lowongan/form</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -135,7 +143,11 @@
     <servlet-mapping>
         <servlet-name>Manage</servlet-name>
         <url-pattern>/pending/permit</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> 
+     <servlet-mapping>
+        <servlet-name>PelamarController</servlet-name>
+        <url-pattern>/daftar-pelamar</url-pattern>
+    </servlet-mapping>  
     <welcome-file-list>
         <welcome-file>login</welcome-file>
     </welcome-file-list>
