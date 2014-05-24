@@ -55,7 +55,6 @@ public class StorageManager {
         // Create path components to save the file
         final Part filePart = request.getPart(namaElemenForm);
         final String fileName = getFileName(filePart);
-
         if (fileName.equals("")) {
             return UPLOAD_FAILED_FILE_NOT_FOUND;
         }
@@ -68,6 +67,7 @@ public class StorageManager {
         InputStream filecontent = null;
         //cek file type
         String fileType = fileName.split("\\.")[fileName.split("\\.").length - 1];
+        System.out.println("tipe:"+fileType);
         boolean ada = false;
         for (String s : expectedFileType) {
             if (s.equalsIgnoreCase(fileType)) {
@@ -80,9 +80,10 @@ public class StorageManager {
 
         try {
             File file = new File(path);
-            file.mkdirs();            
-            
-            out = new FileOutputStream(new File(path + File.separator + fileName));
+            file.mkdirs();
+            System.out.println("path:"+ path);
+            String newName = file.listFiles().length + "." + fileType;
+            out = new FileOutputStream(new File(path + File.separator + newName));
             filecontent = filePart.getInputStream();
 
             int read = 0;
@@ -92,7 +93,7 @@ public class StorageManager {
                 out.write(bytes, 0, read);
             }
             //jika sampai sini, upload berhasil
-            return StorageManager.UPLOAD_SUCCESS;
+            return newName;
         } catch (FileNotFoundException fne) {
             //tidak ada file yang mau di upload
             //lokasi file ditaruh tidak ada

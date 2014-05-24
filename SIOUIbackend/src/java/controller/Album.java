@@ -117,7 +117,7 @@ public class Album extends HttpServlet {
                     String[] expectedFileType = new String[]{"jpg", "png", "jpeg", "gif"};
                     String returnValue = "";
                     try {
-
+                        fileName = storageManager.getFileName("file_gambar", request);
                         String uploadStatus = storageManager.writeFile("C:\\SIOUI_DATA\\Album\\" + a.getId_organisasi() + "\\" + a.getId() + "\\", "file_gambar", request, expectedFileType, 5 * 1024);
                         if (uploadStatus.equals(StorageManager.UPLOAD_FAILED_WRONG_FILE_TYPE)) {
                             returnValue = "wrong_file_type";
@@ -130,7 +130,7 @@ public class Album extends HttpServlet {
                             throw new Exception();
                         }
 
-                        object.Image img = new object.Image(id, fileName, request.getParameter("deskripsi"));
+                        object.Image img = new object.Image(id, uploadStatus, request.getParameter("deskripsi"));
                         a.addImage(img);
                         gm.updateAlbum(a);
 

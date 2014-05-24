@@ -107,7 +107,7 @@ public class GalleryModel extends Model {
             }
         }
     }
-
+    
     private void insertImage(Image img) {
         super.openConnection();
         String query;
@@ -164,7 +164,7 @@ public class GalleryModel extends Model {
             closeConnection();
         }
     }
-
+    
     public void deleteImage(String id) {
         String query = "DELETE FROM " + IMAGE_TABLE_NAME + " WHERE id=" + id;
         super.openConnection();
