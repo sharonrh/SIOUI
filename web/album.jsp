@@ -60,7 +60,7 @@
                         <ul class="list-unstyled">
                             <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
                             <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>#oprec" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?=<%=org.getId()%>#strukturid" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>#strukturid" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
                             <li><a href="<%=request.getContextPath()%>/explore/showalbums?id=<%=org.getId()%>" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
                         </ul>
                     </div>
@@ -121,6 +121,8 @@
                             <div class="caption">
                                 <h3><% out.print(albums.get(i).getName());%></h3>
                             </div>
+                            <a href="<%= request.getContextPath()%>/explore/showalbums?id=<%=org.getId()%>&idalbum=<%=albums.get(i).getId()%>" class="btn btn-xs btn-success" role="button">Preview</a>  
+                    
                         </div>
                     </div>
                     <%

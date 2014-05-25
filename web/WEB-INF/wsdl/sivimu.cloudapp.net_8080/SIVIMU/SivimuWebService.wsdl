@@ -10,6 +10,12 @@
 <message name="getCategoryResponse">
 <part name="parameters" element="tns:getCategoryResponse" />
 </message>
+<message name="getCVObject">
+<part name="parameters" element="tns:getCVObject" />
+</message>
+<message name="getCVObjectResponse">
+<part name="parameters" element="tns:getCVObjectResponse" />
+</message>
 <message name="getRecommendedUser">
 <part name="parameters" element="tns:getRecommendedUser" />
 </message>
@@ -51,6 +57,10 @@
 <input wsam:Action="http://webservice/SivimuWebService/getCategoryRequest" message="tns:getCategory" />
 <output wsam:Action="http://webservice/SivimuWebService/getCategoryResponse" message="tns:getCategoryResponse" />
 </operation>
+<operation name="getCVObject">
+<input wsam:Action="http://webservice/SivimuWebService/getCVObjectRequest" message="tns:getCVObject" />
+<output wsam:Action="http://webservice/SivimuWebService/getCVObjectResponse" message="tns:getCVObjectResponse" />
+</operation>
 <operation name="getRecommendedUser">
 <input wsam:Action="http://webservice/SivimuWebService/getRecommendedUserRequest" message="tns:getRecommendedUser" />
 <output wsam:Action="http://webservice/SivimuWebService/getRecommendedUserResponse" message="tns:getRecommendedUserResponse" />
@@ -79,6 +89,15 @@
 <binding name="SivimuWebServicePortBinding" type="tns:SivimuWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
 <operation name="getCategory">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getCVObject">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />

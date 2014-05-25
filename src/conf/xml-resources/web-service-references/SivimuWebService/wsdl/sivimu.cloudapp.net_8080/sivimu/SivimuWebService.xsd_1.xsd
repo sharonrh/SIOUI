@@ -14,6 +14,10 @@
 
 <xs:element name="getCV" type="tns:getCV" />
 
+<xs:element name="getCVObject" type="tns:getCVObject" />
+
+<xs:element name="getCVObjectResponse" type="tns:getCVObjectResponse" />
+
 <xs:element name="getCVResponse" type="tns:getCVResponse" />
 
 <xs:element name="getCategory" type="tns:getCategory" />
@@ -150,13 +154,13 @@
 
 <xs:complexType name="getCV">
 <xs:sequence>
-<xs:element name="cv_id" type="xs:string" minOccurs="0" />
+<xs:element name="arg0" type="xs:string" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getCVResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:UserCV" minOccurs="0" />
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
@@ -169,6 +173,18 @@
 <xs:complexType name="getAllWorkExperienceResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:WorkExperience" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCVObject">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCVObjectResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:UserCV" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

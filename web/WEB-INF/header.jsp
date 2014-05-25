@@ -49,7 +49,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <!-- Social Media -->
                                 <div class="social">
-                                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="http://www.facebook.com/moelolieverywhere" class="facebook"><i class="fa fa-facebook"></i></a>
                                     <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
                                     <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
                                     <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
@@ -72,7 +72,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <!-- Contact Info -->
                                 <div class="contact-info">
-                                    <span><i class="fa fa-phone br-lblue"></i> <strong>+91 234 - 234 - 3231</strong></span>
+                                    <span><i class="fa fa-phone br-lblue"></i> <strong>0812 816 2864</strong></span>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav navbar-right">
                                             <li>
-                                                <a href="index.jsp" class="br-orange">
+                                                <a href="<%=request.getContextPath()%>" class="br-orange">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-home link-icon"></i>
                                                     <!-- Link Title -->
@@ -161,9 +161,7 @@
                                                                         <li><a href="#"><span class="number-notif"><%=nb.getCloseRec().size() %></span> Close Recruitment</a></li>
                                                                         <li><a href="#"><span class="number-notif"><%=nb.getPendaftaranku().size() %></span> Pendaftaranku</a></li>
                                                                     </ul>
-
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                     </li>

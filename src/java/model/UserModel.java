@@ -109,15 +109,16 @@ public class UserModel extends Model {
         return port.tryLogin(username, password);
     }
 
-    private static UserCV getCV(java.lang.String cvId) {
-        ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
-        ws.SivimuWebService port = service.getSivimuWebServicePort();
-        return port.getCV(cvId);
-    }
-
     private static java.util.List<ws.UserCV> getAllCV(java.lang.String username) {
         ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
         ws.SivimuWebService port = service.getSivimuWebServicePort();
         return port.getAllCV(username);
     }
+
+    private static UserCV getCVObject(int cvId) {
+        ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
+        ws.SivimuWebService port = service.getSivimuWebServicePort();
+        return port.getCVObject(cvId);
+    }
+
 }
