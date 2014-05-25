@@ -145,7 +145,7 @@
                                                     NotifBean nb = (NotifBean)session.getAttribute(username+"_notif");
                                             %>
                                             <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle br-purple" data-toggle="dropdown">
+                                                <a href="<%=request.getContextPath()%>" class="dropdown-toggle br-purple" data-toggle="dropdown">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-dashboard link-icon"></i>
                                                     <!-- Link Title -->
@@ -177,7 +177,7 @@
                                             </li>
                                             <%}%>
                                             <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle br-lblue" data-toggle="dropdown">
+                                                <a class="dropdown-toggle br-lblue" data-toggle="dropdown">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-group link-icon"></i>
                                                     <!-- Link Title -->

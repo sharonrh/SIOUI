@@ -57,7 +57,9 @@ public class LoginController extends HttpServlet {
                 response.sendRedirect("/login.jsp?status=fail");
             }
         }else if(userPath.equals("/login/dologout")){
-            
+            HttpSession session = request.getSession(true);
+            session.setAttribute("currentUser", null);
+            response.sendRedirect(request.getContextPath()+"/index.jsp?logout=true");
         }
     }
 

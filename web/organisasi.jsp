@@ -69,7 +69,7 @@
                                         <!-- Box Icon -->
                                         <img class="logo-org-sm" src="<%
                                             if (org.getLogo() != null) {
-                                                out.print("\\ImageLogo?id=" + org.getId() + "\\" + org.getLogo());
+                                                out.print(request.getContextPath()+"/ImageLogo?id=" + org.getId() + "/" + org.getLogo());
                                             }
                                              %>" width="140"/>
                                         <!-- Box Title -->
