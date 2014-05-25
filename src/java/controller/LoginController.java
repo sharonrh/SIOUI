@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
             if(isValid){
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentUser", request.getParameter("username"));
-                RequestDispatcher view = request.getRequestDispatcher("dashboard.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("/SIOUI/index.jsp");
                 view.forward(request, response);
             }else{
                 response.sendRedirect("/login.jsp?status=fail");

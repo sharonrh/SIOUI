@@ -9,6 +9,8 @@
 
 <%
     Object objOrgs = request.getAttribute("orgs");
+    String judul = request.getAttribute("judul").toString();
+    String detail = request.getAttribute("detail").toString();
     ArrayList<Organisasi> orgs = ((objOrgs != null) ? (ArrayList<Organisasi>) objOrgs : null);
 %>
 
@@ -21,9 +23,11 @@
                     <!-- Page Title -->
                     <div class="page-title br-green">
                         <!-- Inner Page Title // Heading -->
-                        <h2>Eksplorasi</h2>
+                        <h2><%=judul%></h2>
                         <!-- Paragraph -->
-                        <p>Roosevelt accusal et gusto sod pianist moss dulcimers blandish desideratum voluptuary lenitive.</p>
+                        <p>
+                            <%=detail%>
+                        </p>
                     </div>
                     <!-- Sidebar Links -->
                     <div class="sidebar-link col-disable">

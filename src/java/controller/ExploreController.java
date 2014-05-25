@@ -47,11 +47,25 @@ public class ExploreController extends HttpServlet {
         } else if (userPath.equals("/explore/showlistorg")) {
             Object objJenis = request.getParameter("jenis");
             if (objJenis == null) {
-                //redirect here
+                response.sendRedirect("index.jsp");
             }
             String jenis = objJenis.toString();
             List<Organisasi> orgs = om.selectByJenis(jenis);
             request.setAttribute("orgs", orgs);
+            String detail ="";
+            String judul ="";
+            if(request.getParameter("jenis").equals("ukm")){
+                judul = "UKM";
+                detail = "Organisasi tetap yang terbuka untuk seluruh mahasiswa Universitas Indonesia.";
+            } else if(request.getParameter("jenis").equals("ukf")){
+                judul = "UKF";
+                detail = "Organisasi tetap yang dikhususkan untuk mahasiswa fakultas tertentu.";
+            } else if(request.getParameter("jenis").equals("event")){
+                judul = "Event";
+                detail = "Organisasi yang dikhususkan untuk pelaksanaan suatu event tertentu.";
+            }
+            request.setAttribute("judul", judul);
+            request.setAttribute("detail", detail);
             RequestDispatcher view = request.getRequestDispatcher("/organisasi.jsp");
             view.forward(request, response);
 

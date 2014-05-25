@@ -157,7 +157,7 @@
                             <span class="hover-icon">GO</span>
                         </div>
                         <!-- Box Link -->
-                        <a href="#">
+                        <a href="about-us.jsp">
                             <!-- Box Link Content -->
                             <div class="box-content navigation">
                                 <!-- Box Icon -->
