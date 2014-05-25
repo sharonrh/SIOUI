@@ -107,7 +107,29 @@ public class UserController extends HttpServlet {
             String idcv = request.getParameter("cvs");
             String idlw = request.getParameter("idlw");
             
+            pm.insertPelamarWait(Integer.parseInt(idlw), user, idcv);
             
+            ArrayList<Organisasi> orgs = om.selectAll();
+            Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
+            for(Organisasi org:orgs){
+                tableOrgs.put(org.getId(), org);
+            }
+            ArrayList<Lowongan> lwgs = lm.selectAll();
+            Hashtable<Integer, Lowongan> tableLwgs = new Hashtable<Integer, Lowongan>();
+            for(Lowongan lwg:lwgs){
+                tableLwgs.put(lwg.getId(), lwg);
+            }
+            ArrayList<Pelamar> pelamar = pm.selectAll();
+            Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
+            for(Pelamar plm:pelamar){
+                tablePelamar.put(plm.getId(), plm);
+            }
+            request.setAttribute("tableOrgs", tableOrgs);
+            request.setAttribute("tableLwgs", tableLwgs);
+            request.setAttribute("tablePelamar", tablePelamar);
+            request.setAttribute("notif", "Respon Anda berhasil disimpan. Tunggu konfirmasi dari organisasi yang bersangkutan.");
+            RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
+            view.forward(request, response);
         }
     }
 

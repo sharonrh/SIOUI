@@ -14,6 +14,7 @@
     Object objTableLwgs = request.getAttribute("tableLwgs");
     Object objTableOrgs = request.getAttribute("tableOrgs");
     Object objTablePelamar = request.getAttribute("tablePelamar");
+    Object objNotif = request.getAttribute("notif");
 
     Hashtable<Integer, Lowongan> tableLwgs = ((objTableLwgs != null) ? (Hashtable<Integer, Lowongan>) objTableLwgs : null);
     Hashtable<Integer, Organisasi> tableOrgs = ((objTableOrgs != null) ? (Hashtable<Integer, Organisasi>) objTableOrgs : null);
@@ -48,11 +49,6 @@
                             <div class="search">
                             </div>
                             <ul class="list-unstyled">
-                                <li><a href="" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
                             </ul>
                         </div>
                     </div>
@@ -62,6 +58,7 @@
                         <h3>Dashboard</h3>
                     </div><br>
                     <div class="isi">
+                        <div class="alert alert-success <%if(objNotif==null) out.print("hide");%> "><% if(objNotif!=null) out.print(objNotif.toString()); %></div>
                         <div class="col-md-12 col-sm-12">
                             <!-- Box Outer Layer [ Box 3 ] -->
                             <div class="box box-lg br-red animated" style="height:140px">
