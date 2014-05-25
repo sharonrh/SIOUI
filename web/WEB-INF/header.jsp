@@ -85,7 +85,7 @@
                                 <!-- Logo -->
                                 <div class="logo">
                                     <!-- Heading -->
-                                    <h1><a href="index.jsp"><i class="fa fa-eye-slash br-red"></i> SIOUI</a></h1>
+                                    <h1><a href="<%=request.getContextPath()%>"><i class="fa fa-eye-slash br-red"></i> SIOUI</a></h1>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -227,19 +227,11 @@
 
 
                                             <li>
-                                                <a href="#" class="br-red">
+                                                <a href="about-us.jsp" class="br-red">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-user link-icon"></i>
                                                     <!-- Link Title -->
                                                     <span class="link-title">About</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="br-yellow">
-                                                    <!-- Link Icon -->
-                                                    <i class="fa fa-phone link-icon"></i>
-                                                    <!-- Link Title -->
-                                                    <span class="link-title">Contact</span>
                                                 </a>
                                             </li>
                                         </ul>

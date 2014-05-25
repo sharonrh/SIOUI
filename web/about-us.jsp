@@ -8,10 +8,11 @@
 <!DOCTYPE html>
 <%@include file="/WEB-INF/header.jsp" %>
 <div class="inner-page">
-    <div class="row">
+    <div class="container">
+        <div class="row">
             <div class="col-md-3">
             </div>
-    <div class="col-md-9">
+            <div class="col-md-9">
                 <div class="page-mainbar aboutus">
                     <!-- About Content -->
                     <div class="aboutus-content">
@@ -63,5 +64,7 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </div>
 <%@include file="/WEB-INF/footer.jsp" %>

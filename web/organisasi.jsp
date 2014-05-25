@@ -44,11 +44,11 @@
                             </form>
                         </div>
                         <ul class="list-unstyled">
-                            <li><a href="index.html" class="animated">UKM <i class="fa fa-angle-double-right"></i></a>
+                            <li><a href="<%=request.getContextPath() %>/explore/showlistorg?jenis=ukm" class="animated">UKM <i class="fa fa-angle-double-right"></i></a>
                             </li>
-                            <li><a href="aboutus.html" class="animated">UKF <i class="fa fa-angle-double-right"></i></a>
+                            <li><a href="<%=request.getContextPath() %>/explore/showlistorg?jenis=ukf" class="animated">UKF <i class="fa fa-angle-double-right"></i></a>
                             </li>
-                            <li><a href="feature.html" class="animated">Event <i class="fa fa-angle-double-right"></i></a>
+                            <li><a href="<%=request.getContextPath() %>/explore/showlistorg?jenis=event" class="animated">Event <i class="fa fa-angle-double-right"></i></a>
                             </li>
                         </ul>
                     </div>

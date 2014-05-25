@@ -111,7 +111,7 @@
                             <p>Perekrutan menjadi lebih mudah. </p>
                             <!-- View Next Button -->
                             <div class="view-button">
-                                <a href="daftar-sekarang.jsp" class="btn btn-danger">Daftar <i class="fa fa-angle-right"></i></a>
+                                <a href="<%=request.getContextPath()%>/daftar-organisasi" class="btn btn-danger">Daftar <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                         <!-- Image -->

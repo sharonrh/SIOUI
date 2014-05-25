@@ -12,6 +12,10 @@
         <servlet-name>ExploreController</servlet-name>
         <servlet-class>controller.ExploreController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterController</servlet-name>
+        <servlet-class>controller.RegisterController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -43,6 +47,11 @@
         <url-pattern>/explore/showdetailorg</url-pattern>
         <url-pattern>/explore/showlistlwg</url-pattern>
         <url-pattern>/explore/showdetaillwg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterController</servlet-name>
+        <url-pattern>/daftar-organisasi</url-pattern>
+        <url-pattern>/daftar-organisasi/add</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

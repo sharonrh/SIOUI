@@ -13,13 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.PermohonanModel;
 import model.UserModel;
+import object.User;
 
 /**
  *
  * @author Johanes
  */
-public class LoginController extends HttpServlet {
+public class RegisterController extends HttpServlet {
     UserModel um = new UserModel();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,26 +35,23 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userPath = request.getServletPath();
-        if (userPath.equals("/login")) {
-            String status = request.getParameter("status");
-            if(status!=null){
-                request.setAttribute("notif", "Username atau Password salah.");
-            }
-            
-            RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+        HttpSession session = request.getSession(true);
+        String user = (String) session.getAttribute("currentUser");
+        System.out.println("username: "+ user);
+        if(user == null){
+            response.sendRedirect(request.getContextPath());
+        } else if (userPath.equals("/daftar-organisasi")) {
+            RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/daftar-sekarang.jsp");
             view.forward(request, response);
-        }else if(userPath.equals("/login/dologin")){
-            boolean isValid = um.doLogin(request.getParameter("username"), request.getParameter("password"));
-            if(isValid){
-                HttpSession session = request.getSession(true);
-                session.setAttribute("currentUser", request.getParameter("username"));
-                RequestDispatcher view = request.getRequestDispatcher("dashboard.jsp");
-                view.forward(request, response);
-            }else{
-                response.sendRedirect("/login.jsp?status=fail");
-            }
-        }else if(userPath.equals("/login/dologout")){
-            
+        } else if (userPath.equals("/daftar-organisasi/add")){
+          String username = request.getParameter("username_organisasi");
+          String password = request.getParameter("password");
+          String deskripsi = request.getParameter("deskripsi");
+          String nama_panjang = request.getParameter("nama_panjang");
+          PermohonanModel pm = new PermohonanModel();
+          pm.addPermohonan(user, username, password, nama_panjang, deskripsi);
+          boolean returnValue = true;
+          response.sendRedirect("/daftar-organisasi?success=" + returnValue);
         }
     }
 
