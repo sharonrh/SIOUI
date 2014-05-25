@@ -10,6 +10,12 @@
 <message name="getCategoryResponse">
 <part name="parameters" element="tns:getCategoryResponse" />
 </message>
+<message name="getRecommendedUser">
+<part name="parameters" element="tns:getRecommendedUser" />
+</message>
+<message name="getRecommendedUserResponse">
+<part name="parameters" element="tns:getRecommendedUserResponse" />
+</message>
 <message name="getAllWorkExperience">
 <part name="parameters" element="tns:getAllWorkExperience" />
 </message>
@@ -34,10 +40,20 @@
 <message name="getAllEducationResponse">
 <part name="parameters" element="tns:getAllEducationResponse" />
 </message>
+<message name="getCV">
+<part name="parameters" element="tns:getCV" />
+</message>
+<message name="getCVResponse">
+<part name="parameters" element="tns:getCVResponse" />
+</message>
 <portType name="SivimuWebService">
 <operation name="getCategory">
 <input wsam:Action="http://webservice/SivimuWebService/getCategoryRequest" message="tns:getCategory" />
 <output wsam:Action="http://webservice/SivimuWebService/getCategoryResponse" message="tns:getCategoryResponse" />
+</operation>
+<operation name="getRecommendedUser">
+<input wsam:Action="http://webservice/SivimuWebService/getRecommendedUserRequest" message="tns:getRecommendedUser" />
+<output wsam:Action="http://webservice/SivimuWebService/getRecommendedUserResponse" message="tns:getRecommendedUserResponse" />
 </operation>
 <operation name="getAllWorkExperience">
 <input wsam:Action="http://webservice/SivimuWebService/getAllWorkExperienceRequest" message="tns:getAllWorkExperience" />
@@ -55,10 +71,23 @@
 <input wsam:Action="http://webservice/SivimuWebService/getAllEducationRequest" message="tns:getAllEducation" />
 <output wsam:Action="http://webservice/SivimuWebService/getAllEducationResponse" message="tns:getAllEducationResponse" />
 </operation>
+<operation name="getCV">
+<input wsam:Action="http://webservice/SivimuWebService/getCVRequest" message="tns:getCV" />
+<output wsam:Action="http://webservice/SivimuWebService/getCVResponse" message="tns:getCVResponse" />
+</operation>
 </portType>
 <binding name="SivimuWebServicePortBinding" type="tns:SivimuWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
 <operation name="getCategory">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getRecommendedUser">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />
@@ -95,6 +124,15 @@
 </output>
 </operation>
 <operation name="getAllEducation">
+<soap:operation soapAction="" />
+<input>
+<soap:body use="literal" />
+</input>
+<output>
+<soap:body use="literal" />
+</output>
+</operation>
+<operation name="getCV">
 <soap:operation soapAction="" />
 <input>
 <soap:body use="literal" />

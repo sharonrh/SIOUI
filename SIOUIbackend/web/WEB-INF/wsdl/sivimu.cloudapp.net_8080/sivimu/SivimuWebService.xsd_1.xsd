@@ -12,9 +12,17 @@
 
 <xs:element name="getAllWorkExperienceResponse" type="tns:getAllWorkExperienceResponse" />
 
+<xs:element name="getCV" type="tns:getCV" />
+
+<xs:element name="getCVResponse" type="tns:getCVResponse" />
+
 <xs:element name="getCategory" type="tns:getCategory" />
 
 <xs:element name="getCategoryResponse" type="tns:getCategoryResponse" />
+
+<xs:element name="getRecommendedUser" type="tns:getRecommendedUser" />
+
+<xs:element name="getRecommendedUserResponse" type="tns:getRecommendedUserResponse" />
 
 <xs:element name="tryLogin" type="tns:tryLogin" />
 
@@ -103,6 +111,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getRecommendedUser">
+<xs:sequence>
+<xs:element name="category" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRecommendedUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="tryLogin">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0" />
@@ -113,6 +133,18 @@
 <xs:complexType name="tryLoginResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCV">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCVResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:UserCV" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 

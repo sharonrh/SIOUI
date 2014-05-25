@@ -60,7 +60,8 @@ public class PelamarController extends HttpServlet {
             } else if (userPath.equals("/pelamar/detail")) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 // sementara, ntar ganti dari ws
-                UserCV cv = new UserCV();
+              
+                        UserCV cv = new UserCV();
                 cv.setName("Ragen Vadascovinich");
                 cv.setAddress("Kratliev 27th block, 3rd");
                 cv.setEmail("ragen@gmail.com");
@@ -72,8 +73,7 @@ public class PelamarController extends HttpServlet {
                 cv.setQualification("What qualification?");
                 cv.setReference("Prof. Ibrahim Vadascovinich");
                 cv.setTitle("Curriculum Vitae");
-                
-                request.setAttribute("cv", (Object) cv);
+                        request.setAttribute("cv", (Object) cv);
                 RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/detail-pelamar.jsp");
                 view.forward(request, response);
             }
@@ -118,9 +118,10 @@ public class PelamarController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private static java.util.List<webservice.UserCV> getAllCV(java.lang.String username) {
+    private static UserCV getCV(java.lang.String cvId) {
         webservice.SivimuWebService_Service service = new webservice.SivimuWebService_Service();
         webservice.SivimuWebService port = service.getSivimuWebServicePort();
-        return port.getAllCV(username);
+        return port.getCV(cvId);
     }
+
 }
