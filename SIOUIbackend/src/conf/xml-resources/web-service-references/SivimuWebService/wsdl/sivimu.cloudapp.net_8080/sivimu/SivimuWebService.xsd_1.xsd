@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2-hudson-740-. --><xs:schema xmlns:tns="http://webservice/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://webservice/">
+
+<xs:element name="getAllCV" type="tns:getAllCV" />
+
+<xs:element name="getAllCVResponse" type="tns:getAllCVResponse" />
+
+<xs:element name="getAllEducation" type="tns:getAllEducation" />
+
+<xs:element name="getAllEducationResponse" type="tns:getAllEducationResponse" />
+
+<xs:element name="getAllWorkExperience" type="tns:getAllWorkExperience" />
+
+<xs:element name="getAllWorkExperienceResponse" type="tns:getAllWorkExperienceResponse" />
+
+<xs:element name="getCV" type="tns:getCV" />
+
+<xs:element name="getCVResponse" type="tns:getCVResponse" />
+
+<xs:element name="getCategory" type="tns:getCategory" />
+
+<xs:element name="getCategoryResponse" type="tns:getCategoryResponse" />
+
+<xs:element name="getRecommendedUser" type="tns:getRecommendedUser" />
+
+<xs:element name="getRecommendedUserResponse" type="tns:getRecommendedUserResponse" />
+
+<xs:element name="tryLogin" type="tns:tryLogin" />
+
+<xs:element name="tryLoginResponse" type="tns:tryLoginResponse" />
+
+<xs:complexType name="getAllEducation">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllEducationResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:Education" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Education">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:string" />
+<xs:element name="id" type="xs:string" />
+<xs:element name="institution" type="xs:string" />
+<xs:element name="coursename" type="xs:string" />
+<xs:element name="date_start" type="xs:string" />
+<xs:element name="date_end" type="xs:string" />
+<xs:element name="description" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCategory">
+<xs:sequence />
+</xs:complexType>
+
+<xs:complexType name="getCategoryResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:Category" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Category">
+<xs:sequence>
+<xs:element name="name" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllCV">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllCVResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:UserCV" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UserCV">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:string" />
+<xs:element name="title" type="xs:string" />
+<xs:element name="name" type="xs:string" />
+<xs:element name="address" type="xs:string" />
+<xs:element name="email" type="xs:string" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="photo" type="xs:string" />
+<xs:element name="objective" type="xs:string" />
+<xs:element name="workExp" type="tns:WorkExperience" maxOccurs="unbounded" />
+<xs:element name="qualification" type="xs:string" />
+<xs:element name="education" type="tns:Education" maxOccurs="unbounded" />
+<xs:element name="interests" type="xs:string" />
+<xs:element name="reference" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="WorkExperience">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:string" />
+<xs:element name="id" type="xs:string" />
+<xs:element name="company_name" type="xs:string" />
+<xs:element name="job_name" type="xs:string" />
+<xs:element name="category" type="xs:string" />
+<xs:element name="date_start" type="xs:string" />
+<xs:element name="date_end" type="xs:string" />
+<xs:element name="description" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRecommendedUser">
+<xs:sequence>
+<xs:element name="category" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getRecommendedUserResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:BasicInformation" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BasicInformation">
+<xs:sequence>
+<xs:element name="fullName" type="xs:string" />
+<xs:element name="addressLine1" type="xs:string" />
+<xs:element name="addressLine2" type="xs:string" />
+<xs:element name="photo" type="xs:string" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="username" type="xs:string" />
+<xs:element name="email" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tryLogin">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0" />
+<xs:element name="password" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tryLoginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCV">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCVResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllWorkExperience">
+<xs:sequence>
+<xs:element name="cv_id" type="xs:string" minOccurs="0" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllWorkExperienceResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:WorkExperience" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
