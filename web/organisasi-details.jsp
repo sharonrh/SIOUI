@@ -80,7 +80,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <img src="<%
                                             if (org.getLogo() != null) {
-                                                out.print("\\ImageLogo?id=" + org.getId() + "\\" + org.getLogo());
+                                                out.print(request.getContextPath()+"/ImageLogo?id=" + org.getId() + "/" + org.getLogo());
                                             }
                                              %>" class="img-responsive img-polaroid" alt="" />
                             </div>
@@ -115,7 +115,7 @@
                                 <!-- Skill Item -->
                                 <div class="skill-item">
                                     <!-- Image // Flat Icon -->
-                                    <img src="/img/flat-icon/fi6.png" class="img-responsive" alt="" />
+                                    <img src="<%=request.getContextPath()%>/img/flat-icon/fi6.png" class="img-responsive" alt="" />
                                     <!-- Heading -->
                                     <h6>Alamat</h6>
                                     <!-- Paragraph -->

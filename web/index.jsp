@@ -102,6 +102,10 @@
                         <!-- Heading -->
                         <h4><i class="fa fa-sign-in"></i> User Login</h4>
                         <!-- Sign in Form Start -->
+                        <%if (session.getAttribute("currentUser") != null) {
+                              String username = session.getAttribute("currentUser").toString();
+                              NotifBean nb = (NotifBean)session.getAttribute(username+"_notif");
+                              out.print("Welcome, " + username);} else {%>
                         <form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath() %>/dologin">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
@@ -114,6 +118,7 @@
                                 <button type="reset" class="btn btn-default">Reset</button>
                             </div>
                         </form>
+                            <%}%>
                     </div>
                 </div>
                 <div class="box box-md pull-up-sm animated">

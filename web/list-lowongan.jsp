@@ -63,7 +63,7 @@
                     <div class="item-lowongan">
                         <div class="row">
                             <div class="col-md-2">
-                                <img src="img/flat-icon/fi8.png" class="img-list-lowongan img-responsive" alt="">
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi8.png" class="img-list-lowongan img-responsive" alt="">
                             </div>
                             <div class="col-md-10">
                                 <div class="row">

@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-6">
                                 <!-- Image -->
-                                <img src="img/flat-icon/fi6.png" class="img-responsive" alt="" />
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi6.png" class="img-responsive" alt="" />
                                 <!-- Heading -->
                                 <h4>Minimum Angkatan</h4>
                                 <!-- Paragraph -->
@@ -76,7 +76,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <!-- Image -->
-                                <img src="img/flat-icon/fi7.png" class="img-responsive" alt="" />
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi7.png" class="img-responsive" alt="" />
                                 <!-- Heading -->
                                 <h4>Jumlah Dibutuhkan</h4>
                                 <!-- Paragraph -->
@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <!-- Image -->
-                                <img src="img/flat-icon/fi8.png" class="img-responsive" alt="" />
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi8.png" class="img-responsive" alt="" />
                                 <!-- Heading -->
                                 <h4>Pendaftaran Dimulai</h4>
                                 <!-- Paragraph -->
@@ -94,7 +94,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <!-- Image -->
-                                <img src="img/flat-icon/fi9.png" class="img-responsive" alt="" />
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi9.png" class="img-responsive" alt="" />
                                 <!-- Heading -->
                                 <h4>Pendaftaran Selesai</h4>
                                 <!-- Paragraph -->
@@ -103,7 +103,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <!-- Image -->
-                                <img src="img/flat-icon/fi10.png" class="img-responsive" alt="" />
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi10.png" class="img-responsive" alt="" />
                                 <!-- Heading -->
                                 <h4>Minimum IPK</h4>
                                 <!-- Paragraph -->
@@ -112,7 +112,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <!-- Image -->
-                                <img src="img/flat-icon/fi11.png" class="img-responsive" alt="" />
+                                <img src="<%=request.getContextPath()%>/img/flat-icon/fi11.png" class="img-responsive" alt="" />
                                 <!-- Heading -->
                                 <h4>Kategori</h4>
                                 <!-- Paragraph -->
@@ -142,7 +142,7 @@
                                 <!-- Skill Item -->
                                 <div class="skill-item">
                                     <!-- Image // Flat Icon -->
-                                    <img src="img/flat-icon/fi2.png" class="img-responsive" alt="" />
+                                    <img src="<%=request.getContextPath()%>/img/flat-icon/fi2.png" class="img-responsive" alt="" />
                                     <!-- Heading -->
                                     <h6><%=r.getJudul()%></h6>
                                     <!-- Paragraph -->
