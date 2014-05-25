@@ -119,7 +119,19 @@
 
 <xs:complexType name="getRecommendedUserResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+<xs:element name="return" type="tns:BasicInformation" minOccurs="0" maxOccurs="unbounded" />
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="BasicInformation">
+<xs:sequence>
+<xs:element name="fullName" type="xs:string" />
+<xs:element name="addressLine1" type="xs:string" />
+<xs:element name="addressLine2" type="xs:string" />
+<xs:element name="photo" type="xs:string" />
+<xs:element name="phoneNumber" type="xs:string" />
+<xs:element name="username" type="xs:string" />
+<xs:element name="email" type="xs:string" />
 </xs:sequence>
 </xs:complexType>
 
@@ -138,13 +150,13 @@
 
 <xs:complexType name="getCV">
 <xs:sequence>
-<xs:element name="cv_id" type="xs:string" minOccurs="0" />
+<xs:element name="arg0" type="xs:string" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="getCVResponse">
 <xs:sequence>
-<xs:element name="return" type="tns:UserCV" minOccurs="0" />
+<xs:element name="return" type="xs:base64Binary" nillable="true" minOccurs="0" />
 </xs:sequence>
 </xs:complexType>
 

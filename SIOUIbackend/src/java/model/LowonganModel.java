@@ -129,36 +129,6 @@ public class LowonganModel extends Model {
         }
     }
     
-    public ArrayList<Lowongan> getLowonganRekomendasi(String kategori) {
-        ArrayList<Lowongan> lowonganList = new ArrayList<Lowongan>();
-        String[] arr = kategori.split(",");
-        String query = "SELECT DISTINCT * FROM " + TABLE_NAME + " WHERE kategori LIKE '%" + arr[0] + "%'";
-        for (int ii = 1; ii < arr.length; ii++) {
-            query = query + " OR kategori LIKE '%" + arr[ii] + "%'";
-        }
-        openConnection();
-        try {
-            ResultSet res = super.getStatement().executeQuery(query);
-
-            // selama masih ada baris yang bisa dibaca
-            while (res.next()) {
-                Lowongan lw = new Lowongan(res.getInt("id"), res.getString("username"),
-                        res.getInt("kapasitas"),
-                        res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
-                        res.getString("judul"), res.getString("jabatan"),
-                        res.getInt("minimum_tahun"), Double.parseDouble(res.getString("minimum_ipk")),
-                        res.getString("kategori"), res.getString("deskripsi"),
-                        res.getString("created_at"),res.getString("updated_at"));
-                lowonganList.add(lw);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnection();
-        }
-        return lowonganList;
-    }
-    
     public void update(Lowongan lw){
         System.out.println(lw.getId());
         String query = String.format("UPDATE %s SET kapasitas='%s', tanggal_buka='%s', tanggal_tutup='%s', "
@@ -187,5 +157,20 @@ public class LowonganModel extends Model {
         } finally {
             closeConnection();
         }
+    }
+    
+    public String getKategori(int id) {
+        super.openConnection();
+        String query = String.format("SELECT kategori FROM %s where id='%s' ", TABLE_NAME, id);
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            res.next();          
+            return res.getString("kategori");
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
     }
 }

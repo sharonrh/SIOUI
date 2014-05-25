@@ -4,6 +4,8 @@
     Author     : daniel.januar
 --%>
 
+<%@page import="webservice.BasicInformation"%>
+<%@page import="java.util.List"%>
 <%@page import="object.Image"%>
 <%@page import="object.Pelamar"%>
 <%@page import="java.util.ArrayList"%>
@@ -63,21 +65,30 @@
         <table class="table table-hover table-striped">
             <thead>    
             <th> No </th>
-            <th> Nama </th>
-            <th> </th>
+            <th> Username </th>
+            <th> Tanggal melamar </th>
+            <th> Detail </th>               
+            <th><%out.print(jenis.equals("open") ? "Ubah status" : "");%> </th>
             </thead>      
             <% int i = 1;
                 for (Pelamar p : listPelamar) {%>
             <tr>
                 <td> <%=i++%></td>
-                <td>  
-                    <b> <%=p.getUsername()%> </b>
-                </td>
+                <td> <%=p.getUsername()%> </td>
+                <td> <%=p.getCreated_at()%> </td>
                 <td> 
-                    <a href="pelamar/detail?id=<%= p.getId()%>" class="btn btn-default btn-success">Details</a>
+                    <a href="pelamar/detail?id=<%= p.getId()%>" class="btn btn-default btn-primary">Unduh CV</a>
                 </td>
-            </tr>
-            <%}%>
+                <td>
+                    <%if (jenis.equals("open")) {
+                            if (!status.equals("accept")) {%>
+                    <a href="pelamar/status?id=<%= p.getId()%>&act=accept" class="btn btn-default btn-success">Terima</a>
+                    <%}
+                        if (!status.equals("reject")) {%>
+                    <a href="pelamar/status?id=<%= p.getId()%>&act=reject" class="btn btn-default btn-danger">Tolak</a>
+                    <%}
+                            }
+                        }%>
         </table>
         <%} else {%>
         <h4 class="text-primary">Belum ada pelamar yang tercatat.</h4>
@@ -93,27 +104,35 @@
     <!-- Nanti webservicenya taro di bagian sini-->
 
     <%
-    //    List<ws.User> rekomendasi = request.getParameter("listRekomendasi");
-        // loop for each user
+        List<BasicInformation> rekomendasi = (List<BasicInformation>) request.getAttribute("listRekomendasi");
+        for (BasicInformation b : rekomendasi) {
     %>
     <div class="col-sm-4 col-md-3">
-        <div class="thumbnail">
-            <img src="<%
-                //              Image img = rekomendasi.get(i).getFoto();
-                //              if (img != null && img.getName() != null) {
-                //                  out.print(request.getContextPath() + "/ImageAlbum?idorg=" + albums.get(i).getId_organisasi() + "&idalbum=" + albums.get(i).getId() + "&filename=" + img.getName())};
-                 %>" alt="...">
-
-            <div class="caption">
-                <h3><% //out.print(rekomendasi.get(i).getName());%></h3>
-                <p><%%></p>
-                <p>
-                    <%// ini link ke halaman di sivimu apa gimana ya?%>
-                    <a href="#" class="hapus btn btn-xs btn-info" role="button">Lihat profil</a> 
-                </p>
-            </div>
+        <div class="caption">
+            <h3><%=b.getFullName()%></h3>
+            <ul class="list-unstyled">
+                <li>  <%=b.getAddressLine1()%></li>
+                <li>  <%=b.getEmail()%></li>
+                <li>  <%=b.getPhoneNumber()%></li>
+            </ul>
+            <p>
+                <%// ini link ke halaman di sivimu apa gimana ya?%>
+                <a href="pelamar/recruit?name=<%=b.getUsername()%>" class="confirm btn btn-xs btn-info" role="button">Recruit</a> 
+            </p>
         </div>
     </div>
+    <%}%>            
 </div>
 <%}%>
+
+<script>
+    $(document).ready(function() {
+        $(".confirm").bind("click", function(event) {
+            if (!confirm('Anda yakin akan merecruit pengguna ini?')) {
+                event.preventDefault();
+            }
+        });
+
+    });
+</script>
 <%@include file="/WEB-INF/footer.jspf" %>
