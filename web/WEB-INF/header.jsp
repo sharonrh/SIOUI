@@ -228,7 +228,7 @@
 
 
                                             <li>
-                                                <a href="<%=out.print(request.getContextPath())%>/about-us.jsp" class="br-red">
+                                                <a href="<%=request.getContextPath()%>/about-us.jsp" class="br-red">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-user link-icon"></i>
                                                     <!-- Link Title -->
