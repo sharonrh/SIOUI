@@ -6,6 +6,6 @@
     <system systemId="http://localhost:8084/SIOUI/LowonganWS?xsd=1" uri="src/conf/xml-resources/web-service-references/LowonganWS/wsdl/localhost_8084/SIOUI/LowonganWS.xsd_1.xsd"/>
     <system systemId="http://sivimu.cloudapp.net:8080/SIVIMU/SivimuWebService?wsdl" uri="src/conf/xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/SIVIMU/SivimuWebService.wsdl"/>
     <system systemId="http://sivimu.cloudapp.net:8080/SIVIMU/SivimuWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/SIVIMU/SivimuWebService.xsd_1.xsd"/>
-    <system systemId="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?wsdl" uri="src/conf/xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/SIVIMU/SivimuWebService.wsdl"/>
-    <system systemId="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/SIVIMU/SivimuWebService.xsd_1.xsd"/>
+    <system systemId="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?wsdl" uri="src/conf/xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.wsdl"/>
+    <system systemId="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?xsd=1" uri="src/conf/xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.xsd_1.xsd"/>
 </catalog>

@@ -47,6 +47,8 @@
         <url-pattern>/explore/showdetailorg</url-pattern>
         <url-pattern>/explore/showlistlwg</url-pattern>
         <url-pattern>/explore/showdetaillwg</url-pattern>
+        <url-pattern>/explore/showalbums</url-pattern>
+        
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>

@@ -28,19 +28,6 @@
                             <!-- Paragraph -->
                             <p></p>
                         </div>
-                        <!-- Sidebar Links -->
-                        <div class="sidebar-link col-disable">
-                            <!-- Search Box -->
-                            <div class="search">
-                            </div>
-                            <ul class="list-unstyled">
-                                <li><a href="index.html" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
-                                <li><a href="" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="col-md-9">

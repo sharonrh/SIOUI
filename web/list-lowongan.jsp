@@ -44,11 +44,10 @@
                         <div class="search">
                         </div>
                         <ul class="list-unstyled">
-                            <li><a href="index.html" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>#oprec" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?=<%=org.getId()%>#strukturid" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showalbums?id=<%=org.getId()%>" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,7 +82,6 @@
                 </div>
             </div>
         </div>
-        <div class="alert alert-danger">Anda harus login terlebih dahulu untuk melihat konten dari halaman ini.</div>
     </div>
 </div>
 

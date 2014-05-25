@@ -92,6 +92,9 @@ public class UserController extends HttpServlet {
             String id = objId.toString();
 
             //cek udah login apa belom
+            if(session==null||user==null){
+                response.sendRedirect(request.getContextPath()+"/login.jsp");
+            }
             
             request.setAttribute("formAction", request.getContextPath()+"/user/dodaftar");
             request.setAttribute("idlw", id);

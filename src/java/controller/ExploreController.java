@@ -13,9 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.GalleryModel;
 import model.JabatanModel;
 import model.LowonganModel;
 import model.OrganisasiModel;
+import object.Album;
 import object.Jabatan;
 import object.Lowongan;
 import object.Organisasi;
@@ -29,6 +31,7 @@ public class ExploreController extends HttpServlet {
     OrganisasiModel om = new OrganisasiModel();
     LowonganModel lm = new LowonganModel();
     JabatanModel jm = new JabatanModel();
+    GalleryModel gm = new GalleryModel();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -111,9 +114,38 @@ public class ExploreController extends HttpServlet {
             String id = objId.toString();
             
             Lowongan lwg = lm.select(id);
+            String usernameOrg = lwg.getUsername();
+            Organisasi org =  om.selectFromId(usernameOrg);
+            request.setAttribute("org", org);
             request.setAttribute("lwg", lwg);
             
             RequestDispatcher view = request.getRequestDispatcher("/lowongan-details.jsp");
+            view.forward(request, response);
+        } else if (userPath.equals("/explore/showalbums")){
+            Object objId = request.getParameter("id");
+            if (objId == null) {
+                //redirect here
+            }
+            String id = objId.toString();
+            List<object.Album> a = gm.selectAlbumByOrganization(Integer.parseInt(id));
+            
+            Object objIdAlbum = request.getParameter("idalbum");
+            String idAlbum = "";
+            if (objIdAlbum == null) {
+                idAlbum = a.get(0).getId();
+            }else{
+                idAlbum = objIdAlbum.toString();
+            }
+            
+            Album albumDipilih = gm.getSingleAlbum(Integer.parseInt(idAlbum));
+            request.setAttribute("albumDipilih", albumDipilih);
+            
+            Organisasi org = om.select(Integer.parseInt(id));
+            request.setAttribute("org", org);
+            
+            request.setAttribute("albums", (Object) a);
+            
+            RequestDispatcher view = request.getRequestDispatcher("/album.jsp");
             view.forward(request, response);
         }
     }

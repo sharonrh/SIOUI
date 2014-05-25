@@ -4,6 +4,7 @@
     Author     : Johanes
 --%>
 
+<%@page import="object.Organisasi"%>
 <%@page import="object.Lowongan"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.LowonganModel"%>
@@ -12,6 +13,10 @@
 <%
     Object objLwg = request.getAttribute("lwg");
     Lowongan lw = ((objLwg != null) ? (Lowongan) objLwg : null);
+    
+    Object objOrg = request.getAttribute("org");
+    
+    Organisasi org = ((objOrg != null) ? (Organisasi) objOrg : null);
 %>
 
 <!-- BODY DIMULAI -->
@@ -32,22 +37,11 @@
                     <!-- Sidebar Links -->
                     <div class="sidebar-link col-disable">
                         <!-- Search Box -->
-                        <div class="search">
-                            <form>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Text to search">
-                                    <span class="input-group-btn">
-                                        <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>
                         <ul class="list-unstyled">
-                            <li><a href="#" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="#" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="#" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="#" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
-                            <li><a href="#" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?id=<%=org.getId()%>#oprec" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showdetailorg?=<%=org.getId()%>#strukturid" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
+                            <li><a href="<%=request.getContextPath()%>/explore/showalbums?id=<%=org.getId()%>" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
                         </ul>
                     </div>
                 </div>
