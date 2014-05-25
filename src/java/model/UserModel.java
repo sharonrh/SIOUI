@@ -8,9 +8,11 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.User;
+import ws.UserCV;
 
 /**
  *
@@ -25,6 +27,9 @@ public class UserModel extends Model {
         return tryLogin(username, password);
     }
     
+    public List<UserCV> getMultipleCVByUsername(String username){
+        return getAllCV(username);
+    }
     
     /**
      * Untuk ambil user dengan id tertentu
@@ -102,5 +107,17 @@ public class UserModel extends Model {
         ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
         ws.SivimuWebService port = service.getSivimuWebServicePort();
         return port.tryLogin(username, password);
+    }
+
+    private static UserCV getCV(java.lang.String cvId) {
+        ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
+        ws.SivimuWebService port = service.getSivimuWebServicePort();
+        return port.getCV(cvId);
+    }
+
+    private static java.util.List<ws.UserCV> getAllCV(java.lang.String username) {
+        ws.SivimuWebService_Service service = new ws.SivimuWebService_Service();
+        ws.SivimuWebService port = service.getSivimuWebServicePort();
+        return port.getAllCV(username);
     }
 }

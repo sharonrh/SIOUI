@@ -35,8 +35,7 @@ public class NotifikasiModel extends Model{
                 Notifikasi a = new Notifikasi(
                         res.getString("id"),
                         res.getString("username"),
-                        res.getString("id_organisasi"),
-                        res.getString("id_lowongan"),
+                        res.getString("id_pelamar"),
                         res.getString("jenis"),
                         res.getBoolean("seen"),
                         res.getString("created_at"),

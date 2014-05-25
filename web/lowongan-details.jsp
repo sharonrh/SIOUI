@@ -4,39 +4,19 @@
     Author     : Johanes
 --%>
 
-<%@page import="model.OrganizationModel"%>
 <%@page import="object.Lowongan"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.LowonganModel"%>
-<%@include file="header.jsp" %>
+<%@include file="/WEB-INF/header.jsp" %>
 
 <%
-    String id_organisasi = request.getParameter("id_organisasi");
-    String id_lowongan = request.getParameter("id_lowongan");
-    Lowongan lw = null;
-    Cookie sessionCookie = null;
-    if (id_lowongan != null) {
-        LowonganModel lm = new LowonganModel();
-        lw = lm.select(id_organisasi, id_lowongan);
-        if (session.getAttribute("currentUser") != null) {
-            sessionCookie = new Cookie("recent_" + session.getAttribute("currentUser"), id_organisasi + "_" + id_lowongan);
-            sessionCookie.setPath("/");
-            response.addCookie(sessionCookie);
-            
-        }
-    }
-    response.addCookie(new Cookie("hahah", "aneh"));
-    
+    Object objLwg = request.getAttribute("lwg");
+    Lowongan lw = ((objLwg != null) ? (Lowongan) objLwg : null);
 %>
 
 <!-- BODY DIMULAI -->
 <div class="inner-page">
-    <div class="container">
-        <%
-            if (session.getAttribute("currentUser") != null) {
-                //        OrganizationModel om = new OrganizationModel();
-                // om.select(nama);
-        %>        
+    <div class="container">   
         <div class="row">
             <div class="col-md-3">
                 <!-- Inner Page Content Sidebar -->
@@ -68,7 +48,6 @@
                             <li><a href="#" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
                             <li><a href="#" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
                             <li><a href="#" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -79,7 +58,7 @@
                     <!-- About Content -->
                     <div class="aboutus-content">
                         <!-- Heading -->
-                        <h2><center><%=lw.getJudul()%></center></h2>
+                        <h2><center><%=lw.getJabatan()%></center></h2>
                     </div>								
                     <br>
                     <h3>Deskripsi</h3>
@@ -98,7 +77,7 @@
                                 <!-- Heading -->
                                 <h4>Minimum Angkatan</h4>
                                 <!-- Paragraph -->
-                                <p class="grey"><%=lw.getMinimumTahun()%> </p>
+                                <p class="grey"><%=lw.getMinimum_tahun()%> </p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -134,7 +113,7 @@
                                 <!-- Heading -->
                                 <h4>Minimum IPK</h4>
                                 <!-- Paragraph -->
-                                <p class="grey"><%=lw.getMinimumIpk()%> </p>
+                                <p class="grey"><%=lw.getMinimum_ipk()%> </p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="col-md-6 col-sm-6">
@@ -150,7 +129,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <center><a href="" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
+                        <center><a href="<%=request.getContextPath() %>/user/daftar?id=<%=lw.getId() %>" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
                     </div>
                     <hr><br><br>
                     <!-- About Us Skills -->
@@ -184,12 +163,8 @@
                 </div>
             </div>
         </div>
-        <% } else {
-        %>
-        <div class="alert alert-danger">Anda harus login terlebih dahulu untuk melihat konten dari halaman ini.</div>
-        <% }%>
     </div>
 </div>
 
 
-<%@include file="footer.jsp" %>
+<%@include file="/WEB-INF/footer.jsp" %>

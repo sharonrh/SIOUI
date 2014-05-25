@@ -94,11 +94,12 @@ public class ExploreController extends HttpServlet {
                 //redirect here
             }
             String idOrg = objIdOrg.toString();
-            List<Lowongan> lwgs = lm.selectMultipleByOrganizationID(idOrg);
-            request.setAttribute("lwgs", lwgs);
             
             Organisasi org = om.select(Integer.parseInt(idOrg));
             request.setAttribute("org", org);
+            
+            List<Lowongan> lwgs = lm.selectMultipleByUsername(org.getUsername());
+            request.setAttribute("lwgs", lwgs);
             
             RequestDispatcher view = request.getRequestDispatcher("/list-lowongan.jsp");
             view.forward(request, response);

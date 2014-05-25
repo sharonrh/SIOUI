@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import object.Organisasi;
 import object.Pelamar;
 
 /**
@@ -19,7 +18,7 @@ import object.Pelamar;
  * @author daniel.januar
  */
 public class PelamarModel extends Model{
-    private String TABLE_NAME = "Pelamar";
+    private String TABLE_NAME = "pelamar";
     /**
      * Mengambil list Pelamar berdasarkan lowongan tertentu
      * @return 
@@ -33,6 +32,26 @@ public class PelamarModel extends Model{
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
               Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getString("jenis"), res.getString("status"), res.getString("created_at"),res.getString("updated_at"));
+              result.add(a);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+    
+    public ArrayList<Pelamar> selectAll(){
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s ", TABLE_NAME);
+        ArrayList<Pelamar> result = new ArrayList<Pelamar>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+              Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getString("id_cv"), res.getString("status"), res.getString("created_at"),res.getString("updated_at"));
               result.add(a);
             }
             return result;
@@ -87,6 +106,23 @@ public class PelamarModel extends Model{
               result.add(a);
             }
             return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+    
+    public Pelamar select(String id){
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s where id=%s", TABLE_NAME, id);
+        ArrayList<Pelamar> result = new ArrayList<Pelamar>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getString("jenis"), res.getString("status"), res.getString("created_at"),res.getString("updated_at"));
+            return a;
         } catch (SQLException ex) {
             Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

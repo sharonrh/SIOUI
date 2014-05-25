@@ -8,6 +8,7 @@ package model;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import object.Lowongan;
@@ -47,9 +48,9 @@ public class LowonganModel extends Model {
         return null;
     }
     
-    public ArrayList<Lowongan> selectMultipleByOrganizationID(String idOrg) {
+    public ArrayList<Lowongan> selectMultipleByUsername(String idOrg) {
         super.openConnection();
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE id_organisasi=" + idOrg;
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE username='" + idOrg + "'";
         ArrayList<Lowongan> result = new ArrayList<Lowongan>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
@@ -80,7 +81,7 @@ public class LowonganModel extends Model {
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             res.next();
-            Lowongan lw = new Lowongan(res.getInt("id"), res.getString("id_organisasi"),
+            a = new Lowongan(res.getInt("id"), res.getString("username"),
                         res.getInt("kapasitas"),
                         res.getString("tanggal_buka"), res.getString("tanggal_tutup"),
                         res.getString("judul"), res.getString("jabatan"),
@@ -152,4 +153,5 @@ public class LowonganModel extends Model {
         }
         return lowonganList;
     }
+
 }

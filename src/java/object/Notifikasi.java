@@ -11,31 +11,39 @@ package object;
  * @author Johanes
  */
 public class Notifikasi {
-    String id;
-    String username;
-    String id_organisasi;
-    String id_lowongan;
-    String jenis;
-    boolean seen;
-    String created_at;
-    String seen_at;
+    private String id;
+    private String username;
+    private String id_pelamar;
+    private String jenis;
+    private boolean seen;
+    private String created_at;
+    private String seen_at;
+    
+    public Notifikasi(){}
 
-    public Notifikasi(String id, String username, String id_organisasi, String id_lowongan, String jenis, boolean seen, String created_at, String seen_at) {
+    public Notifikasi(String id, String username, String id_pelamar, String jenis, boolean seen, String created_at, String seen_at) {
         this.id = id;
         this.username = username;
-        this.id_organisasi = id_organisasi;
-        this.id_lowongan = id_lowongan;
+        this.id_pelamar = id_pelamar;
         this.jenis = jenis;
         this.seen = seen;
         this.created_at = created_at;
         this.seen_at = seen_at;
     }
 
-    public Notifikasi(String username, String id_organisasi, String id_lowongan, String jenis) {
+    public Notifikasi(String username, String id_pelamar, String jenis, boolean seen) {
         this.username = username;
-        this.id_organisasi = id_organisasi;
-        this.id_lowongan = id_lowongan;
+        this.id_pelamar = id_pelamar;
         this.jenis = jenis;
+        this.seen = seen;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 
     public String getId() {
@@ -54,20 +62,12 @@ public class Notifikasi {
         this.username = username;
     }
 
-    public String getId_organisasi() {
-        return id_organisasi;
+    public String getId_pelamar() {
+        return id_pelamar;
     }
 
-    public void setId_organisasi(String id_organisasi) {
-        this.id_organisasi = id_organisasi;
-    }
-
-    public String getId_lowongan() {
-        return id_lowongan;
-    }
-
-    public void setId_lowongan(String id_lowongan) {
-        this.id_lowongan = id_lowongan;
+    public void setId_pelamar(String id_pelamar) {
+        this.id_pelamar = id_pelamar;
     }
 
     public String getJenis() {
@@ -76,14 +76,6 @@ public class Notifikasi {
 
     public void setJenis(String jenis) {
         this.jenis = jenis;
-    }
-
-    public boolean isSeen() {
-        return seen;
-    }
-
-    public void setSeen(boolean seen) {
-        this.seen = seen;
     }
 
     public String getCreated_at() {
@@ -101,7 +93,6 @@ public class Notifikasi {
     public void setSeen_at(String seen_at) {
         this.seen_at = seen_at;
     }
-    
     
     
 }

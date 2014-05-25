@@ -15,6 +15,7 @@ public class Pelamar {
     private int id;
     private int id_lowongan;
     private String username;
+    
     //Jenis : oprec / closerec
     private String jenis;
     //Status : wait / accept / reject

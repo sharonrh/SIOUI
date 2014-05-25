@@ -1,3 +1,4 @@
+<%@page import="bean.NotifBean"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -140,6 +141,8 @@
                                             <%
                                                 // jika user sudah login
                                                 if (session.getAttribute("currentUser") != null) {
+                                                    String username = session.getAttribute("currentUser").toString();
+                                                    NotifBean nb = (NotifBean)session.getAttribute(username+"_notif");
                                             %>
                                             <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle br-purple" data-toggle="dropdown">
@@ -154,10 +157,9 @@
                                                             <div class="col-md-12">
                                                                 <div class="col-inner">
                                                                     <ul class="list-unstyled">
-                                                                        <li><a href="#"><span class="number-notif">3</span> Interview Invitation</a></li>
-                                                                        <li><a href="#"><span class="number-notif">1</span> Upcoming Interviews</a></li>
-                                                                        <li><a href="#"><span class="number-notif">2</span> Applications</a></li>
-                                                                        <li><a href="#"><span class="number-notif">&nbsp&nbsp</span> Close Recruitment</a></li>
+                                                                        <li><a href="#"><span class="number-notif"><%=nb.getNotifications().size() %></span> Notifikasi</a></li>
+                                                                        <li><a href="#"><span class="number-notif"><%=nb.getCloseRec().size() %></span> Close Recruitment</a></li>
+                                                                        <li><a href="#"><span class="number-notif"><%=nb.getPendaftaranku().size() %></span> Pendaftaranku</a></li>
                                                                     </ul>
 
                                                                 </div>

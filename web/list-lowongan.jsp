@@ -16,14 +16,13 @@
     ArrayList<Lowongan> lwgs = ((objLwgs != null) ? (ArrayList<Lowongan>) objLwgs : null);
     
     Object objOrg = request.getAttribute("org");
-    
     Organisasi org = ((objOrg != null) ? (Organisasi) objOrg : null);
     
-    if(org==null){
+    if(org==null||lwgs==null){
         response.sendRedirect(request.getContextPath());
     }
 %>
-
+<h1><%=lwgs.get(0).getId() %></h1>
 
 <!-- BODY DIMULAI -->
 <div class="inner-page">
@@ -74,7 +73,7 @@
                                 <div class="deskripsi-lowongan">
                                     <p><%=l.getDeskripsi()%></p>
 
-                                    <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id="<%=l.getId() %>>read more</a>
+                                    <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id=<%=l.getId() %>">read more</a>
                                     
                                 </div>
                             </div>

@@ -5,6 +5,7 @@
  */
 package controller;
 
+import bean.NotifBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -46,7 +47,11 @@ public class LoginController extends HttpServlet {
             if(isValid){
                 HttpSession session = request.getSession(true);
                 session.setAttribute("currentUser", request.getParameter("username"));
-                RequestDispatcher view = request.getRequestDispatcher("dashboard.jsp");
+                
+                NotifBean nb = new NotifBean(request.getParameter("username"));                
+                session.setAttribute(request.getParameter("username") + "_notif", nb);
+                
+                RequestDispatcher view = request.getRequestDispatcher(request.getContextPath()+"/user/dashboard");
                 view.forward(request, response);
             }else{
                 response.sendRedirect("/login.jsp?status=fail");

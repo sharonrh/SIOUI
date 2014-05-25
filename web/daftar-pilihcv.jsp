@@ -1,90 +1,81 @@
-<%-- 
-    Document   : daftar-sekarang
-    Created on : Apr 17, 2014, 1:56:51 PM
-    Author     : daniel.januar
---%>
 
+<%@page import="ws.UserCV"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@include file="header.jsp" %>
+<%@include file="/WEB-INF/header.jsp" %>
 
 <%
-    String regStatus = request.getParameter("register");
-    if (regStatus != null) {
-        if (regStatus.equals("success")) {
+    Object objCvs = request.getAttribute("cvs");
+    Object objFormAction = request.getAttribute("formAction");
+    Object objIdlw = request.getAttribute("idlw");
+    
+    ArrayList<UserCV> cvs = ((objCvs != null) ? (ArrayList<UserCV>) objCvs : null);
+    String formAction = ((objFormAction != null) ? objFormAction.toString() : null);
+    String idlw = ((objIdlw != null) ? objIdlw.toString() : null);
 %>
-<div class="alert alert-success">Registrasi Anda telah tercatat. Mohon tunggu konfirmasi selanjutnya di email.</div>
-<%
-        }
-    }
-%>
+
 <div class="container"> 
-    <div class="col-md-4">
-        <h2>Registration</h2>
-        <!-- Sign Up Form Start -->
-        <form class="form-horizontal" role="form" method="POST" action="RegisterServlet">
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="text" class="form-control" id="name_panjang" placeholder="Nama panjang">
+    <div class="inner-page">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-3">
+                    <!-- Inner Page Content Sidebar -->
+                    <div class="page-sidebar">
+                        <!-- Page Title -->
+                        <div class="page-title br-green">
+                            <!-- Inner Page Title // Heading -->
+                            <h2></h2>
+                            <!-- Paragraph -->
+                            <p></p>
+                        </div>
+                        <!-- Sidebar Links -->
+                        <div class="sidebar-link col-disable">
+                            <!-- Search Box -->
+                            <div class="search">
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><a href="index.html" class="animated">Profil <i class="fa fa-angle-double-right"></i></a></li>
+                                <li><a href="" class="animated">Daftar Lamaran <i class="fa fa-angle-double-right"></i></a></li>
+                                <li><a href="" class="animated">Struktur Organisasi <i class="fa fa-angle-double-right"></i></a></li>
+                                <li><a href="" class="animated">Gallery <i class="fa fa-angle-double-right"></i></a></li>
+                                <li><a href="" class="animated">Event <i class="fa fa-angle-double-right"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="email" class="form-control" id="email_pendek" placeholder="Nama pendek">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <select name = "jenis">
-                        <option value="ukm">UKM</option>
-                        <option value="ukf">UKF</option>
-                        <option value="event">Event</option>
-                    </select>
-                    <label class="control-label"> Jenis organisasi</label>
-                </div> 
-            </div>
+                <div class="col-md-9">
+                    <div class="judul-halaman">
+                        <h3>Pilih CV yang Akan Anda Submit</h3>
+                    </div><br>
+                    <div class="list-lowongan">
+                        <form class="form-horizontal" role="form" method="POST" action="<%=formAction %>">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <%for (UserCV cv : cvs) {%>
+                                    <div class="col-md-6 col-sm-6">
+                                        <!-- Image -->
+                                        <input type="radio" name="cvs" value="<%=cv.getCvId()%>">
+                                        <!-- Heading -->
+                                        <h4><%=cv.getTitle()%></h4>
+                                        <!-- Paragraph -->
+                                        <p class=""><%=cv.getReference()%> referensi</p>
+                                        <div class="clearfix"></div>
+                                    </div>
 
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="date" name ="tanggal_berdiri"/>                
-                    <label class="control-label">Tanggal Berdiri</label>
-                </div> 
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="text" class="form-control" id="username" placeholder="Alamat">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <textarea class="form-control" placeholder="Deskripsi" name="deskripsi"></textarea>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <textarea class="form-control" placeholder="Visi" name="visi"></textarea>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Accept All Terms & Conditions
-                        </label>
-                        <span class="pull-right"><a href="#">View</a></span>
-                        <div class="clearfix"></div>
+                                    <%}%>
+                                    <input type="hidden" name="idlw" value="<%=idlw%>">
+                                </div> 
+                            </div>
+                            <div class="form-group text-center">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-warning">Daftar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="form-group text-center">
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-black">Registration</button>&nbsp;
-                    <button type="reset" class="btn btn-default">Reset</button>
-                </div>
-            </div>
-        </form>
-        <!-- Sign Up form End -->
+        </div>
     </div>
 </div>
-<%@include file="footer.jsp" %>
+<%@include file="/WEB-INF/footer.jsp" %>

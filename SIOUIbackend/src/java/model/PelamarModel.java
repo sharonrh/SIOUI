@@ -94,4 +94,21 @@ public class PelamarModel extends Model{
         }
         return null;
     }
+    
+    public Pelamar select(String id){
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s where id=%s", TABLE_NAME, id);
+        ArrayList<Pelamar> result = new ArrayList<Pelamar>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getString("jenis"), res.getString("status"), res.getString("created_at"),res.getString("updated_at"));
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
 }
