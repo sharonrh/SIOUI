@@ -23,22 +23,26 @@
         <!-- Sign Up Form Start -->
         <form class="form-horizontal" role="form" method="POST" action="/daftar-organisasi/add">
             <div class="form-group">
-                <div class="col-sm-12">
+                <label class="col-sm-2 control-label">Username</label>
+                <div class="col-sm-8">
                     <input name="username_organisasi" type="text" class="form-control" id="username" placeholder="username untuk backend">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-12">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-8">
                     <input name="password" type="password" class="form-control" placeholder="password backend">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-12">
+                <label class="col-sm-2 control-label">Nama Panjang</label>
+                <div class="col-sm-8">
                     <input type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
                 </div>
             </div>  
             <div class="form-group">
-                <div class="col-sm-12">
+                <label class="col-sm-2 control-label">Deskripsi</label>
+                <div class="col-sm-8">
                     <textarea class="form-control" placeholder="Deskripsi singkat mengenai organisasimu untuk diverifikasi oleh admin" name="deskripsi"></textarea>
                 </div>
             </div>

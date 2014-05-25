@@ -40,13 +40,28 @@ public class PelamarModel extends Model {
         }
         return null;
     }
+    public ArrayList<Pelamar> selectAllPelamarWait(String username){
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s where username ='%s' AND status='wait' ", TABLE_NAME, username);
+        System.out.println("query:"+query);
+        ArrayList<Pelamar> result = new ArrayList<Pelamar>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+              Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getString("jenis"), res.getString("status"), res.getString("created_at"),res.getString("updated_at"));
+              result.add(a);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
     
-    /**
-     * Mengambil list Pelamar berdasarkan lowongan tertentu
-     *
-     * @return
-     */
-    public ArrayList<Pelamar> selectAllPelamar(int id_lowongan) {
+    public ArrayList<Pelamar> selectAll(){
         super.openConnection();
         String query = String.format("SELECT * FROM %s where id_lowongan ='%s' ", TABLE_NAME, id_lowongan);
         ArrayList<Pelamar> result = new ArrayList<Pelamar>();
