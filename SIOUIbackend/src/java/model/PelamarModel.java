@@ -95,9 +95,26 @@ public class PelamarModel extends Model {
         }
     }
 
-    public Pelamar getPelamar(int idPelamar) {
+    public Pelamar getPelamarById(int idPelamar) {
         super.openConnection();
         String query = String.format("SELECT * FROM %s where id='%s' ", TABLE_NAME, idPelamar);
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            res.next();
+            Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"), res.getString("username"), res.getInt("id_cv"), res.getString("jenis"), res.getString("status"), res.getString("created_at"), res.getString("updated_at"));
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+
+     public Pelamar getPelamarByUsername(String username) {
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s where username='%s' ", TABLE_NAME, username);
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca

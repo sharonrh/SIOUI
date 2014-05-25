@@ -11,9 +11,16 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.PelamarModel"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<% String activePage = "lowongan"; %>
+<% String activePage = "lowongan";%>
 
 <%@include file="/WEB-INF/header.jspf" %>
+
+<div class="alert alert-success <%if (request.getAttribute("alertContent") == null) {
+        out.print("hide");
+    }%>">
+    <%=request.getAttribute("alertContent")%>
+</div>
+
 <% ArrayList<Pelamar> listPelamar = (ArrayList<Pelamar>) request.getAttribute("listPelamar");
     String status = request.getAttribute("status_recruitment").toString();
     String jenis = request.getAttribute("jenis_recruitment").toString();
@@ -76,8 +83,11 @@
                 <td> <%=i++%></td>
                 <td> <%=p.getUsername()%> </td>
                 <td> <%=p.getCreated_at()%> </td>
-                <td> 
+                <td>
+                    <% // pastiin punya cv
+                    if (p.getId_cv() != 0) {%>
                     <a href="pelamar/detail?id=<%= p.getId()%>" class="btn btn-default btn-primary">Unduh CV</a>
+                    <%} %>
                 </td>
                 <td>
                     <%if (jenis.equals("open")) {

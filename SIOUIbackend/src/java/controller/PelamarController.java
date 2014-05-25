@@ -50,6 +50,11 @@ public class PelamarController extends HttpServlet {
                     id = Integer.parseInt(request.getParameter("id"));
                     session.setAttribute("currentLowongan", id);
                 }
+                if (request.getParameter("creg") != null && request.getParameter("creg").equals("success")) {
+                    request.setAttribute("alertContent", "Recruitment sudah dikirimkan!");
+                } else {
+                    request.setAttribute("alertContent", null);
+                }
 
                 String status = request.getParameter("status_recruitment") == null
                         ? "wait" : request.getParameter("status_recruitment");
@@ -71,12 +76,13 @@ public class PelamarController extends HttpServlet {
                 view.forward(request, response);
             } else if (userPath.equals("/pelamar/detail")) {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Pelamar p = pm.getPelamar(id);
+                Pelamar p = pm.getPelamarById(id);
                 response.reset();
                 response.setContentType("application/pdf");
                 response.setHeader("Content-disposition", "attachment; filename=\"CV_" + p.getUsername() + ".pdf\"");
                 OutputStream out = response.getOutputStream();
                 try {
+                    System.out.println("idcv="+p.getId_cv());
                     byte[] result = getCV("" + p.getId_cv());
 
                     OutputStream output = response.getOutputStream();
@@ -103,7 +109,10 @@ public class PelamarController extends HttpServlet {
             } else if (userPath.equals("/pelamar/recruit")) {
                 if (request.getParameter("name") != null) {
                     int id = (int) session.getAttribute("currentLowongan");
-                    pm.cregPelamar(id, request.getParameter("name"));
+                    String username = request.getParameter("name");
+                    pm.cregPelamar(id, username);
+                    Pelamar p = pm.getPelamarByUsername(username);                    
+                    nm.addNotif(p.getId(), username, "close");
                     response.sendRedirect("/SIOUIbackend/pelamar?creg=success");
                 }
             }
