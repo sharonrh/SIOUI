@@ -5,6 +5,7 @@
  */
 package controller;
 
+import bean.NotifBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import model.OrganisasiModel;
 import model.PelamarModel;
 import model.UserModel;
 import object.Lowongan;
+import object.Notifikasi;
 import object.Organisasi;
 import object.Pelamar;
 import ws.UserCV;
@@ -30,12 +32,6 @@ import ws.UserCV;
  * @author Johanes
  */
 public class UserController extends HttpServlet {
-
-    UserModel um = new UserModel();
-    OrganisasiModel om = new OrganisasiModel();
-    LowonganModel lm = new LowonganModel();
-    PelamarModel pm = new PelamarModel();
-    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,11 +43,16 @@ public class UserController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("currentUser");
-        
+        NotifBean nb = (NotifBean) request.getSession().getAttribute(user+"_notif");
+        ArrayList<Notifikasi> listNotifikasi = nb.getCloseRec();
         String userPath = request.getServletPath();
+        UserModel um = new UserModel();
+        LowonganModel lm = new LowonganModel();
+        OrganisasiModel om = new OrganisasiModel();
+        PelamarModel pm = new PelamarModel();
+        
         if (userPath.equals("/user/dashboard")) {
             ArrayList<Organisasi> orgs = om.selectAll();
             Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
@@ -65,17 +66,16 @@ public class UserController extends HttpServlet {
             }
             ArrayList<Pelamar> pelamar = pm.selectAll();
             Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
-//            for(Pelamar plm:pelamar){
-//                tablePelamar.put(plm.getId(), plm);
-//            }
+            for(Pelamar plm:pelamar){
+                tablePelamar.put(plm.getId(), plm);
+            }
             request.setAttribute("tableOrgs", tableOrgs);
             request.setAttribute("tableLwgs", tableLwgs);
             request.setAttribute("tablePelamar", tablePelamar);
             RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
             view.forward(request, response);
-            
         } else if (userPath.equals("/user/pendaftaranku")) {
-
+            
         } else if (userPath.equals("/user/closerec")) {
 
         } else if (userPath.equals("/user/notifikasi")) {

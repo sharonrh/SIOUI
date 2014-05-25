@@ -23,6 +23,7 @@ public class NotifikasiModel extends Model {
     public ArrayList<Notifikasi> selectAllUnread(String username){
         super.openConnection();
         String query = String.format("SELECT * FROM %s where username ='%s' AND seen='0' ", TABLE_NAME, username);
+        System.out.println("query:"+query);
         ArrayList<Notifikasi> result = new ArrayList<Notifikasi>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
@@ -43,6 +44,7 @@ public class NotifikasiModel extends Model {
     public ArrayList<Notifikasi> selectAllCloseRec(String username){
         super.openConnection();
         String query = String.format("SELECT * FROM %s where username ='%s' AND jenis='close' ", TABLE_NAME, username);
+        System.out.println("query:"+query);
         ArrayList<Notifikasi> result = new ArrayList<Notifikasi>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
