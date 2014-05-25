@@ -65,9 +65,9 @@ public class UserController extends HttpServlet {
             }
             ArrayList<Pelamar> pelamar = pm.selectAll();
             Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
-            for(Pelamar plm:pelamar){
-                tablePelamar.put(plm.getId(), plm);
-            }
+//            for(Pelamar plm:pelamar){
+//                tablePelamar.put(plm.getId(), plm);
+//            }
             request.setAttribute("tableOrgs", tableOrgs);
             request.setAttribute("tableLwgs", tableLwgs);
             request.setAttribute("tablePelamar", tablePelamar);

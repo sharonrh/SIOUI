@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.ejb.Stateless;
 import javax.servlet.http.HttpSession;
 import model.NotifikasiModel;
-import model.PendaftaranModel;
+import model.PelamarModel;
 import object.Notifikasi;
 import object.Pelamar;
 
@@ -21,7 +21,7 @@ import object.Pelamar;
 @Stateless
 public class NotifBean implements NotifBeanLocal {
     NotifikasiModel nm = new NotifikasiModel();
-    PendaftaranModel pm = new PendaftaranModel();
+    PelamarModel pm = new PelamarModel();
     
     ArrayList<Pelamar> pendaftaranku = new ArrayList<Pelamar>();
     ArrayList<Notifikasi> notifs = new ArrayList<Notifikasi>();
@@ -38,9 +38,9 @@ public class NotifBean implements NotifBeanLocal {
     
     @Override
     public void populateBean() {
-        notifs = nm.selectAllNotifByUsername(username);
-        closerec = nm.selectAllNotifByUsername(username);
-        //pendaftaranku = pm.selectPendaftaranByUsername(username);
+        notifs = nm.selectAllUnread(username);
+        closerec = nm.selectAllCloseRec(username);
+        pendaftaranku = pm.selectAllPelamarWait(username);
     }
 
     @Override
