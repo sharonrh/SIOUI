@@ -8,7 +8,7 @@
                 <div class="footer-widget">
                     <!-- Logo Icon -->
                     <!-- Heading -->
-                    <h2><a href="index.jsp"><i class="fa fa-eye-slash logo-icon br-red"></i> SIOUI</a></h2>
+                    <h2><a href="<%=request.getContextPath()%>/index.jsp"><i class="fa fa-eye-slash logo-icon br-red"></i> SIOUI</a></h2>
                     <!-- Paragraph -->
                     <p>Sistem Organisasi Universitas Indonesia</p>
                     <!-- Social Media -->

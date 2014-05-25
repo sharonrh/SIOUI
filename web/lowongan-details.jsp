@@ -17,6 +17,7 @@
     Object objOrg = request.getAttribute("org");
     
     Organisasi org = ((objOrg != null) ? (Organisasi) objOrg : null);
+    System.out.println(request.getContextPath());
 %>
 
 <!-- BODY DIMULAI -->

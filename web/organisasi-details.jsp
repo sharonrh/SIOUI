@@ -18,6 +18,7 @@
     if(org==null||jbts==null){
         response.sendRedirect(request.getContextPath());
     }
+    System.out.println(request.getContextPath());
 %>
 
 <!-- BODY DIMULAI -->

@@ -86,7 +86,7 @@
                                 <!-- Logo -->
                                 <div class="logo">
                                     <!-- Heading -->
-                                    <h1><a href="<%=request.getContextPath()%>"><i class="fa fa-eye-slash br-red"></i> SIOUI</a></h1>
+                                    <h1><a href="<%=request.getContextPath()%>/"><i class="fa fa-eye-slash br-red"></i> SIOUI</a></h1>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -105,7 +105,8 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav navbar-right">
                                             <li>
-                                                <a href="<%=request.getContextPath()%>" class="br-orange">
+                                                <%System.out.println(request.getContextPath());%>
+                                                <a href="<%=request.getContextPath()%>/" class="br-orange">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-home link-icon"></i>
                                                     <!-- Link Title -->
@@ -227,7 +228,7 @@
 
 
                                             <li>
-                                                <a href="about-us.jsp" class="br-red">
+                                                <a href="<%=out.print(request.getContextPath())%>/about-us.jsp" class="br-red">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-user link-icon"></i>
                                                     <!-- Link Title -->

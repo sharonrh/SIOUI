@@ -12,6 +12,8 @@
     String judul = request.getAttribute("judul").toString();
     String detail = request.getAttribute("detail").toString();
     ArrayList<Organisasi> orgs = ((objOrgs != null) ? (ArrayList<Organisasi>) objOrgs : null);
+    
+    System.out.println(request.getContextPath());
 %>
 
 <div class="inner-page">

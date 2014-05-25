@@ -81,11 +81,8 @@
                                 for(Lowongan l:alw){
                             %>
                             <div class="lowongan-home">
-                                <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul() %></b> <%=l.getDeskripsi() %></li>
-                                    <p>
-                                        <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id=<%=l.getId() %>" class="btn btn-warning pull-right btn-xs" > read more<i class="fa fa-angle-right"></i></a>
-                                    </p>
-                              
+                                <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul() %></b> <%=l.getDeskripsi() %> <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id=<%=l.getId() %>" class="btn btn-warning pull-right btn-xs" > read more <i class="fa fa-angle-right"></i></a> </li>
+                                                
                             </div>
                             <%}}%>
                             <hr>
@@ -106,7 +103,7 @@
                               String username = session.getAttribute("currentUser").toString();
                               NotifBean nb = (NotifBean)session.getAttribute(username+"_notif");
                               out.print("Welcome, " + username);} else {%>
-                        <form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath() %>/dologin">
+                        <form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath() %>/login/dologin">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                             </div>
