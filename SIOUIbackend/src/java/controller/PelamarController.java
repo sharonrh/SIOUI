@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -14,8 +15,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.LowonganModel;
+import model.NotifikasiModel;
 import model.PelamarModel;
 import object.Pelamar;
+import webservice.BasicInformation;
 import webservice.UserCV;
 
 /**
@@ -28,6 +32,8 @@ public class PelamarController extends HttpServlet {
             throws ServletException, IOException {
         String userPath = request.getServletPath();
         PelamarModel pm = new PelamarModel();
+        LowonganModel lm = new LowonganModel();
+        NotifikasiModel nm = new NotifikasiModel();
         HttpSession session = request.getSession(true);
         String user = (String) session.getAttribute("currentUser");
         if (user == null) {
@@ -55,31 +61,56 @@ public class PelamarController extends HttpServlet {
                 request.setAttribute("jenis_recruitment", (Object) jenis);
                 request.setAttribute("listPelamar", (Object) listPelamar);
 
+                if (jenis.equals("close")) {
+                    String kategori = lm.getKategori(id);
+                    List<BasicInformation> listRekomendasi = getRecommendedUser(kategori);
+                    System.out.println("jumlah rekomen=" + listRekomendasi.size());
+                    request.setAttribute("listRekomendasi", (Object) listRekomendasi);
+                }
                 RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/daftar-pelamar.jsp");
                 view.forward(request, response);
             } else if (userPath.equals("/pelamar/detail")) {
                 int id = Integer.parseInt(request.getParameter("id"));
-                // sementara, ntar ganti dari ws
-              
-                        UserCV cv = new UserCV();
-                cv.setName("Ragen Vadascovinich");
-                cv.setAddress("Kratliev 27th block, 3rd");
-                cv.setEmail("ragen@gmail.com");
-                cv.setInterests("Berkebun, berternak, menabung");
-                cv.setPhoneNumber("532-302-11");
-                cv.setObjective("Menafkahi keluarga nan bahagia. Sungguh merupakan suatu kewajiban "
-                        + "bagi setiap pria yang berkeluarga. Demikian harapan saya, saudara-saudara. "
-                        + "Kala malam menyapa-- hendaknya kita berjumpa lagi.");
-                cv.setQualification("What qualification?");
-                cv.setReference("Prof. Ibrahim Vadascovinich");
-                cv.setTitle("Curriculum Vitae");
-                        request.setAttribute("cv", (Object) cv);
-                RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/detail-pelamar.jsp");
-                view.forward(request, response);
+                Pelamar p = pm.getPelamar(id);
+                response.reset();
+                response.setContentType("application/pdf");
+                response.setHeader("Content-disposition", "attachment; filename=\"CV_" + p.getUsername() + ".pdf\"");
+                OutputStream out = response.getOutputStream();
+                try {
+                    byte[] result = getCV("" + p.getId_cv());
+
+                    OutputStream output = response.getOutputStream();
+                    output.write(result);
+                    output.close();
+                } catch (IOException ex) {
+
+                } finally {
+                    out.close();
+                    response.sendRedirect("/SIOUIbackend/pelamar");
+                }
+            } else if (userPath.equals("/pelamar/status")) {
+                // case approve
+                if (request.getParameter("act") != null) {
+                    if (request.getParameter("act").equals("accept")) {
+                        pm.updateStatusLamaran(Integer.parseInt(request.getParameter("id")), true);
+                    } // case reject
+                    else if (request.getParameter("act") != null && request.getParameter("act").equals("reject")) {
+                        pm.updateStatusLamaran(Integer.parseInt(request.getParameter("id")), false);
+                    }
+                    nm.updateSeen(Integer.parseInt(request.getParameter("id"))); // ubah seen jadi false
+                }
+                response.sendRedirect("/SIOUIbackend/pelamar");
+            } else if (userPath.equals("/pelamar/recruit")) {
+                if (request.getParameter("name") != null) {
+                    int id = (int) session.getAttribute("currentLowongan");
+                    pm.cregPelamar(id, request.getParameter("name"));
+                    response.sendRedirect("/SIOUIbackend/pelamar?creg=success");
+                }
             }
         }
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -118,10 +149,16 @@ public class PelamarController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private static UserCV getCV(java.lang.String cvId) {
+    private static java.util.List<webservice.BasicInformation> getRecommendedUser(java.lang.String category) {
         webservice.SivimuWebService_Service service = new webservice.SivimuWebService_Service();
         webservice.SivimuWebService port = service.getSivimuWebServicePort();
-        return port.getCV(cvId);
+        return port.getRecommendedUser(category);
+    }
+
+    private static byte[] getCV(java.lang.String arg0) {
+        webservice.SivimuWebService_Service service = new webservice.SivimuWebService_Service();
+        webservice.SivimuWebService port = service.getSivimuWebServicePort();
+        return port.getCV(arg0);
     }
 
 }

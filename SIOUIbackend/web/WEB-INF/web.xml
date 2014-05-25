@@ -153,6 +153,15 @@
         <url-pattern>/pelamar/detail</url-pattern>
     </servlet-mapping>  
     <servlet-mapping>
+        <servlet-name>PelamarController</servlet-name>
+        <url-pattern>/pelamar/status</url-pattern>
+    </servlet-mapping>  
+    <servlet-mapping>
+        <servlet-name>PelamarController</servlet-name>
+        <url-pattern>/pelamar/recruit</url-pattern>
+    </servlet-mapping>  
+     
+    <servlet-mapping>
         <servlet-name>ImageAlbum</servlet-name>
         <url-pattern>/ImageAlbum</url-pattern>
     </servlet-mapping>

@@ -42,7 +42,7 @@
 
             <div class="caption">
                 <h3><% out.print(albums.get(i).getName());%></h3>
-                <p><%%></p>
+                <p><%out.print(albums.get(i).getDescription());%></p>
                 <p>
                     <a href="<%= request.getContextPath()%>/album/edit?id=<%=albums.get(i).getId()%>" class="btn btn-xs btn-success" role="button">Manage</a>  
                     <a href="<%= request.getContextPath()%>/album/delete?id=<%=albums.get(i).getId()%>" class="hapus btn btn-xs btn-danger" role="button">Delete</a>

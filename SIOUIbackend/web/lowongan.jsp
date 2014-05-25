@@ -28,33 +28,40 @@
         <a href="<%=request.getContextPath()%>/lowongan/form" class="btn btn-success pull-left">
             Tambah Lowongan 
         </a>
+
         <table class="table table-hover table-striped">
             <% if (listLowongan.size() > 0) {%>
             <thead>    
             <th>  </th>
             <th> Nama Lowongan </th>
-            <th> Status </th>
-            <th>  </th>
+            <th> Kapasitas </th>
+            <th> Tanggal buka</th>
+            <th> Tanggal tutup</th>
+            <th> </th>
+
             </thead>      
 
-            <% for (int ii = 0; ii < listLowongan.size(); ii++) {%>
+            <% for (Lowongan l : listLowongan) {%>
             <tr>
                 <td> 
-                    <a href="<%=request.getContextPath()%>/lowongan/delete?id=<%out.print(listLowongan.get(ii).getId());%>">
+                    <a href="<%=request.getContextPath()%>/lowongan/delete?id=<%out.print(l.getId());%>">
                         <button type="submit" class="hapus btn btn-default btn-danger">Delete</button>
                     </a>
                 <td> 
-                    <b> <%out.print(listLowongan.get(ii).getJudul());%> </b>
-                    <br><%out.print(listLowongan.get(ii).getJabatan());%>
+                    <b> <%=l.getJudul()%> </b>
+                    <br><%=l.getJabatan()%>
                 </td>
-                <td> Close Recruitment </td>  
+                <td> <%=l.getKapasitas()%> </td> 
+                <td> <%=l.getTanggal_buka()%> </td> 
+                <td> <%=l.getTanggal_tutup()%> </td> 
+
                 <td>            
-                    <a href="<%=request.getContextPath()%>/lowongan/form?id=<%out.print(listLowongan.get(ii).getId());%>">
-                        <button type="submit" class="btn btn-default btn-info">Edit</button>
+                    <a class="btn btn-default btn-primary" href="<%=request.getContextPath()%>/lowongan/form?id=<%out.print(l.getId());%>">
+                        Edit
                     </a>
 
-                    <a href="<%=request.getContextPath()%>/pelamar?id=<%out.print(listLowongan.get(ii).getId());%>">
-                        <button type="submit" class="btn btn-default btn-info">Manage Pendaftar</button>
+                    <a class="btn btn-default btn-primary" href="<%=request.getContextPath()%>/pelamar?id=<%out.print(l.getId());%>">
+                        Manage Pendaftar
                     </a>    
                 </td>  
             </tr>

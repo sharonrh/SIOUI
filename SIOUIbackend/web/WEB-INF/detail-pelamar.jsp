@@ -43,6 +43,8 @@
             <dd><%=cv.getObjective()%></dd>
         </dl>
         <br>
+        <!-- ntar looping education -->      
+        <h4> Education </h4>
         <dl>
             <dt> <h4> Qualification </h4></dt>
             <dd><%=cv.getQualification()%></dd>
@@ -54,6 +56,10 @@
         <dl>
             <dt> <h4> Interest </h4></dt>
             <dd><%=cv.getInterests()%></dd>
+        </dl>
+        <dl>
+            <dt> <h4> Reference </h4></dt>
+            <dd><%=cv.getReference()%></dd>
         </dl>
     </div>
 </div>
