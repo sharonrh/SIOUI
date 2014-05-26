@@ -41,7 +41,7 @@
                             <!-- Inner Page Title // Heading -->
                             <h2>Dashboard</h2>
                             <!-- Paragraph -->
-                            <p>Lorem ipsum dolor sit amet</p>
+                            <p></p>
                         </div>
                         <!-- Sidebar Links -->
                         <div class="sidebar-link col-disable">
@@ -105,6 +105,8 @@
                                     <ul class="list-unstyled">
                                         <%
                                             for (Notifikasi nt : nb.getCloseRec()) {
+                                                int idPelamar = Integer.parseInt(nt.getId_pelamar());
+                                                int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()).getId()).getNama_pendek()%></li>

@@ -17,12 +17,12 @@
     <div class="col-md-4">
         <div class="alert <%=request.getAttribute("alertType")%>">
         <%if(request.getAttribute("alertContent")!= null){
-        request.getAttribute("alertContent");};
+            out.print(request.getAttribute("alertContent"));};
         %>
         </div>
         <h2>Registration</h2>
         <!-- Sign Up Form Start -->
-        <form class="form-horizontal" role="form" method="POST" action="/daftar-organisasi/add">
+        <form class="form-horizontal" role="form" method="POST" action="<%=request.getContextPath()%>/daftar-organisasi/add">
             <div class="form-group">
                 <label class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-8">
@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Nama Panjang</label>
                 <div class="col-sm-8">
-                    <input required type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
+                    <input required name="nama_panjang" type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
                 </div>
             </div>  
             <div class="form-group">

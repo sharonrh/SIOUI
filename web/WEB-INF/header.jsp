@@ -8,7 +8,7 @@
         <meta name="description" content="Your description">
         <meta name="keywords" content="Your,Keywords">
         <meta name="author" content="ResponsiveWebInc">
-
+        <link rel="shortcut icon" href="<%=request.getContextPath()%>/img/logo.png"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Styles -->
@@ -57,17 +57,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                <!-- Search Box -->
-                                <div class="search">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Text to search">
-                                            <span class="input-group-btn">
-                                                <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
+                                
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <!-- Contact Info -->
