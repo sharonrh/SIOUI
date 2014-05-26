@@ -108,7 +108,11 @@
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getId()).getNama_pendek()%></li>
-                                            <p><%=nt.getCreated_at()%> <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId_pelamar()).getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
+                                            <p><%=nt.getCreated_at()%> 
+                                                <a href="<%=request.getContextPath()%>/user/terimaclosereg?idpl=<%=nt.getId_pelamar()%>" class="btn btn-success btn-xs">Terima - Pilih CV </a>
+                                                <a href="<%=request.getContextPath()%>/user/tolakclosereg?idpl=<%=nt.getId_pelamar()%>" class="awas btn btn-danger btn-xs">Tolak </a>
+                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId_pelamar()).getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
+                                            </p>	
                                         </div>
                                         <hr>
                                         <%}%>
@@ -143,3 +147,13 @@
     </div>
 </div>
 <%@include file="/WEB-INF/footer.jsp" %>
+<script>
+    $(document).ready(function() {
+        $(".awas").bind("click", function(event) {
+            if (!confirm('Anda yakin untuk menolak kesempatan ini?')) {
+                event.preventDefault();
+            }
+        });
+
+    });
+</script>

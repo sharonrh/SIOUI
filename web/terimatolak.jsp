@@ -13,11 +13,11 @@
 <%
     Object objCvs = request.getAttribute("cvs");
     Object objFormAction = request.getAttribute("formAction");
-    Object objIdlw = request.getAttribute("idlw");
+    Object objIdpl = request.getAttribute("idpl");
     
     ArrayList<UserCV> cvs = ((objCvs != null) ? (ArrayList<UserCV>) objCvs : null);
     String formAction = ((objFormAction != null) ? objFormAction.toString() : null);
-    String idlw = ((objIdlw != null) ? objIdlw.toString() : null);
+    String idpl = ((objIdpl != null) ? objIdpl.toString() : null);
 %>
 
 <div class="container"> 
@@ -56,7 +56,7 @@
                                     </div>
 
                                     <%}%>
-                                    <input type="hidden" name="idlw" value="<%=idlw%>">
+                                    <input type="hidden" name="idpl" value="<%=idpl%>">
                                 </div> 
                             </div>
                             <div class="form-group text-center">

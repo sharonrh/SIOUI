@@ -77,8 +77,85 @@ public class UserController extends HttpServlet {
             view.forward(request, response);
         } else if (userPath.equals("/user/pendaftaranku")) {
 
-        } else if (userPath.equals("/user/closerec")) {
+        } else if (userPath.equals("/user/terimacloserec")) {
+            Object objId = request.getParameter("idpl");
+            if (objId == null) {
+                //redirect here
+            }
+            String id = objId.toString();
+            request.setAttribute("idpl", id);
 
+            List<UserCV> cvs = um.getMultipleCVByUsername(user);
+            request.setAttribute("cvs", cvs);
+
+            request.setAttribute("formAction", request.getContextPath()+"/user/doterimacloserec");
+            
+            RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
+            view.forward(request, response);
+
+        } else if (userPath.equals("/user/doterimacloserec")) {
+            Object objCvid = request.getParameter("cvs");
+            Object objId = request.getParameter("idpl");
+            if (objId == null || objCvid==null) {
+                //redirect here
+            }
+            String idpl = objId.toString();
+            pm.updateStatusLamaranWithCV(idpl, true, objCvid.toString());
+            
+            //move to dashboard
+            ArrayList<Organisasi> orgs = om.selectAll();
+            Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
+            for (Organisasi org : orgs) {
+                tableOrgs.put(org.getId(), org);
+            }
+            ArrayList<Lowongan> lwgs = lm.selectAll();
+            Hashtable<Integer, Lowongan> tableLwgs = new Hashtable<Integer, Lowongan>();
+            for (Lowongan lwg : lwgs) {
+                tableLwgs.put(lwg.getId(), lwg);
+            }
+            ArrayList<Pelamar> pelamar = pm.selectAll();
+            Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
+            for (Pelamar plm : pelamar) {
+                tablePelamar.put(plm.getId(), plm);
+            }
+            request.setAttribute("tableOrgs", tableOrgs);
+            request.setAttribute("tableLwgs", tableLwgs);
+            request.setAttribute("tablePelamar", tablePelamar);
+            request.setAttribute("notif", "Respon Anda berhasil disimpan. Tunggu konfirmasi dari organisasi yang bersangkutan.");
+            RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
+            view.forward(request, response);
+            
+        } else if (userPath.equals("/user/tolakcloserec")) {
+            
+            Object objId = request.getParameter("idpl");
+            if (objId == null) {
+                //redirect here
+            }
+            String idpl = objId.toString();
+            pm.updateStatusLamaran(Integer.parseInt(idpl), false);
+            
+            //move to dashboard
+            ArrayList<Organisasi> orgs = om.selectAll();
+            Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
+            for (Organisasi org : orgs) {
+                tableOrgs.put(org.getId(), org);
+            }
+            ArrayList<Lowongan> lwgs = lm.selectAll();
+            Hashtable<Integer, Lowongan> tableLwgs = new Hashtable<Integer, Lowongan>();
+            for (Lowongan lwg : lwgs) {
+                tableLwgs.put(lwg.getId(), lwg);
+            }
+            ArrayList<Pelamar> pelamar = pm.selectAll();
+            Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
+            for (Pelamar plm : pelamar) {
+                tablePelamar.put(plm.getId(), plm);
+            }
+            request.setAttribute("tableOrgs", tableOrgs);
+            request.setAttribute("tableLwgs", tableLwgs);
+            request.setAttribute("tablePelamar", tablePelamar);
+            request.setAttribute("notif", "Anda telah menolak Close Recruitment yang ditawarkan kepada Anda.");
+            RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
+            view.forward(request, response);
         } else if (userPath.equals("/user/notifikasi")) {
 
         } else if (userPath.equals("/user/listcv")) {

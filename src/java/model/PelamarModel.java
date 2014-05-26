@@ -128,6 +128,20 @@ public class PelamarModel extends Model {
             closeConnection();
         }
     }
+    
+    public void updateStatusLamaranWithCV(String id, boolean accepted, String idcv) {
+        String status = accepted ? "accept" : "reject";
+        String query = String.format("UPDATE %s SET status='%s', id_cv=%s WHERE id=%s", this.TABLE_NAME,
+                status, idcv, id);
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
 
     public Pelamar getPelamarById(int idPelamar) {
         super.openConnection();
