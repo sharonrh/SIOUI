@@ -105,8 +105,7 @@
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                                         <ul class="nav navbar-nav navbar-right">
                                             <li>
-                                                <%System.out.println(request.getContextPath());%>
-                                                <a href="<%=request.getContextPath()%>/" class="br-orange">
+                                                <a href="<%=request.getContextPath()%>/index.jsp" class="br-orange">
                                                     <!-- Link Icon -->
                                                     <i class="fa fa-home link-icon"></i>
                                                     <!-- Link Title -->

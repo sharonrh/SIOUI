@@ -20,9 +20,9 @@
         PelamarModel pm = new PelamarModel();
         LowonganModel lm = new LowonganModel();
         
-        int jumlahOrg = om.selectAll().size();
-        int jumlahPelamar = om.selectAll().size();
-        int jumlahLowongan = om.selectAll().size();
+        int jumlahOrg = (om.selectAll()==null ? om.selectAll().size() : 0);
+        int jumlahPelamar = (pm.selectAll()==null ? pm.selectAll().size() : 0);
+        int jumlahLowongan = (lm.selectAll()==null ? lm.selectAll().size() : 0);
         
         ArrayList<Lowongan> alw = lm.getLowonganBaru(3);
     %>
