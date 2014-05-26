@@ -39,6 +39,9 @@
         <url-pattern>/user/daftar</url-pattern>
         <url-pattern>/user</url-pattern>
         <url-pattern>/user/dashboard</url-pattern>
+        <url-pattern>/user/terimaclosereg</url-pattern>
+        <url-pattern>/user/doterimaclosereg</url-pattern>
+        <url-pattern>/user/tolakclosereg</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ExploreController</servlet-name>
