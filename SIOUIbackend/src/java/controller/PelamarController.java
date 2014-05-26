@@ -112,8 +112,8 @@ public class PelamarController extends HttpServlet {
                     int idLowongan = (int) session.getAttribute("currentLowongan");
                     String username = request.getParameter("name");
                     pm.cregPelamar(idLowongan, username);
-                    Pelamar p = pm.getPelamarByUsername(username);
-                    nm.addNotif(p.getId(), username, "close");
+                    //Pelamar p = pm.getPelamarByUsername(username);
+                    //nm.addNotif(p.getId(), username, "close");
                     response.sendRedirect("/SIOUIbackend/pelamar?creg=success");
                 }
             }

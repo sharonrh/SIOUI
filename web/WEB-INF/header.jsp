@@ -57,17 +57,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                <!-- Search Box -->
-                                <div class="search">
-                                    <form>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Text to search">
-                                            <span class="input-group-btn">
-                                                <button class="btn" type="button"><i class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
+                                
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <!-- Contact Info -->

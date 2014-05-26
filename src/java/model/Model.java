@@ -22,7 +22,7 @@ public class Model {
     //UNTUK KONEKSI LOKAL
     public static final String DATABASE_URL = "jdbc:mysql://localhost/sioui_db";
     public static final String DATABASE_USERNAME = "root";
-    public static final String DATABASE_PASSWORD = "";
+    public static final String DATABASE_PASSWORD = "123qwe";
     
     //UNTUK DATABASE BENERAN
     //public static final String DATABASE_URL = "jdbc:mysql://sioui.cloudapp.net:3307/sioui_db";

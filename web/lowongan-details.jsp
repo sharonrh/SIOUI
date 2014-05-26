@@ -30,10 +30,11 @@
                     <!-- Page Title -->
                     <div class="page-title br-green">
                         <!-- Inner Page Title // Heading -->
-                        <h2>BEM Fasilkom UI</h2>
+                        <h2><%=org.getNama_panjang()%></h2>
                         <!-- Paragraph -->
-                        <p>(entar detail organisasi disini) </p>
-                        
+                        <p><%=org.getDeskripsi()%> </p>
+                        <hr>
+                        <p><b>Visi : </b><%=org.getVisi()%> </p>
                     </div>
                     <!-- Sidebar Links -->
                     <div class="sidebar-link col-disable">
