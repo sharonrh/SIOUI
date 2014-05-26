@@ -25,9 +25,9 @@ public class Model {
     public static final String DATABASE_PASSWORD = "";
     
     //UNTUK DATABASE BENERAN
-//    public static final String DATABASE_URL = "jdbc:mysql://sioui.cloudapp.net:3307/sioui_db";
-//    public static final String DATABASE_USERNAME = "client";
-//    public static final String DATABASE_PASSWORD = "sioui123";
+    //public static final String DATABASE_URL = "jdbc:mysql://sioui.cloudapp.net:3307/sioui_db";
+    //public static final String DATABASE_USERNAME = "client";
+    //public static final String DATABASE_PASSWORD = "sioui123";
 
     private Connection con = null;
     private Statement state = null;
