@@ -46,8 +46,8 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("currentUser");
-        NotifBean nb = (NotifBean) request.getSession().getAttribute(user + "_notif");
-        ArrayList<Notifikasi> listNotifikasi = nb.getCloseRec();
+        //NotifBean nb = (NotifBean) request.getSession().getAttribute(user + "_notif");
+       
         String userPath = request.getServletPath();
         UserModel um = new UserModel();
         LowonganModel lm = new LowonganModel();

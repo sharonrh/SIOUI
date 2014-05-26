@@ -32,7 +32,7 @@ public class NotifikasiModel extends Model {
 
     public void addNotif(int id_pelamar, String username, String jenis) {
         super.openConnection();
-        String query = String.format("INSERT INTO %s (id_pelamar, username, jenis) VALUES ('%s','%s','%s')", TABLE_NAME, id_pelamar, username, jenis);
+        String query = String.format("INSERT INTO %s (id_pelamar, username, jenis, seen) VALUES ('%s','%s','%s','%s')", TABLE_NAME, id_pelamar, username, jenis, 0);
         try {
             super.getStatement().executeUpdate(query);
         } catch (SQLException ex) {

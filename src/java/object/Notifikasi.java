@@ -14,7 +14,6 @@ public class Notifikasi {
     private String id;
     private String username;
     private String id_pelamar;
-    private String id_lowongan;
     private String jenis;
     private boolean seen;
     private String created_at;
@@ -22,11 +21,10 @@ public class Notifikasi {
     
     public Notifikasi(){}
 
-    public Notifikasi(String id, String username, String id_pelamar, String id_lowongan, String jenis, boolean seen, String created_at, String seen_at) {
+    public Notifikasi(String id, String username, String id_pelamar, String jenis, boolean seen, String created_at, String seen_at) {
         this.id = id;
         this.username = username;
         this.id_pelamar = id_pelamar;
-        this.id_lowongan = id_lowongan;
         this.jenis = jenis;
         this.seen = seen;
         this.created_at = created_at;
@@ -95,14 +93,4 @@ public class Notifikasi {
     public void setSeen_at(String seen_at) {
         this.seen_at = seen_at;
     }
-
-    public String getId_lowongan() {
-        return id_lowongan;
-    }
-
-    public void setId_lowongan(String id_lowongan) {
-        this.id_lowongan = id_lowongan;
-    }
-    
-    
 }

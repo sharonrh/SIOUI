@@ -67,20 +67,25 @@
                             <div class="box box-lg br-red animated" style="min-height:140px">
                                 <div class="box-content box-service box-default">
                                     <!-- Heading -->
-                                    <h4><i class="fa fa-trophy"></i> Close Recruitment</h4>
+                                    <h4><i class="fa fa-trophy"></i> Notifikasi</h4>
                                     <!-- Paragraph -->
-                                    <p>Close Recruitment adalah mekanisme dimana anda diajak oleh sebuah organisasi untuk bergabung.</p>
+                                    <p>Notifikasi adalah perubahan-perubahan baru yang belum Anda lihat.</p>
                                     <!-- Box Service List -->
                                     <ul class="list-unstyled">
                                         <%
-                                            for (Notifikasi nt : nb.getCloseRec()) {
+                                            for (Notifikasi nt : nb.getNotifications()) {
+                                                int idPelamar = Integer.parseInt(nt.getId_pelamar());
+                                                int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
+                                                Lowongan l = tableLwgs.get(idLowongan);
+                                                
+                                                String namaPendek = tableOrgs.get(l.getId()).getNama_pendek();
                                         %>
                                         <div class="lowongan-home">
-                                            <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getId()).getNama_pendek()%></li>
+                                            <li><i class="fa fa-check-square-o"></i> <b><%= l.getJudul()%></b> - <%= namaPendek%></li>
                                             <p>
                                                 <%=nt.getCreated_at()%> 
-                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId_pelamar()).getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
-                                                <a href="<%=request.getContextPath()%>/user/jawabclosereg?idpl=<%=nt.getId_pelamar()%>" class="btn btn-success pull-right btn-xs">Terima - Pilih CV</a>
+                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=idLowongan%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
+                                                <a href="<%=request.getContextPath()%>/user/jawabclosereg?idpl=<%=idPelamar%>" class="btn btn-success pull-right btn-xs">Terima - Pilih CV</a>
 
                                             </p>	
 
@@ -99,7 +104,7 @@
                                     <!-- Box Service List -->
                                     <ul class="list-unstyled">
                                         <%
-                                            for (Notifikasi nt : nb.getNotifications()) {
+                                            for (Notifikasi nt : nb.getCloseRec()) {
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getId()).getNama_pendek()%></li>

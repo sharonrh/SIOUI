@@ -41,7 +41,7 @@
                                     <%for (UserCV cv : cvs) {%>
                                     <div class="col-md-6 col-sm-6">
                                         <!-- Image -->
-                                        <input type="radio" name="cvs" value="<%=cv.getCvId()%>">
+                                            <input required type="radio" name="cvs" value="<%=cv.getCvId()%>">
                                         <!-- Heading -->
                                         <h4><%=cv.getTitle()%></h4>
                                         <!-- Paragraph -->

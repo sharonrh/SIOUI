@@ -82,7 +82,7 @@ public class PelamarController extends HttpServlet {
                 response.setHeader("Content-disposition", "attachment; filename=\"CV_" + p.getUsername() + ".pdf\"");
                 OutputStream out = response.getOutputStream();
                 try {
-                    System.out.println("idcv="+p.getId_cv());
+                    System.out.println("idcv=" + p.getId_cv());
                     byte[] result = getCV("" + p.getId_cv());
 
                     OutputStream output = response.getOutputStream();
@@ -103,15 +103,16 @@ public class PelamarController extends HttpServlet {
                     else if (request.getParameter("act") != null && request.getParameter("act").equals("reject")) {
                         pm.updateStatusLamaran(Integer.parseInt(request.getParameter("id")), false);
                     }
-                    nm.updateSeen(Integer.parseInt(request.getParameter("id"))); // ubah seen jadi false
+                    Pelamar p = pm.getPelamarById(Integer.parseInt(request.getParameter("id")));
+                    nm.addNotif(Integer.parseInt(request.getParameter("id")), p.getUsername(), "open");
                 }
                 response.sendRedirect("/SIOUIbackend/pelamar");
             } else if (userPath.equals("/pelamar/recruit")) {
                 if (request.getParameter("name") != null) {
-                    int id = (int) session.getAttribute("currentLowongan");
+                    int idLowongan = (int) session.getAttribute("currentLowongan");
                     String username = request.getParameter("name");
-                    pm.cregPelamar(id, username);
-                    Pelamar p = pm.getPelamarByUsername(username);                    
+                    pm.cregPelamar(idLowongan, username);
+                    Pelamar p = pm.getPelamarByUsername(username);
                     nm.addNotif(p.getId(), username, "close");
                     response.sendRedirect("/SIOUIbackend/pelamar?creg=success");
                 }

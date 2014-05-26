@@ -29,7 +29,7 @@ public class NotifikasiModel extends Model {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-              Notifikasi a = new Notifikasi(res.getString("id"),res.getString("username"),res.getString("id_organisasi"),res.getString("id_lowongan"),res.getString("jenis"),res.getBoolean("seen"), res.getString("created_at"),res.getString("seen_at"));
+              Notifikasi a = new Notifikasi(res.getString("id"),res.getString("username"),res.getString("id_pelamar"),res.getString("jenis"),res.getBoolean("seen"), res.getString("created_at"),res.getString("seen_at"));
               result.add(a);
             }
             return result;
@@ -50,7 +50,7 @@ public class NotifikasiModel extends Model {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-              Notifikasi a = new Notifikasi(res.getString("id"),res.getString("username"),res.getString("id_organisasi"),res.getString("id_lowongan"),res.getString("jenis"),res.getBoolean("seen"), res.getString("created_at"),res.getString("seen_at"));
+              Notifikasi a = new Notifikasi(res.getString("id"),res.getString("username"),res.getString("id_pelamar"),res.getString("jenis"),res.getBoolean("seen"), res.getString("created_at"),res.getString("seen_at"));
               result.add(a);
             }
             return result;
@@ -66,18 +66,6 @@ public class NotifikasiModel extends Model {
         String query = String.format("UPDATE %s SET seen='%s' WHERE id=%s", this.TABLE_NAME,
                 0, idPelamar);
         super.openConnection();
-        try {
-            super.getStatement().executeUpdate(query);
-        } catch (SQLException ex) {
-            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            closeConnection();
-        }
-    }
-
-    public void addNotif(int id_pelamar, String username, String jenis) {
-        super.openConnection();
-        String query = String.format("INSERT INTO %s (id_pelamar, username, jenis) VALUES ('%s','%s','%s')", TABLE_NAME, id_pelamar, username, jenis);
         try {
             super.getStatement().executeUpdate(query);
         } catch (SQLException ex) {
