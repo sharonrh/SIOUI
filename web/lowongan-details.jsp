@@ -4,6 +4,7 @@
     Author     : Johanes
 --%>
 
+<%@page import="model.PelamarModel"%>
 <%@page import="object.Organisasi"%>
 <%@page import="object.Lowongan"%>
 <%@page import="java.util.ArrayList"%>
@@ -122,7 +123,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-md-12">
                         <center><a href="<%=request.getContextPath() %>/user/daftar?id=<%=lw.getId() %>" class="btn btn-lg btn-success btn-block">Daftar Sekarang!</a></center><br><hr>
                     </div>

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.LowonganModel;
+import model.NotifikasiModel;
 import model.OrganisasiModel;
 import model.PelamarModel;
 import model.UserModel;
@@ -32,7 +33,7 @@ import ws.UserCV;
  * @author Johanes
  */
 public class UserController extends HttpServlet {
-
+    NotifikasiModel nm = new NotifikasiModel();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -77,7 +78,7 @@ public class UserController extends HttpServlet {
             view.forward(request, response);
         } else if (userPath.equals("/user/pendaftaranku")) {
 
-        } else if (userPath.equals("/user/terimacloserec")) {
+        } else if (userPath.equals("/user/terimaclosereg")) {
             Object objId = request.getParameter("idpl");
             if (objId == null) {
                 //redirect here
@@ -88,12 +89,19 @@ public class UserController extends HttpServlet {
             List<UserCV> cvs = um.getMultipleCVByUsername(user);
             request.setAttribute("cvs", cvs);
 
-            request.setAttribute("formAction", request.getContextPath()+"/user/doterimacloserec");
+            Object objIdNotif = request.getParameter("idnotif");
+            if (objIdNotif == null) {
+                //redirect here
+            }
+            String idNotif = objIdNotif.toString();
+            request.setAttribute("idnotif", idNotif);
             
-            RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
+            request.setAttribute("formAction", request.getContextPath()+"/user/doterimaclosereg");
+            
+            RequestDispatcher view = request.getRequestDispatcher("/terimatolak.jsp");
             view.forward(request, response);
 
-        } else if (userPath.equals("/user/doterimacloserec")) {
+        } else if (userPath.equals("/user/doterimaclosereg")) {
             Object objCvid = request.getParameter("cvs");
             Object objId = request.getParameter("idpl");
             if (objId == null || objCvid==null) {
@@ -101,6 +109,13 @@ public class UserController extends HttpServlet {
             }
             String idpl = objId.toString();
             pm.updateStatusLamaranWithCV(idpl, true, objCvid.toString());
+            
+            Object objIdNotif = request.getParameter("idnotif");
+            if (objIdNotif == null) {
+                //redirect here
+            }
+            String idNotif = objIdNotif.toString();
+            nm.delete(idNotif);
             
             //move to dashboard
             ArrayList<Organisasi> orgs = om.selectAll();
@@ -125,7 +140,7 @@ public class UserController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
             view.forward(request, response);
             
-        } else if (userPath.equals("/user/tolakcloserec")) {
+        } else if (userPath.equals("/user/tolakclosereg")) {
             
             Object objId = request.getParameter("idpl");
             if (objId == null) {
@@ -133,6 +148,15 @@ public class UserController extends HttpServlet {
             }
             String idpl = objId.toString();
             pm.updateStatusLamaran(Integer.parseInt(idpl), false);
+            
+            Object objIdNotif = request.getParameter("idnotif");
+            if (objIdNotif == null) {
+                //redirect here
+            }
+            String idNotif = objIdNotif.toString();
+            request.setAttribute("idnotif", idNotif);
+            
+            nm.delete(idNotif);
             
             //move to dashboard
             ArrayList<Organisasi> orgs = om.selectAll();

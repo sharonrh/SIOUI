@@ -28,7 +28,7 @@
     </target>
     <target name="wsimport-client-SivimuWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/SivimuWebService"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SivimuWebService" destdir="${build.generated.dir}/jax-wsCache/SivimuWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?wsdl" xnocompile="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/SivimuWebService" destdir="${build.generated.dir}/jax-wsCache/SivimuWebService" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://sivimu.cloudapp.net:8080/sivimu/SivimuWebService?wsdl" xnocompile="true" xendorsed="true" target="2.1">
             <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/SivimuWebService/wsdl/sivimu.cloudapp.net_8080/sivimu/SivimuWebService.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/SivimuWebService"/>
         </wsimport>

@@ -59,12 +59,13 @@
                     </div><br>
                     <div class="isi">
                         <div class="alert alert-success <%if (objNotif == null) {
-                                out.print("hide");}%> "><% if (objNotif != null) {
-                                out.print(objNotif.toString());
-                            } %></div>
+                                out.print("hide");
+                         }%> "><% if (objNotif != null) {
+                                     out.print(objNotif.toString());
+                                    } %></div>
                         <div class="col-md-12 col-sm-12">
                             <!-- Box Outer Layer [ Box 3 ] -->
-                            <div class="box box-lg br-red animated" style="min-height:140px">
+                            <div id="notif" class="box box-lg br-red animated" style="min-height:140px">
                                 <div class="box-content box-service box-default">
                                     <!-- Heading -->
                                     <h4><i class="fa fa-trophy"></i> Notifikasi</h4>
@@ -77,15 +78,14 @@
                                                 int idPelamar = Integer.parseInt(nt.getId_pelamar());
                                                 int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
                                                 Lowongan l = tableLwgs.get(idLowongan);
-                                                
+
                                                 String namaPendek = tableOrgs.get(l.getId()).getNama_pendek();
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= l.getJudul()%></b> - <%= namaPendek%></li>
                                             <p>
                                                 <%=nt.getCreated_at()%> 
-                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=idLowongan%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
-                                                <a href="<%=request.getContextPath()%>/user/jawabclosereg?idpl=<%=idPelamar%>" class="btn btn-success pull-right btn-xs">Terima - Pilih CV</a>
+                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=idLowongan%>" class="btn btn-primary pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
 
                                             </p>	
 
@@ -95,7 +95,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="box box-lg br-yellow animated" style="min-height:140px">
+                            <div id="closerec" class="box box-lg br-yellow animated" style="min-height:140px">
                                 <div class="box-content box-service box-default">
                                     <!-- Heading -->
                                     <h4><i class="fa fa-trophy"></i> Close Recruitment</h4>
@@ -107,11 +107,11 @@
                                             for (Notifikasi nt : nb.getCloseRec()) {
                                         %>
                                         <div class="lowongan-home">
-                                            <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(nt.getId_pelamar()).getId_lowongan()).getId()).getNama_pendek()%></li>
+                                            <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()).getId()).getNama_pendek()%></li>
                                             <p><%=nt.getCreated_at()%> 
-                                                <a href="<%=request.getContextPath()%>/user/terimaclosereg?idpl=<%=nt.getId_pelamar()%>" class="btn btn-success btn-xs">Terima - Pilih CV </a>
-                                                <a href="<%=request.getContextPath()%>/user/tolakclosereg?idpl=<%=nt.getId_pelamar()%>" class="awas btn btn-danger btn-xs">Tolak </a>
-                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId_pelamar()).getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
+                                                <a href="<%=request.getContextPath()%>/user/terimaclosereg?idpl=<%=nt.getId_pelamar()%>&idnotif=<%=nt.getId()%>" class="btn btn-success btn-xs">Terima - Pilih CV </a>
+                                                <a href="<%=request.getContextPath()%>/user/tolakclosereg?idpl=<%=nt.getId_pelamar()%>&idnotif=<%=nt.getId()%>" class="awas btn btn-danger btn-xs">Tolak </a>
+                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()%>" class="btn btn-primary pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
                                             </p>	
                                         </div>
                                         <hr>
@@ -120,7 +120,7 @@
                                 </div>
                             </div>
                             <div class="box box-lg br-green animated" style="min-height:140px">
-                                <div class="box-content box-service box-default">
+                                <div id="pendaftaranku" class="box-content box-service box-default">
                                     <!-- Heading -->
                                     <h4><i class="fa fa-trophy"></i> Pendaftaranku</h4>
                                     <!-- Paragraph -->
@@ -131,8 +131,42 @@
                                             for (Pelamar nt : nb.getPendaftaranku()) {
                                         %>
                                         <div class="lowongan-home">
-                                            <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(nt.getId()).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(nt.getId()).getId_lowongan()).getId()).getNama_pendek()%></li>
-                                            <p><%=nt.getCreated_at()%> <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId()).getId_lowongan()%>" class="btn btn-warning pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
+                                            <li>
+                                                <i class="fa fa-check-square-o"></i> 
+                                                <b><%= tableLwgs.get(tablePelamar.get(Integer.parseInt("" + nt.getId())).getId_lowongan()).getJudul()%></b> - 
+                                                <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(Integer.parseInt("" + nt.getId())).getId_lowongan()).getId()).getNama_pendek()%>
+                                                <%
+                                                    int status = 0;
+                                                    Pelamar p = tablePelamar.get(Integer.parseInt(""+nt.getId()));
+                                                    if(p.getStatus().equals("wait")){
+                                                        status=0;
+                                                    }else if(p.getStatus().equals("accept")){
+                                                        status=1;
+                                                    }else if(p.getStatus().equals("reject")){
+                                                        status = 2;
+                                                    }
+                                                %>
+                                                <div class="pull-right label label-<%
+                                                    if(status==0){
+                                                        out.print("info");
+                                                    }else if(status==1){
+                                                        out.print("success");
+                                                    }else if(status==2){
+                                                        out.print("danger");
+                                                    }
+                                                    %>"><span style="font-size: 14px; font-weight: bold; ">
+                                                <%
+                                                    if(status==0){
+                                                        out.print("Menunggu Konfirmasi");
+                                                    }else if(status==1){
+                                                        out.print("Diterima");
+                                                    }else if(status==2){
+                                                        out.print("Ditolak");
+                                                    }
+                                                    %></span>
+                                                </div>
+                                            </li>
+                                            <p><%=nt.getCreated_at()%> <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId()).getId_lowongan()%>" class="btn btn-primary pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
                                         </div>
                                         <hr>
                                         <%}%>

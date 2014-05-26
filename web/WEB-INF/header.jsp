@@ -157,9 +157,9 @@
                                                             <div class="col-md-12">
                                                                 <div class="col-inner">
                                                                     <ul class="list-unstyled">
-                                                                        <li><a href="#"><span class="number-notif"><%=nb.getNotifications().size() %></span> Notifikasi</a></li>
-                                                                        <li><a href="#"><span class="number-notif"><%=nb.getCloseRec().size() %></span> Close Recruitment</a></li>
-                                                                        <li><a href="#"><span class="number-notif"><%=nb.getPendaftaranku().size() %></span> Pendaftaranku</a></li>
+                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#notif"><span class="number-notif"><%=nb.getNotifications().size() %></span> Notifikasi</a></li>
+                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#closerec"><span class="number-notif"><%=nb.getCloseRec().size() %></span> Close Recruitment</a></li>
+                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#pendaftaranku"><span class="number-notif"><%=nb.getPendaftaranku().size() %></span> Pendaftaranku</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>

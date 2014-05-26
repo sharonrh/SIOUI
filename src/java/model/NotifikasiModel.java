@@ -74,5 +74,17 @@ public class NotifikasiModel extends Model {
             closeConnection();
         }
     }
+    
+    public void delete(String idnotif){
+        String query = String.format("DELETE FROM %s WHERE id=%s", this.TABLE_NAME, idnotif);
+        super.openConnection();
+        try {
+            super.getStatement().executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+    }
 
 }

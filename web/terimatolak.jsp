@@ -14,10 +14,12 @@
     Object objCvs = request.getAttribute("cvs");
     Object objFormAction = request.getAttribute("formAction");
     Object objIdpl = request.getAttribute("idpl");
+    Object objIdnotif = request.getAttribute("idnotif");
     
     ArrayList<UserCV> cvs = ((objCvs != null) ? (ArrayList<UserCV>) objCvs : null);
     String formAction = ((objFormAction != null) ? objFormAction.toString() : null);
     String idpl = ((objIdpl != null) ? objIdpl.toString() : null);
+    String idnotif = ((objIdnotif != null) ? objIdnotif.toString() : null);
 %>
 
 <div class="container"> 
@@ -30,9 +32,9 @@
                         <!-- Page Title -->
                         <div class="page-title br-green">
                             <!-- Inner Page Title // Heading -->
-                            <h2></h2>
+                            <h2>Close Recruitment</h2>
                             <!-- Paragraph -->
-                            <p></p>
+                            <p>Close Recruitment adalah mekanisme dimana anda diajak oleh sebuah organisasi untuk bergabung.</p>
                         </div>
                     </div>
                 </div>
@@ -57,11 +59,12 @@
 
                                     <%}%>
                                     <input type="hidden" name="idpl" value="<%=idpl%>">
+                                    <input type="hidden" name="idnotif" value="<%=idnotif%>">
                                 </div> 
                             </div>
                             <div class="form-group text-center">
                                 <div class="col-sm-12">
-                                    <button type="submit" class="btn btn-warning">Daftar</button>
+                                    <button type="submit" class="btn btn-warning">Terima Close Recruitment</button>
                                 </div>
                             </div>
                         </form>

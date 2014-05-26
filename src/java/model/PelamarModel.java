@@ -40,7 +40,7 @@ public class PelamarModel extends Model {
         }
         return null;
     }
-    
+
     public int size() {
         super.openConnection();
         String query = "SELECT COUNT(*) FROM " + TABLE_NAME;
@@ -58,18 +58,18 @@ public class PelamarModel extends Model {
         }
         return result;
     }
-    
-    public ArrayList<Pelamar> selectAllPelamarWait(String username){
+
+    public ArrayList<Pelamar> selectAllPelamarWait(String username) {
         super.openConnection();
         String query = String.format("SELECT * FROM %s where username ='%s' AND status='wait' ", TABLE_NAME, username);
-        System.out.println("query:"+query);
+        System.out.println("query:" + query);
         ArrayList<Pelamar> result = new ArrayList<Pelamar>();
         try {
             ResultSet res = super.getStatement().executeQuery(query);
             // selama masih ada baris yang bisa dibaca
             while (res.next()) {
-              Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"),res.getString("username"), res.getInt("id_cv"),res.getString("jenis"), res.getString("status"), res.getString("created_at"),res.getString("updated_at"));
-              result.add(a);
+                Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"), res.getString("username"), res.getInt("id_cv"), res.getString("jenis"), res.getString("status"), res.getString("created_at"), res.getString("updated_at"));
+                result.add(a);
             }
             return result;
         } catch (SQLException ex) {
@@ -79,7 +79,7 @@ public class PelamarModel extends Model {
         }
         return null;
     }
-    
+
     /**
      *
      */
@@ -128,7 +128,7 @@ public class PelamarModel extends Model {
             closeConnection();
         }
     }
-    
+
     public void updateStatusLamaranWithCV(String id, boolean accepted, String idcv) {
         String status = accepted ? "accept" : "reject";
         String query = String.format("UPDATE %s SET status='%s', id_cv=%s WHERE id=%s", this.TABLE_NAME,
@@ -160,7 +160,7 @@ public class PelamarModel extends Model {
         return null;
     }
 
-     public Pelamar getPelamarByUsername(String username) {
+    public Pelamar getPelamarByUsername(String username) {
         super.openConnection();
         String query = String.format("SELECT * FROM %s where username='%s' ", TABLE_NAME, username);
         try {
@@ -188,10 +188,10 @@ public class PelamarModel extends Model {
             closeConnection();
         }
     }
-    
+
     public void insertPelamarWait(int id_lowongan, String username, String id_cv) {
         super.openConnection();
-        String query = String.format("INSERT INTO %s (id_lowongan, username, jenis, id_cv) VALUES (%s,'%s','%s',%s)", TABLE_NAME, id_lowongan, username, "open",id_cv);
+        String query = String.format("INSERT INTO %s (id_lowongan, username, jenis, id_cv) VALUES (%s,'%s','%s',%s)", TABLE_NAME, id_lowongan, username, "open", id_cv);
         try {
             super.getStatement().executeUpdate(query);
         } catch (SQLException ex) {
@@ -199,5 +199,43 @@ public class PelamarModel extends Model {
         } finally {
             closeConnection();
         }
+    }
+
+    public ArrayList<Pelamar> selectAllPelamar(String username) {
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s where username ='%s' ORDER BY updated_at DESC", TABLE_NAME, username);
+        System.out.println("query:" + query);
+        ArrayList<Pelamar> result = new ArrayList<Pelamar>();
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            while (res.next()) {
+                Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"), res.getString("username"), res.getInt("id_cv"), res.getString("jenis"), res.getString("status"), res.getString("created_at"), res.getString("updated_at"));
+                result.add(a);
+            }
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
+    }
+    
+    public Pelamar getPelamarByUsernameLWID(String username, String lwid) {
+        super.openConnection();
+        String query = String.format("SELECT * FROM %s where username='%s' AND id_lowongan=%s ", TABLE_NAME, username, lwid);
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            res.next();
+            Pelamar a = new Pelamar(res.getInt("id"), res.getInt("id_lowongan"), res.getString("username"), res.getInt("id_cv"), res.getString("jenis"), res.getString("status"), res.getString("created_at"), res.getString("updated_at"));
+            return a;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return null;
     }
 }

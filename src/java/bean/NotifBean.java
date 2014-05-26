@@ -40,7 +40,7 @@ public class NotifBean implements NotifBeanLocal {
     public void populateBean() {
         notifs = nm.selectAllUnread(username);
         closerec = nm.selectAllCloseRec(username);
-        pendaftaranku = pm.selectAllPelamarWait(username);
+        pendaftaranku = pm.selectAllPelamar(username);
     }
 
     @Override
@@ -62,5 +62,20 @@ public class NotifBean implements NotifBeanLocal {
     
     public ArrayList<Notifikasi> getCloseRec() {
         return closerec;
+    }
+    
+    public void sortPendaftaranku(){
+        ArrayList<Pelamar> baru = new ArrayList<Pelamar>();
+        for(int i=0;i<pendaftaranku.size();i++){
+            if(pendaftaranku.get(i).getStatus().equals("wait")){
+                baru.add(pendaftaranku.get(i));
+            }
+        }
+        for(int i=0;i<pendaftaranku.size();i++){
+            if(!pendaftaranku.get(i).getStatus().equals("wait")){
+                baru.add(pendaftaranku.get(i));
+            }
+        }
+        pendaftaranku = baru;
     }
 }
