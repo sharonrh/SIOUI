@@ -61,7 +61,7 @@ public class PelamarModel extends Model {
     
     public ArrayList<Pelamar> selectAllPelamarWait(String username){
         super.openConnection();
-        String query = String.format("SELECT * FROM %s where username ='%s' AND status='wait' ", TABLE_NAME, username);
+        String query = String.format("SELECT * FROM %s where username ='%s' AND status='wait' ORDER BY updated_at", TABLE_NAME, username);
         System.out.println("query:"+query);
         ArrayList<Pelamar> result = new ArrayList<Pelamar>();
         try {

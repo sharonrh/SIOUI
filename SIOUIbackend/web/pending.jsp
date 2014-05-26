@@ -27,6 +27,7 @@
             <% if (listPermohonan.size() > 0) {%>
             <thead>    
             <th> # </th>
+            <th> Pemohon </th>
             <th> Username </th>
             <th> Nama Panjang </th>
             <th> Deskripsi </th>

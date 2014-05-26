@@ -38,7 +38,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Nama Panjang</label>
                 <div class="col-sm-8">
-                    <input required type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
+                    <input required name="nama_panjang" type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
                 </div>
             </div>  
             <div class="form-group">

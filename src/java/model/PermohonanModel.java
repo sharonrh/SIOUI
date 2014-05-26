@@ -90,10 +90,10 @@ public class PermohonanModel extends Model {
         return n;
     }
     
-    public void addPermohonan(String username_pendaftar, String username, String nama_panjang, String password,
-            String deskripsi) {
+    public void addPermohonan(String username_pendaftar, String username, String password, String nama_panjang, String deskripsi) {
         super.openConnection();
         String query = String.format("INSERT INTO %s(username_pendaftar, username, password, nama_panjang, deskripsi) VALUES ('%s','%s','%s','%s','%s')", TABLE_NAME, username_pendaftar, username, password, nama_panjang, deskripsi);
+        System.out.println(query);
         openConnection();
         try {
             super.getStatement().executeUpdate(query);
