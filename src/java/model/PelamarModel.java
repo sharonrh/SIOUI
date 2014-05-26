@@ -40,6 +40,25 @@ public class PelamarModel extends Model {
         }
         return null;
     }
+    
+    public int size() {
+        super.openConnection();
+        String query = "SELECT COUNT(*) FROM " + TABLE_NAME;
+        int result = 0;
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            res.next();
+            result = res.getInt(1);
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return result;
+    }
+    
     public ArrayList<Pelamar> selectAllPelamarWait(String username){
         super.openConnection();
         String query = String.format("SELECT * FROM %s where username ='%s' AND status='wait' ", TABLE_NAME, username);

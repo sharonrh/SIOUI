@@ -22,6 +22,9 @@ public class LowonganModel extends Model {
 
     final String TABLE_NAME = "lowongan";
 
+    public static void main(String[] args){
+        LowonganModel lm = new LowonganModel();
+    }
     public ArrayList<Lowongan> selectAll() {
         super.openConnection();
         String query = "SELECT * FROM " + TABLE_NAME;
@@ -46,6 +49,24 @@ public class LowonganModel extends Model {
             closeConnection();
         }
         return null;
+    }
+    
+    public int size() {
+        super.openConnection();
+        String query = "SELECT COUNT(*) FROM " + TABLE_NAME;
+        int result = 0;
+        try {
+            ResultSet res = super.getStatement().executeQuery(query);
+            // selama masih ada baris yang bisa dibaca
+            res.next();
+            result = res.getInt(1);
+            return result;
+        } catch (SQLException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            closeConnection();
+        }
+        return result;
     }
     
     public ArrayList<Lowongan> selectMultipleByUsername(String idOrg) {

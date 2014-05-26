@@ -20,9 +20,9 @@
         PelamarModel pm = new PelamarModel();
         LowonganModel lm = new LowonganModel();
         
-        int jumlahOrg = (om.selectAll()==null ? om.selectAll().size() : 0);
-        int jumlahPelamar = (pm.selectAll()==null ? pm.selectAll().size() : 0);
-        int jumlahLowongan = (lm.selectAll()==null ? lm.selectAll().size() : 0);
+        int jumlahOrg = om.size();
+        int jumlahPelamar = pm.size();
+        int jumlahLowongan = lm.size();
         
         ArrayList<Lowongan> alw = lm.getLowonganBaru(3);
     %>
@@ -81,7 +81,7 @@
                                 for(Lowongan l:alw){
                             %>
                             <div class="lowongan-home">
-                                <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul() %></b> <%=l.getDeskripsi() %> <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id=<%=l.getId() %>" class="btn btn-warning pull-right btn-xs" > read more <i class="fa fa-angle-right"></i></a> </li>
+                                <li><i class="fa fa-check-square-o"></i> <b><%=l.getJudul() %></b> - <%=l.getJabatan() %> <a href="<%=request.getContextPath() %>/explore/showdetaillwg?id=<%=l.getId() %>" class="btn btn-warning pull-right btn-xs" > read more <i class="fa fa-angle-right"></i></a> </li>
                                                 
                             </div>
                             <%}}%>
