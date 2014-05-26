@@ -84,8 +84,8 @@
     </div>
     <div class="form-group">
         <label for="inputEmail" class="col-sm-2 control-label">Kategori</label>
-        <div class="col-sm-6">
-            <textarea class="form-control" rows="3" id="kategori" name="kategori"><%if (lw.getKategori() != null) {
+        <div class="col-sm-3">
+            <textarea class="form-control" rows="1" id="kategori" name="kategori" placeholder="1 tag paling menggambarkan"><%if (lw.getKategori() != null) {
                     out.print(lw.getKategori());}%></textarea>
         </div>
     </div>

@@ -28,7 +28,7 @@
         <!-- Custom CSS -->
         <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet">
 
-        <link href="css/style-joef.css" rel="stylesheet">
+        <link href="<%=request.getContextPath()%>/css/style-joef.css" rel="stylesheet">
         <!--[if IE]><link rel="stylesheet" href="<%=request.getContextPath()%>/css/ie-style.css"><![endif]-->
 
         <!-- Favicon -->

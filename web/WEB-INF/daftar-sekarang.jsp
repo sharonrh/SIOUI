@@ -7,43 +7,44 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/header.jsp" %>
 
-<%
-    String regStatus = request.getParameter("register");
-    if (regStatus != null) {
-        if (regStatus.equals("success")) {
-%>
-<div class="alert alert-success">Registrasi Anda telah tercatat. Mohon tunggu konfirmasi selanjutnya di email.</div>
-<%
-        }
-    }
-%>
-<div class="container"> 
+
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            
+        </div>
     <div class="col-md-4">
+        <div class="alert <%=request.getAttribute("alertType")%>">
+        <%if(request.getAttribute("alertContent")!= null){
+        request.getAttribute("alertContent");};
+        %>
+        </div>
         <h2>Registration</h2>
         <!-- Sign Up Form Start -->
         <form class="form-horizontal" role="form" method="POST" action="/daftar-organisasi/add">
             <div class="form-group">
                 <label class="col-sm-2 control-label">Username</label>
                 <div class="col-sm-8">
-                    <input name="username_organisasi" type="text" class="form-control" id="username" placeholder="username untuk backend">
+                    <input required name="username_organisasi" type="text" class="form-control" id="username" placeholder="username untuk backend">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Password</label>
                 <div class="col-sm-8">
-                    <input name="password" type="password" class="form-control" placeholder="password backend">
+                    <input required name="password" type="password" class="form-control" placeholder="password backend">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">Nama Panjang</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
+                    <input required type="text" class="form-control" id="nama_panjang" placeholder="Nama panjang">
                 </div>
             </div>  
             <div class="form-group">
                 <label class="col-sm-2 control-label">Deskripsi</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" placeholder="Deskripsi singkat mengenai organisasimu untuk diverifikasi oleh admin" name="deskripsi"></textarea>
+                    <textarea required class="form-control" rows="5" placeholder="Deskripsi singkat mengenai organisasimu untuk diverifikasi oleh admin" name="deskripsi"></textarea>
                 </div>
             </div>
             <div class="form-group text-center">
@@ -54,6 +55,7 @@
             </div>
         </form>
         <!-- Sign Up form End -->
+    </div>
     </div>
 </div>
 <%@include file="/WEB-INF/footer.jsp" %>
