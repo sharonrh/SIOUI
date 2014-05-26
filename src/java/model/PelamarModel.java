@@ -177,7 +177,7 @@ public class PelamarModel extends Model {
     
     public void insertPelamarWait(int id_lowongan, String username, String id_cv) {
         super.openConnection();
-        String query = String.format("INSERT INTO %s (id_lowongan, username, jenis, id_cv) VALUES (%s,'%s','%s',%s)", TABLE_NAME, id_lowongan, username, "oprec",id_cv);
+        String query = String.format("INSERT INTO %s (id_lowongan, username, jenis, id_cv) VALUES (%s,'%s','%s',%s)", TABLE_NAME, id_lowongan, username, "open",id_cv);
         try {
             super.getStatement().executeUpdate(query);
         } catch (SQLException ex) {

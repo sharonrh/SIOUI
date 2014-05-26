@@ -32,6 +32,7 @@ import ws.UserCV;
  * @author Johanes
  */
 public class UserController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,28 +46,28 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         String user = (String) session.getAttribute("currentUser");
-        NotifBean nb = (NotifBean) request.getSession().getAttribute(user+"_notif");
+        NotifBean nb = (NotifBean) request.getSession().getAttribute(user + "_notif");
         ArrayList<Notifikasi> listNotifikasi = nb.getCloseRec();
         String userPath = request.getServletPath();
         UserModel um = new UserModel();
         LowonganModel lm = new LowonganModel();
         OrganisasiModel om = new OrganisasiModel();
         PelamarModel pm = new PelamarModel();
-        
+
         if (userPath.equals("/user/dashboard")) {
             ArrayList<Organisasi> orgs = om.selectAll();
             Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
-            for(Organisasi org:orgs){
+            for (Organisasi org : orgs) {
                 tableOrgs.put(org.getId(), org);
             }
             ArrayList<Lowongan> lwgs = lm.selectAll();
             Hashtable<Integer, Lowongan> tableLwgs = new Hashtable<Integer, Lowongan>();
-            for(Lowongan lwg:lwgs){
+            for (Lowongan lwg : lwgs) {
                 tableLwgs.put(lwg.getId(), lwg);
             }
             ArrayList<Pelamar> pelamar = pm.selectAll();
             Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
-            for(Pelamar plm:pelamar){
+            for (Pelamar plm : pelamar) {
                 tablePelamar.put(plm.getId(), plm);
             }
             request.setAttribute("tableOrgs", tableOrgs);
@@ -75,7 +76,7 @@ public class UserController extends HttpServlet {
             RequestDispatcher view = request.getRequestDispatcher("/dashboard.jsp");
             view.forward(request, response);
         } else if (userPath.equals("/user/pendaftaranku")) {
-            
+
         } else if (userPath.equals("/user/closerec")) {
 
         } else if (userPath.equals("/user/notifikasi")) {
@@ -92,36 +93,36 @@ public class UserController extends HttpServlet {
             String id = objId.toString();
 
             //cek udah login apa belom
-            if(session==null||user==null){
-                response.sendRedirect(request.getContextPath()+"/login.jsp");
-            }
-            
-            request.setAttribute("formAction", request.getContextPath()+"/user/dodaftar");
-            request.setAttribute("idlw", id);
+            if (session == null || user == null) {
+                response.sendRedirect(request.getContextPath() + "/login.jsp");
+            } else {
+                request.setAttribute("formAction", request.getContextPath() + "/user/dodaftar");
+                request.setAttribute("idlw", id);
 
-            List<UserCV> cvs = um.getMultipleCVByUsername(user);
-            request.setAttribute("cvs", cvs);
-            RequestDispatcher view = request.getRequestDispatcher("/daftar-pilihcv.jsp");
-            view.forward(request, response);
+                List<UserCV> cvs = um.getMultipleCVByUsername(user);
+                request.setAttribute("cvs", cvs);
+                RequestDispatcher view = request.getRequestDispatcher("/daftar-pilihcv.jsp");
+                view.forward(request, response);
+            }
         } else if (userPath.equals("/user/dodaftar")) {
             String idcv = request.getParameter("cvs");
             String idlw = request.getParameter("idlw");
-            
+
             pm.insertPelamarWait(Integer.parseInt(idlw), user, idcv);
-            
+
             ArrayList<Organisasi> orgs = om.selectAll();
             Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
-            for(Organisasi org:orgs){
+            for (Organisasi org : orgs) {
                 tableOrgs.put(org.getId(), org);
             }
             ArrayList<Lowongan> lwgs = lm.selectAll();
             Hashtable<Integer, Lowongan> tableLwgs = new Hashtable<Integer, Lowongan>();
-            for(Lowongan lwg:lwgs){
+            for (Lowongan lwg : lwgs) {
                 tableLwgs.put(lwg.getId(), lwg);
             }
             ArrayList<Pelamar> pelamar = pm.selectAll();
             Hashtable<Integer, Pelamar> tablePelamar = new Hashtable<Integer, Pelamar>();
-            for(Pelamar plm:pelamar){
+            for (Pelamar plm : pelamar) {
                 tablePelamar.put(plm.getId(), plm);
             }
             request.setAttribute("tableOrgs", tableOrgs);
