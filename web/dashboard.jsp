@@ -78,15 +78,14 @@
                                                 int idPelamar = Integer.parseInt(nt.getId_pelamar());
                                                 int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
                                                 Lowongan l = tableLwgs.get(idLowongan);
-
                                                 String namaPendek = tableOrgs.get(l.getId()).getNama_pendek();
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= l.getJudul()%></b> - <%= namaPendek%></li>
+                                            <li>Jenis : <%= tablePelamar.get(idPelamar).getJenis()%> recruitment - status : <%= tablePelamar.get(idPelamar).getStatus()%></li>
                                             <p>
                                                 <%=nt.getCreated_at()%> 
-                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=idLowongan%>" class="btn btn-primary pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
-
+                                                <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=idLowongan%>&pid=<%=idPelamar%>" class="btn btn-primary pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a>
                                             </p>	
 
                                         </div>
@@ -132,7 +131,7 @@
                                         <%
                                             for (Pelamar nt : nb.getPendaftaranku()) {
                                         %>
-                                        <div class="lowongan-home">
+                                        <div class="lowongan-home scrollable">
                                             <li>
                                                 <i class="fa fa-check-square-o"></i> 
                                                 <b><%= tableLwgs.get(tablePelamar.get(Integer.parseInt("" + nt.getId())).getId_lowongan()).getJudul()%></b> - 

@@ -72,3 +72,9 @@
     position: relative;
     z-index: 99;
 }
+
+.scrollable{
+    overflow-y:auto;
+    overflow-x:hidden;
+    min-height:100px;
+}

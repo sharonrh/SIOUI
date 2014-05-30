@@ -57,7 +57,7 @@ public class RegisterController extends HttpServlet {
             PermohonanModel pm = new PermohonanModel();
             pm.addPermohonan(user, username, password, nama_panjang, deskripsi);
             String returnValue = "true";
-            response.sendRedirect("/daftar-organisasi?success=" + returnValue);
+            response.sendRedirect(request.getContextPath()+"/daftar-organisasi?success=" + returnValue);
         }
     }
 

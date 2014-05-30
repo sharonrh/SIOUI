@@ -62,9 +62,9 @@ public class NotifikasiModel extends Model {
         return null;
     }
     
-    public void updateSeen(int idPelamar) {
-        String query = String.format("UPDATE %s SET seen='%s' WHERE id=%s", this.TABLE_NAME,
-                0, idPelamar);
+    public void updateSeen(String idPelamar) {
+        String query = String.format("UPDATE %s SET seen=1 WHERE id_pelamar=%s", this.TABLE_NAME,
+                idPelamar);
         super.openConnection();
         try {
             super.getStatement().executeUpdate(query);

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.GalleryModel;
 import model.JabatanModel;
 import model.LowonganModel;
+import model.NotifikasiModel;
 import model.OrganisasiModel;
 import object.Album;
 import object.Jabatan;
@@ -32,6 +33,7 @@ public class ExploreController extends HttpServlet {
     LowonganModel lm = new LowonganModel();
     JabatanModel jm = new JabatanModel();
     GalleryModel gm = new GalleryModel();
+    NotifikasiModel nm = new NotifikasiModel();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -112,6 +114,10 @@ public class ExploreController extends HttpServlet {
                 //redirect here
             }
             String id = objId.toString();
+            
+            if (request.getParameter("pid")!=null) {
+                nm.updateSeen(request.getParameter("pid"));
+            }
             
             Lowongan lwg = lm.select(id);
             String usernameOrg = lwg.getUsername();

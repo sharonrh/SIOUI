@@ -153,9 +153,9 @@
                             </div>
                             <!-- Box Link -->
                             <a href="<%if (session.getAttribute("currentUser") != null) {
-                                        out.print(request.getContextPath() + "//user//dashboard");
+                                        out.print(request.getContextPath() + "/user/dashboard");
                                     } else {
-                                        out.print(request.getContextPath() + "//login");
+                                        out.print(request.getContextPath() + "/login");
                                 }
                            %>">
                                 <!-- Box Link Content -->
