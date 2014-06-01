@@ -1,3 +1,8 @@
+<%@page import="object.Notifikasi"%>
+<%@page import="object.Pelamar"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.PelamarModel"%>
+<%@page import="model.NotifikasiModel"%>
 <%@page import="bean.NotifBean"%>
 <%@ page errorPage="redirecterror.jsp" %>
 <!DOCTYPE html>
@@ -33,8 +38,13 @@
         <!--[if IE]><link rel="stylesheet" href="<%=request.getContextPath()%>/css/ie-style.css"><![endif]-->
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="#">
+        <link rel="shortcut icon" href="/img/favicon.png">
     </head>
+
+    <%
+        NotifikasiModel nmm = new NotifikasiModel();
+        PelamarModel pmm = new PelamarModel();
+    %>
 
     <body>
 
@@ -58,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-4">
-                                
+
                             </div>
                             <div class="col-md-4 col-sm-4">
                                 <!-- Contact Info -->
@@ -133,8 +143,17 @@
                                                 // jika user sudah login
                                                 if (session.getAttribute("currentUser") != null) {
                                                     String username = session.getAttribute("currentUser").toString();
-                                                    NotifBean nb = (NotifBean)session.getAttribute(username+"_notif");
+                                                    //NotifBean nb = (NotifBean)session.getAttribute(username+"_notif");
+                                                    ArrayList<Pelamar> pendaftaranku = new ArrayList<Pelamar>();
+                                                    ArrayList<Notifikasi> notifs = new ArrayList<Notifikasi>();
+                                                    ArrayList<Notifikasi> closerec = new ArrayList<Notifikasi>();
+                                                    
+                                                    notifs = nmm.selectAllUnread(username);
+                                                    closerec = nmm.selectAllCloseRec(username);
+                                                    pendaftaranku = pmm.selectAllPelamar(username);
                                             %>
+
+
                                             <li class="dropdown">
                                                 <a href="<%=request.getContextPath()%>" class="dropdown-toggle br-purple" data-toggle="dropdown">
                                                     <!-- Link Icon -->
@@ -148,10 +167,9 @@
                                                             <div class="col-md-12">
                                                                 <div class="col-inner">
                                                                     <ul class="list-unstyled">
-                                                                        <%nb.populateBean();%>
-                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#notif"><span class="number-notif"><%=nb.getNotifications().size() %></span> Notifikasi</a></li>
-                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#closerec"><span class="number-notif"><%=nb.getCloseRec().size() %></span> Close Recruitment</a></li>
-                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#pendaftaranku"><span class="number-notif"><%=nb.getPendaftaranku().size() %></span> Pendaftaranku</a></li>
+                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#notif"><span class="number-notif"><% if(notifs!=null){out.print(notifs.size());}else{out.print("0");} %></span> Notifikasi</a></li>
+                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#closerec"><span class="number-notif"><% if(closerec!=null){out.print(closerec.size());}else{out.print("0");} %></span> Close Recruitment</a></li>
+                                                                        <li><a href="<%=request.getContextPath() %>/user/dashboard#pendaftaranku"><span class="number-notif"><% if(pendaftaranku!=null){out.print(pendaftaranku.size());}else{out.print("0");} %></span> Pendaftaranku</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>

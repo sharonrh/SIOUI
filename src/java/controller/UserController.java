@@ -57,9 +57,9 @@ public class UserController extends HttpServlet {
 
         if (userPath.equals("/user/dashboard")) {
             ArrayList<Organisasi> orgs = om.selectAll();
-            Hashtable<Integer, Organisasi> tableOrgs = new Hashtable<Integer, Organisasi>();
+            Hashtable<String, Organisasi> tableOrgs = new Hashtable<String, Organisasi>();
             for (Organisasi org : orgs) {
-                tableOrgs.put(org.getId(), org);
+                tableOrgs.put(org.getUsername(), org);
             }
             ArrayList<Lowongan> lwgs = lm.selectAll();
             Hashtable<Integer, Lowongan> tableLwgs = new Hashtable<Integer, Lowongan>();

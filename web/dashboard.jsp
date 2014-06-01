@@ -16,7 +16,7 @@
     Object objNotif = request.getAttribute("notif");
 
     Hashtable<Integer, Lowongan> tableLwgs = ((objTableLwgs != null) ? (Hashtable<Integer, Lowongan>) objTableLwgs : null);
-    Hashtable<Integer, Organisasi> tableOrgs = ((objTableOrgs != null) ? (Hashtable<Integer, Organisasi>) objTableOrgs : null);
+    Hashtable<String, Organisasi> tableOrgs = ((objTableOrgs != null) ? (Hashtable<String, Organisasi>) objTableOrgs : null);
     Hashtable<Integer, Pelamar> tablePelamar = ((objTablePelamar != null) ? (Hashtable<Integer, Pelamar>) objTablePelamar : null);
 
     if (session.getAttribute("currentUser") == null) {
@@ -24,8 +24,18 @@
     }
 
     String username = session.getAttribute("currentUser").toString();
-    NotifBean nb = (NotifBean) session.getAttribute(username + "_notif");
-    nb.populateBean();
+    //NotifBean nb = (NotifBean) session.getAttribute(username + "_notif");
+    //nb.populateBean();
+
+    ArrayList<Pelamar> pendaftaranku = new ArrayList<Pelamar>();
+    ArrayList<Notifikasi> notifs = new ArrayList<Notifikasi>();
+    ArrayList<Notifikasi> closerec = new ArrayList<Notifikasi>();
+
+    PelamarModel pm = new PelamarModel();
+    NotifikasiModel nm = new NotifikasiModel();
+    notifs = nm.selectAllUnread(username);
+    closerec = nm.selectAllCloseRec(username);
+    pendaftaranku = pm.selectAllPelamar(username);
 %>
 
 <div class="container"> 
@@ -59,9 +69,9 @@
                     <div class="isi">
                         <div class="alert alert-success <%if (objNotif == null) {
                                 out.print("hide");
-                         }%> "><% if (objNotif != null) {
-                                     out.print(objNotif.toString());
-                                    } %></div>
+                            }%> "><% if (objNotif != null) {
+                                 out.print(objNotif.toString());
+                             } %></div>
                         <div class="col-md-12 col-sm-12">
                             <!-- Box Outer Layer [ Box 3 ] -->
                             <div id="notif" class="box box-lg br-red animated" style="min-height:140px">
@@ -73,11 +83,12 @@
                                     <!-- Box Service List -->
                                     <ul class="list-unstyled">
                                         <%
-                                            for (Notifikasi nt : nb.getNotifications()) {
-                                                int idPelamar = Integer.parseInt(nt.getId_pelamar());
-                                                int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
-                                                Lowongan l = tableLwgs.get(idLowongan);
-                                                String namaPendek = tableOrgs.get(l.getId()).getNama_pendek();
+                                            if (notifs != null) {
+                                                for (Notifikasi nt : notifs) {
+                                                    int idPelamar = Integer.parseInt(nt.getId_pelamar());
+                                                    int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
+                                                    Lowongan l = tableLwgs.get(idLowongan);
+                                                    String namaPendek = tableOrgs.get(l.getUsername()).getNama_pendek();
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= l.getJudul()%></b> - <%= namaPendek%></li>
@@ -89,7 +100,10 @@
 
                                         </div>
                                         <hr>
-                                        <%}%>
+                                        <%}
+                                            } else {
+                                                out.print("Tidak ada notifikasi.");
+                                            }%>
                                     </ul>
                                 </div>
                             </div>
@@ -102,9 +116,10 @@
                                     <!-- Box Service List -->
                                     <ul class="list-unstyled">
                                         <%
-                                            for (Notifikasi nt : nb.getCloseRec()) {
-                                                int idPelamar = Integer.parseInt(nt.getId_pelamar());
-                                                int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
+                                            if (closerec != null) {
+                                                for (Notifikasi nt : closerec) {
+                                                    int idPelamar = Integer.parseInt(nt.getId_pelamar());
+                                                    int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= tableLwgs.get(tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()).getJudul()%></b> - <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(Integer.parseInt(nt.getId_pelamar())).getId_lowongan()).getId()).getNama_pendek()%></li>
@@ -115,7 +130,10 @@
                                             </p>	
                                         </div>
                                         <hr>
-                                        <%}%>
+                                        <%}
+                                            } else {
+                                                out.print("Tidak ada penawaran close recruitment.");
+                                            }%>
                                     </ul>
                                 </div>
                             </div>
@@ -128,48 +146,59 @@
                                     <!-- Box Service List -->
                                     <ul class="list-unstyled">
                                         <%
-                                            for (Pelamar nt : nb.getPendaftaranku()) {
+                                            if (pendaftaranku != null) {
+                                                for (Pelamar nt : pendaftaranku) {
                                         %>
                                         <div class="lowongan-home scrollable">
                                             <li>
                                                 <i class="fa fa-check-square-o"></i> 
                                                 <b><%= tableLwgs.get(tablePelamar.get(Integer.parseInt("" + nt.getId())).getId_lowongan()).getJudul()%></b> - 
-                                                <%= tableOrgs.get(tableLwgs.get(tablePelamar.get(Integer.parseInt("" + nt.getId())).getId_lowongan()).getId()).getNama_pendek()%>
+                                                <%
+                                                    int idPelamar = nt.getId();
+                                                    Pelamar pp = tablePelamar.get(idPelamar);
+                                                    Lowongan l = tableLwgs.get(pp.getId_lowongan());
+                                                    Organisasi o = tableOrgs.get(l.getUsername());
+                                                    out.print(o.getNama_pendek());
+                                                %>
+                                                
                                                 <%
                                                     int status = 0;
-                                                    Pelamar p = tablePelamar.get(Integer.parseInt(""+nt.getId()));
-                                                    if(p.getStatus().equals("wait")){
-                                                        status=0;
-                                                    }else if(p.getStatus().equals("accept")){
-                                                        status=1;
-                                                    }else if(p.getStatus().equals("reject")){
+                                                    Pelamar p = tablePelamar.get(Integer.parseInt("" + nt.getId()));
+                                                    if (p.getStatus().equals("wait")) {
+                                                        status = 0;
+                                                    } else if (p.getStatus().equals("accept")) {
+                                                        status = 1;
+                                                    } else if (p.getStatus().equals("reject")) {
                                                         status = 2;
                                                     }
                                                 %>
                                                 <div class="pull-right label label-<%
-                                                    if(status==0){
+                                                    if (status == 0) {
                                                         out.print("info");
-                                                    }else if(status==1){
+                                                    } else if (status == 1) {
                                                         out.print("success");
-                                                    }else if(status==2){
+                                                    } else if (status == 2) {
                                                         out.print("danger");
                                                     }
-                                                    %>"><span style="font-size: 14px; font-weight: bold; ">
-                                                <%
-                                                    if(status==0){
-                                                        out.print("Menunggu Konfirmasi");
-                                                    }else if(status==1){
-                                                        out.print("Diterima");
-                                                    }else if(status==2){
-                                                        out.print("Ditolak");
-                                                    }
-                                                    %></span>
+                                                     %>"><span style="font-size: 14px; font-weight: bold; ">
+                                                        <%
+                                                            if (status == 0) {
+                                                                out.print("Menunggu Konfirmasi");
+                                                            } else if (status == 1) {
+                                                                out.print("Diterima");
+                                                            } else if (status == 2) {
+                                                                out.print("Ditolak");
+                                                            }
+                                                        %></span>
                                                 </div>
                                             </li>
                                             <p><%=nt.getCreated_at()%> <a href="<%=request.getContextPath()%>/explore/showdetaillwg?id=<%=tablePelamar.get(nt.getId()).getId_lowongan()%>" class="btn btn-primary pull-right btn-xs">read more <i class="fa fa-angle-right"></i></a></p>	
                                         </div>
                                         <hr>
-                                        <%}%>
+                                        <%}
+                                            } else {
+                                                out.print("Anda belum melakukan pendaftaran.");
+                                            }%>
                                     </ul>
                                 </div>
                             </div>
