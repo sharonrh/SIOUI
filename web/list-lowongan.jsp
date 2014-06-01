@@ -22,7 +22,6 @@
         response.sendRedirect(request.getContextPath());
     }
 %>
-<h1><%=lwgs.get(0).getId() %></h1>
 
 <!-- BODY DIMULAI -->
 <div class="inner-page">

@@ -102,7 +102,7 @@ public class Album extends HttpServlet {
                 view.forward(request, response);
             } else if (userPath.equals("/album/create")) {
                 object.Album a = new object.Album("" + org.getId(), request.getParameter("nama-album"), request.getParameter("deskripsi-album"));
-                gm.insertAlbum(a);
+                gm.insertAlbum(a); 
                 object.Album lastInserted = gm.getLastInsertedAlbum();
                 response.sendRedirect(request.getContextPath() + "/album/edit?id=" + lastInserted.getId() + "&status=sukses");
             } else if (userPath.equals("/album/updatealbuminfo")) {

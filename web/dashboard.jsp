@@ -1,4 +1,3 @@
-
 <%@page import="object.Pelamar"%>
 <%@page import="object.Notifikasi"%>
 <%@page import="object.Organisasi"%>

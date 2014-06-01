@@ -1,4 +1,5 @@
 <%@page import="bean.NotifBean"%>
+<%@ page errorPage="redirecterror.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
