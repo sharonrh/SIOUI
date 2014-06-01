@@ -72,7 +72,7 @@
 
             <!-- Main-bar Column -->
             <div class="col-md-9">
-                <% if (albums != null) { %>
+                <% if (albums != null && albumDipilih!=null) { %>
                 <div class="page-mainbar aboutus">
 
                     <div class="carousel slide" id="carousel-220145">
@@ -130,7 +130,9 @@
                         }
                     %>
                 </div>
-                <%}%>
+                <%}else{
+                    out.print("Saat ini organisasi ini belum mempunyai album.");
+                }%>
             </div>
         </div>
     </div>

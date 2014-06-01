@@ -51,7 +51,7 @@ public class LoginController extends HttpServlet {
                 NotifBean nb = new NotifBean(request.getParameter("username"));                
                 session.setAttribute(request.getParameter("username") + "_notif", nb);
                 
-                response.sendRedirect("/user/dashboard");
+                response.sendRedirect(request.getContextPath()+"/user/dashboard");
             }else{
                 response.sendRedirect(request.getContextPath()+"/login.jsp?status=fail");
             }

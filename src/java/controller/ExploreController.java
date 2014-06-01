@@ -138,12 +138,19 @@ public class ExploreController extends HttpServlet {
             Object objIdAlbum = request.getParameter("idalbum");
             String idAlbum = "";
             if (objIdAlbum == null) {
-                idAlbum = a.get(0).getId();
+                if(a!=null&&a.size()!=0){
+                    idAlbum = a.get(0).getId();
+                }else{
+                    idAlbum = "-1";
+                }
             }else{
                 idAlbum = objIdAlbum.toString();
             }
             
-            Album albumDipilih = gm.getSingleAlbum(Integer.parseInt(idAlbum));
+            Album albumDipilih =null;
+            if(!idAlbum.equals("-1")){
+                albumDipilih = gm.getSingleAlbum(Integer.parseInt(idAlbum));
+            }
             request.setAttribute("albumDipilih", albumDipilih);
             
             Organisasi org = om.select(Integer.parseInt(id));
