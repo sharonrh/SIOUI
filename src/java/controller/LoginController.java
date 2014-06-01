@@ -51,13 +51,13 @@ public class LoginController extends HttpServlet {
                 NotifBean nb = new NotifBean(request.getParameter("username"));                
                 session.setAttribute(request.getParameter("username") + "_notif", nb);
                 
-                RequestDispatcher view = request.getRequestDispatcher("/user/dashboard");
-                view.forward(request, response);
+                response.sendRedirect(request.getContextPath()+"/user/dashboard");
             }else{
                 response.sendRedirect(request.getContextPath()+"/login.jsp?status=fail");
             }
         }else if(userPath.equals("/login/dologout")){
             HttpSession session = request.getSession(true);
+            session.setAttribute(request.getParameter("username") + "_notif", null);
             session.setAttribute("currentUser", null);
             response.sendRedirect(request.getContextPath()+"/index.jsp?logout=true");
         }

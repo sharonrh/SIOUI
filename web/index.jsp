@@ -19,11 +19,11 @@
         OrganisasiModel om = new OrganisasiModel();
         PelamarModel pm = new PelamarModel();
         LowonganModel lm = new LowonganModel();
-
+      
         int jumlahOrg = om.size();
         int jumlahPelamar = pm.size();
         int jumlahLowongan = lm.size();
-
+        
         ArrayList<Lowongan> alw = lm.getLowonganBaru(3);
     %>
     <!--

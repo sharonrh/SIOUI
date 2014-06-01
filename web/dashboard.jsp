@@ -78,7 +78,7 @@
                                                 int idPelamar = Integer.parseInt(nt.getId_pelamar());
                                                 int idLowongan = tablePelamar.get(idPelamar).getId_lowongan();
                                                 Lowongan l = tableLwgs.get(idLowongan);
-                                                String namaPendek = tableOrgs.get(l.getId()).getNama_pendek();
+                                                String namaPendek = (tableOrgs.get(l.getId()).getNama_pendek());
                                         %>
                                         <div class="lowongan-home">
                                             <li><i class="fa fa-check-square-o"></i> <b><%= l.getJudul()%></b> - <%= namaPendek%></li>
